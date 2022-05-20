@@ -8,8 +8,8 @@ $transitionEasing: cubic-bezier(.36,1,.62,.98);
 $background1: rgb(69, 16, 69);
 $background2: rgba(5,52,100,1);
 
-$CEMEX-blue: rgba(5,52,100,1);
-$CEMEX-red: rgba(203,4,28,1);
+$CEMEX-blue: rgb(0, 64, 128);
+$CEMEX-red: rgb(208, 11, 34);
 $CEMEX-gray: rgba(230,231,238,1);
 $ship-cove: rgba(116,137,185,1);
 $wild-blue-yonder: rgba(124,148,181,1);
@@ -44,18 +44,9 @@ body {
     font-size: 16px;
     color: #fff;
     margin: 0 !important;
-}
-
-.app {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    overflow-y: scroll;
-    background-image: url('../../public/assets/imgs/Login/background.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
+
+    
 }
 
 .form-block-wrapper {
@@ -66,11 +57,11 @@ body {
     height: 100%;
     @include transition(all .85s ease-in-out);
     &--is-login {
-        opacity: .8;
+        opacity: .3;
         background-color: $background1;
     }
     &--is-signup {
-        opacity: .8;
+        opacity: .3;
         background-color: $background2;
     }
 }
@@ -90,11 +81,11 @@ body {
     color: #fff;
     @include box-shadow(0px 0px 16px 9px rgba(0,0,0,0.07));
     &--is-login {
-        width: 285px;
+        width: 280px;
         @include transition(all .5s $transitionEasing .2s);
     }
     &--is-signup {
-        width: 450px;
+        width: 400px;
         @include transition(all .5s $transitionEasing .2s);
     }
 }
@@ -206,6 +197,38 @@ body {
     width: 100%;
 }
 
+.form-toggler{
+    content: '';
+    font-size: 13px;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 4px;
+    color: $CEMEX-gray;
+    font-weight: 500;
+    cursor: pointer;
+    &:hover {
+        color: white;
+    }
+    &:after{
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: $CEMEX-red;
+        transform-origin: bottom right;
+        transition: transform 0.25s ease-out;
+    }
+    &:hover:after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+}
+
+/*
 input[type="checkbox"] {
     display: none;
     + label {
@@ -240,6 +263,7 @@ input[type="checkbox"] {
         right: 0;
     }
 }
+*/
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
     font-weight: 300;

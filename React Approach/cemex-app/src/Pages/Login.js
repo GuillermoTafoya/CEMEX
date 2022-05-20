@@ -1,29 +1,38 @@
 import React, { Component } from 'react';
 
-const mode = 'login';
-
-class LoginComponent extends Component {
+class LoginView extends Component {
     constructor(props) {
         super(props);
-        this.state = {
+        this.state = {  
             mode: this.props.mode
         }
+        
     }
+    componentDidMount() {
+        document.title = 'Login'
+    }
+
     toggleMode() {
         var newMode = this.state.mode === 'login' ? 'signup' : 'login';
         this.setState({ mode: newMode});
     }
+    
     render() {
         return (
-            <div>
+            //// MISSING ONE CLICK SOCIAL VALIDATION ////
+            // GOOGLE AND FACEBOOK
+            // CHANGE CHECK-IN WITH A TEXT BUTTON -> MORE INTUITIVE
+            // ALSO MISSING RESPONSIVENESS
+            <div className = "app--is-login">
                 <div className={`form-block-wrapper form-block-wrapper--is-${this.state.mode}`} ></div>
                     <section className={` form-block form-block--is-${this.state.mode}`}>
                         <header className="form-block__header">
                             <h1>{this.state.mode === 'login' ? 'Bienvenido!' : 'Registrarse'}</h1>
                             <div className="form-block__toggle-block">
                                 <span>{this.state.mode === 'login' ? 'Aún no' : 'Ya'} tienes una cuenta?</span>
-                                <input id="form-toggler" type="checkbox" onClick={this.toggleMode.bind(this)} />
-                                <label htmlFor="form-toggler"></label>
+                                <div className = "form-toggler" id="form-toggler" onClick={this.toggleMode.bind(this)}>{this.state.mode === 'login' ? 'Crea Una' : 'Inicia Sesión'} </div>
+                                {/* <input id="form-toggler" type="checkbox" onClick={this.toggleMode.bind(this)} />
+                                <label htmlFor="form-toggler"></label> */}
                             </div>
                         </header>
                         <LoginForm mode={this.state.mode} onSubmit={this.props.onSubmit} />
@@ -44,7 +53,7 @@ class LoginForm extends Component {
 
                 <div className="form-group form-group--login">
 
-                    <Input  type="text" id="username" label="usuario" disabled={this.props.mode === 'signup'}/>
+                    <Input  type="email" id="username" label="correo" disabled={this.props.mode === 'signup'}/>
                     <Input  type="password" id="password" label="contraseña" disabled={this.props.mode === 'signup'}/>
 
                 </div>
@@ -80,4 +89,4 @@ const Input = ({ id, type, label, disabled }) => (
     <input className="form-group__input" type={type} id={id} placeholder={label} disabled={disabled}/>
 );
 
-export default LoginComponent;
+export default LoginView;
