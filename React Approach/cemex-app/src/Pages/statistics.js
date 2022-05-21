@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import NavBar from '../components/navbar.js';
+
+
 //// GRAPH JS ////
 class StatisticsView extends Component {
     constructor(props) {
@@ -14,7 +17,7 @@ class StatisticsView extends Component {
         return(
 
         <div className = "app--is-not-login">
-            <h1 className = "Example" >NavBar aqui</h1>
+            <NavBar />
             <section class = "display-block">
                 <div>Gráfica 1</div>
                 <div>Gráfica 2</div>

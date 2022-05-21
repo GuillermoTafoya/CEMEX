@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NavBar from '../components/navbar.js';
 
 class AchievementsView extends Component {
     constructor(props) {
@@ -15,7 +16,7 @@ class AchievementsView extends Component {
         return(
 
         <div className = "app--is-not-login">
-            <h1 className = "Example" >NavBar aqui</h1>
+            <NavBar />
             <section class = "display-block">
                 <div>Logros</div>
                 <div>Fotos</div>
