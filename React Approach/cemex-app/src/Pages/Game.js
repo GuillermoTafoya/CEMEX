@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NavBar from '../components/navbar.js';
 
 class GameView extends Component {
     constructor(props) {
@@ -14,7 +15,7 @@ class GameView extends Component {
         return(
 
         <div className = "app--is-not-login">
-            <h1 className = "Example" >NavBar aqui</h1>
+            <NavBar />
             <section class = "display-block">
                 <div>Juego WebGL</div>
             </section>
