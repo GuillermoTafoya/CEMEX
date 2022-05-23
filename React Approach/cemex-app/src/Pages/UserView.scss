@@ -7,7 +7,7 @@ $CEMEX-gray: rgba(230,231,238,1);
 $ship-cove: rgba(116,137,185,1);
 $wild-blue-yonder: rgba(124,148,181,1);
 
-$borderRadius: 2px;
+$borderRadius: 4px;
 
 .userViewWrapper {
     display: grid;
@@ -16,36 +16,69 @@ $borderRadius: 2px;
     grid-auto-rows: minmax(100px, auto);
 }
 
-.progressBar {
-    margin: 10 10 10 10;
-}
 
 .display-block{
     color:black;
 }
 
-.circularMask {
-    aspect-ratio: 1 / 1;
+.circularMask { 
+    display: inline-block; 
+    position: relative; 
     height: 100%;
-    object-fit: cover;
-    border-radius: 50% ;
-    //border: 1px solid rgba(232, 147, 147, 0.7);
+    aspect-ratio: 1 / 1;
+    overflow: hidden; 
+    border-radius: 50%;
+    border: 5px solid rgba(0, 64, 128, 0.7); 
+} 
+.circularMask img { 
+    width: auto; 
+    height: 100%; 
+    margin-left: -50px; 
 }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: center;
+}
+
+
+.bulletLogo{
+    grid-column-start: 1;
+    grid-column-end: 1;
+    justify-self: end;
+    margin-right: 10px;
+    &2{
+        grid-column-start: 2;
+        grid-column-end: 2;
+        justify-self: end;
+        margin-right: 10px;
+    }
+    &3{
+        margin:5px;
+    }
+}
+.progressBar {
+    margin: 10 10 10 10;
+    grid-column-start: 2;
+    grid-column-end: 5;
+}
+
 
 .user-view-item{
     margin-top: 20px;
 }
 
 .sectionGlass{
-    color:$CEMEX-gray;
-    background: rgba(5,52,100,0.5);
+    color:$CEMEX-blue;
+    background: rgba(230,231,238, 0.3);
     box-shadow: 0 4px 30px rgba(5,52,100, 0.2);
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
-    border: 1px solid rgba(0, 64, 128, 0.7);
+    border: 1px solid rgba(124,148,181, 0.7);
     border-radius: 2 * $borderRadius;
     padding: 10px 30px 10px;
-    margin: 0;
+    margin-bottom: 20px;
 }
 
 .centered{
