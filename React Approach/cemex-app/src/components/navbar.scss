@@ -1,6 +1,9 @@
 $CEMEX-blue: rgb(0, 64, 128);
 
 .NavBar{
+    position: fixed;
+    overflow: hidden;
+
     background-color: black;
     color: red;
 }
@@ -15,4 +18,8 @@ $CEMEX-blue: rgb(0, 64, 128);
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
     border: 1px solid rgba(147, 219, 232, 0.7);
+}
+
+.spacer{
+    height: 35px;
 }

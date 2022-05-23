@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import NavBar from '../components/navbar.js';
-import ProfilePlaceholder from '../assets/UserView/ProfilePlaceholder.png';  //background.jpg; ProfilePlaceholder.png;
+
+import ProfilePlaceholder from '../assets/UserView/panda.png';  //background.jpg; ProfilePlaceholder.png;
+import sword from '../assets/UserView/sword.png';
+import shield from '../assets/UserView/shield.png';
+import money from '../assets/UserView/money.png';
+import arrow from '../assets/UserView/arrow.png';
+import snowflake from '../assets/UserView/snowflake.png';
+import waterdrop from '../assets/UserView/waterdrop.png';
+
 import Progressbar from '../components/progressbar.js';
 import {useNavigate} from "react-router-dom";
 
@@ -21,31 +29,54 @@ class UserView extends Component {
 
         <div className = "app--is-not-login">
             <NavBar />
-            <section class = "container centered display-block">
+            <section class = "container centered display-block justify-content-center">
                 <div className = "row mb-4 mt-4 ml-1 mr-1 align-items-center">
 
                     <div className='col-0 col-md-1'/>
-                    <div className="col-12 col-md-4">
-                        <img className="circularMask col-12" src={ProfilePlaceholder} alt="Profile" />
-                        <h1>Nombre de Usuario</h1>
-                        <p>Ataque?</p>
-                        <Progressbar className="progressBar" mainColor="rgb(208,11,34)" bgColor = "rgb(0, 64, 128)" progress='10'  height={30} w = {100} />
-                        <p>Defensa?</p>
-                        <Progressbar className="progressBar"  mainColor="rgb(208,11,34)" bgColor = "rgb(0, 64, 128)"  progress='50'  height={30} w = {100} />
+                    <div className="sectionGlass col-12 col-md-4">
+                        <div className="col-12 circularMask">
+                            <img src={ProfilePlaceholder} alt="Profile" />
+                        </div>
+                        <h1 className='font-weight-bold'>Usuario12345</h1>
+                        <div class="grid-container align-items-center">
+
+                            <img className="bulletLogo" src={sword} height="35px" width="35px" />
+                            <Progressbar className="progressBar" mainColor="rgba(208,11,34,1)" bgColor = "rgba(0, 64, 128,0.5)" progress='20'  height={30} w = {90} />
+                        </div>
+                        
+                        <div class="grid-container align-items-center">
+                        <img className="bulletLogo" src={shield} height="35px" width="35px" />   
+                            <Progressbar className="progressBar"  mainColor="rgba(208,11,34,1)" bgColor = "rgba(0, 64, 128,0.5)"  progress='50'  height={30} w = {90} />
+                        </div>
                     </div>
 
                     <div className='col-0 col-md-2'/>
 
-                    <div className='col-12 col-md-4 align-items-center'>
-                        <div>
-                            <p>Logo1</p>
-                            <p>Logo2</p>
-                            <p>Logo3</p>
+                    <div className='col-12 col-md-4 '>
+                        <div className="sectionGlass">
+                            <img className="bulletLogo3" src={arrow} height="35px" width="35px" />
+                            <br />
+                            <img className="bulletLogo3" src={snowflake} height="35px" width="35px" />
+                            <br />
+                            <img className="bulletLogo3" src={waterdrop} height="35px" width="35px" />
                         </div>
-                        <div className='sectionGlass'>
-                            <p >Logros ?/100</p>
-                            <p>Monedas </p>
-                            <Progressbar className="progressBar" mainColor="orange"  bgColor = "rgb(0, 64, 128)" progress='60'  height={30} w = {100} />
+                        
+                        <div className='sectionGlass align-items-center'>
+                            <p className='font-weight-bold'>Logros</p>
+                            <div class="grid-container align-items-center align-text-center">
+                                <img className="bulletLogo2" src={arrow} height="35px" width="35px" />
+                                <p className='my-auto'>7/100</p>
+                            </div>
+                            
+                            <div className='spacer'/>
+
+                            <p className='font-weight-bold'>Monedas</p>
+                            <div class="grid-container align-items-center">
+                                <img className="bulletLogo" src={money} height="35px" width="35px" />
+                                <Progressbar className="progressBar" mainColor="orange"  bgColor = "rgba(0, 64, 128,0.5)" progress='60'  height={30} w = {90} />
+                            </div>
+                            
+                            
                         </div>
                     </div>
                 </div>

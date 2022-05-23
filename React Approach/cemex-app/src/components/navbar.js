@@ -20,36 +20,38 @@ class NavBar extends Component{
     render() { 
         return(
             <div>
-                <Navbar dark className = "GlassMorphism" expand="md">
+                <Navbar dark fixed="top"  collapseOnSelect className = "GlassMorphism" expand="md">
                 <div className="container">
-                        <NavbarToggler onClick={this.toggleNav} />
                         <NavbarBrand className=" mr-auto" href="/"><img src='../../logo192.png' height="30" width="41" alt='CEMEX' /></NavbarBrand>
+                        <NavbarToggler onClick={this.toggleNav} />
+                        
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
                             <NavItem>
-                                <NavLink className="nav-link"  to='/usuario'><span className="fa fa-lg"></span> Perfil</NavLink>
+                                <NavLink className="nav-link"  to='/usuario'>Perfil</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link" to='/logros'><span className="fa fa-lg"></span>Logros</NavLink>
+                                <NavLink className="nav-link" to='/logros'>Logros</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link"  to='/configuracion'><span className="fa fa-lg"></span> Configuración</NavLink>
+                                <NavLink className="nav-link"  to='/configuracion'>Configuración</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link" to='/juego'><span className="fa fa-lg"></span> Juego</NavLink>
+                                <NavLink className="nav-link" to='/juego'>Juego</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link" to='/soporte'><span className="fa fa-lg"></span> Soporte</NavLink>
+                                <NavLink className="nav-link" to='/soporte'>Soporte</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link" to='/estadisticas'><span className="fa fa-lg"></span> Estadisticas</NavLink>
+                                <NavLink className="nav-link" to='/estadisticas'>Estadisticas</NavLink>
                             </NavItem>
                             </Nav>
                         </Collapse>
                     </div>
                 </Navbar>
-                
+                <div className="spacer" /><div className="spacer" />
             </div>
+            
                 
         );
     };

@@ -40,7 +40,6 @@ function App() {
 
   
   return (
-    
       <Routes>
           <Route path="/" element={<LoginView mode={'login'} onSubmit={loginRouteChange} />} />
           <Route path="login" element={<LoginView mode={'login'} onSubmit={loginRouteChange} />} />
