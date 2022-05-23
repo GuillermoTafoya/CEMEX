@@ -14,7 +14,7 @@ class PageNotFound extends Component {
         return(
 
         <div className = "app--is-not-login">
-            <h1 className = "Example" >ESTA PÁGINA NO EXISTE</h1>
+            <h1>ESTA PÁGINA NO EXISTE</h1>
         </div>
         
         )
