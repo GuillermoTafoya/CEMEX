@@ -8,9 +8,9 @@ import money from '../assets/UserView/money.png';
 import arrow from '../assets/UserView/arrow.png';
 import snowflake from '../assets/UserView/snowflake.png';
 import waterdrop from '../assets/UserView/waterdrop.png';
+import trophy from '../assets/UserView/trophy.png';
 
 import Progressbar from '../components/progressbar.js';
-import {useNavigate} from "react-router-dom";
 
 
 class UserView extends Component {
@@ -26,7 +26,6 @@ class UserView extends Component {
     
     render() {
         return(
-
         <div className = "app--is-not-login">
             <NavBar />
             <section class = "container centered display-block justify-content-center">
@@ -37,7 +36,7 @@ class UserView extends Component {
                         <div className="col-12 circularMask">
                             <img src={ProfilePlaceholder} alt="Profile" />
                         </div>
-                        <h1 className='font-weight-bold'>Usuario12345</h1>
+                        <h1 className='col-12 font-weight-bold userText'>Usuario12345</h1>
                         <div class="grid-container align-items-center">
 
                             <img className="bulletLogo" src={sword} height="35px" width="35px" />
@@ -54,17 +53,27 @@ class UserView extends Component {
 
                     <div className='col-12 col-md-4 '>
                         <div className="sectionGlass">
-                            <img className="bulletLogo3" src={arrow} height="35px" width="35px" />
+                            <p className='font-weight-bold'>Tropas</p>
+                            <div class="grid-container align-items-center">
+                                <img className="bulletLogo2" src={arrow} height="35px" width="35px" />
+                                <p className='bulletCompanion'>120</p>
+                            </div>
                             <br />
-                            <img className="bulletLogo3" src={snowflake} height="35px" width="35px" />
+                            <div class="grid-container align-items-center">
+                                <img className="bulletLogo2" src={snowflake} height="35px" width="35px" />
+                                <p className='bulletCompanion'>50</p>
+                            </div>
                             <br />
-                            <img className="bulletLogo3" src={waterdrop} height="35px" width="35px" />
+                            <div class="grid-container align-items-center">
+                                <img className="bulletLogo2" src={waterdrop} height="35px" width="35px" />
+                                <p className='bulletCompanion'>270</p>
+                            </div>
                         </div>
                         
                         <div className='sectionGlass align-items-center'>
                             <p className='font-weight-bold'>Logros</p>
                             <div class="grid-container align-items-center align-text-center">
-                                <img className="bulletLogo2" src={arrow} height="35px" width="35px" />
+                                <img className="bulletLogo2" src={trophy} height="35px" width="35px" />
                                 <p className='my-auto'>7/100</p>
                             </div>
                             

@@ -228,43 +228,6 @@ body {
     }
 }
 
-/*
-input[type="checkbox"] {
-    display: none;
-    + label {
-        &:before {
-            content: '';
-            display: block;
-            position: absolute;
-            top: 10px;
-            right: 0;
-            width: 43px;
-            height: 8px;
-            background: rgba(255, 255, 255, .4);
-            cursor: pointer;
-            @include border-radius(50px);
-        }
-        &:after {
-            content: '';
-            display: block;
-            position: absolute;
-            top: 1px;
-            right: 18px;
-            width: 25px;
-            height: 25px;
-            background: $secondary;
-            cursor: pointer;
-            @include border-radius(50%);
-            @include box-shadow(1px 1px 0px 0px rgba(0,0,0,0.15));
-            @include transition(all .3s ease-in-out);
-        }
-    }
-    &:checked + label:after {
-        right: 0;
-    }
-}
-*/
-
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
     font-weight: 300;
     color: rgba(255, 2505, 255, .5);

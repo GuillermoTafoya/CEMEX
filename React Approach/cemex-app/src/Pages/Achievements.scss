@@ -1,0 +1,15 @@
+$CEMEX-blue: rgb(0, 64, 128);
+$CEMEX-blue-glass: rgba(0, 64, 128,0.1);
+$borderRadius: 4px;
+
+.achievementGlass{
+    //color:$CEMEX-blue;
+    background: red;
+    box-shadow: 0 4px 30px rgba(5,52,100, 0.2);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    border: 1px solid rgba(124,148,181, 0.7);
+    border-radius: 2 * $borderRadius;
+    padding: 10px;
+    margin: 10px;
+}

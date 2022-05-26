@@ -16,6 +16,12 @@ $borderRadius: 4px;
     grid-auto-rows: minmax(100px, auto);
 }
 
+.userText{
+    padding: 10px;
+    
+    font-size: 1.5rem;
+    text-align: center;
+}
 
 .display-block{
     color:black;
@@ -29,6 +35,7 @@ $borderRadius: 4px;
     overflow: hidden; 
     border-radius: 50%;
     border: 5px solid rgba(0, 64, 128, 0.7); 
+    
 } 
 .circularMask img { 
     width: auto; 
@@ -42,6 +49,10 @@ $borderRadius: 4px;
     justify-content: center;
 }
 
+.bulletCompanion{
+    grid-column-start: 3;
+    grid-column-end: 3;
+}
 
 .bulletLogo{
     grid-column-start: 1;
@@ -55,7 +66,10 @@ $borderRadius: 4px;
         margin-right: 10px;
     }
     &3{
-        margin:5px;
+        grid-column-start: 3;
+        grid-column-end: 3;
+        justify-self: end;
+        margin-right: 10px;
     }
 }
 .progressBar {

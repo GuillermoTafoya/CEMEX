@@ -1,3 +1,12 @@
+$background1: rgb(69, 16, 69);
+$background2: rgba(5,52,100,1);
+
+$CEMEX-blue: rgb(0, 64, 128);
+$CEMEX-red: rgb(208, 11, 34);
+$CEMEX-gray: rgba(230,231,238,1);
+$ship-cove: rgba(116,137,185,1);
+$wild-blue-yonder: rgba(124,148,181,1);
+
 .app{
     
     &--is-login {
@@ -23,6 +32,12 @@
         background-repeat: no-repeat;
         background-size: cover;
     }
+}
+
+.placeholder-text{
+    color: $CEMEX-blue;
+    font-size: 1.5rem;
+    text-align: center;
 }
 
 .side-drawer {
