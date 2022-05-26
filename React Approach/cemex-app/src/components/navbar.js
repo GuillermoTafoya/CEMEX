@@ -8,22 +8,24 @@ class NavBar extends Component{
         super(props);
     
         this.toggleNav = this.toggleNav.bind(this);
-        this.state = {
-            isNavOpen: false
-        };
+        this.state = {isNavOpen: false};
     }
     toggleNav() {
-        this.setState({
-            isNavOpen: !this.state.isNavOpen
-        });
+        console.log("Esta jalando.")
+        this.setState(state => ({
+            isNavOpen: !(this.state.isNavOpen)
+        }));
+        console.log("Esta jalando2.")
     }
     render() { 
         return(
             <div>
                 <Navbar dark fixed="top"  collapseOnSelect className = "GlassMorphism" expand="md">
                 <div className="container">
-                        <NavbarBrand className=" mr-auto" href="/"><img src='../../logo192.png' height="30" width="41" alt='CEMEX' /></NavbarBrand>
+                        <div className="row"> 
                         <NavbarToggler onClick={this.toggleNav} />
+                        <NavbarBrand className=" mr-auto" href="/"><img src='../../logo192.png' height="40" width="40" alt='CEMEX' /></NavbarBrand>
+
                         
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
@@ -47,6 +49,7 @@ class NavBar extends Component{
                             </NavItem>
                             </Nav>
                         </Collapse>
+                        </div>
                     </div>
                 </Navbar>
                 <div className="spacer" /><div className="spacer" />
@@ -56,38 +59,5 @@ class NavBar extends Component{
         );
     };
 }
-/*
-    <Route path="/" element={<LoginView mode={'login'} onSubmit={loginRouteChange} />} />
-    <Route path="login" element={<LoginView mode={'login'} onSubmit={loginRouteChange} />} />
-    <Route path="logros" element={<AchievementsView />} />
-    <Route path="usuario" element={ <UserView />} />
-    <Route path="juego" element={ <GameView />} />
-    <Route path="configuracion" element={ <ConfigurationView />} />
-    <Route path="soporte" element={ <ContactView />} />
-    <Route path="estadisticas" element={ <StatisticsView />} />
-    <Route path="*" element={<PageNotFound /> } />
-*/
 
-/*
-                <ul>
-                <li>
-                    <Link to="/usuario">Perfil</Link>
-                </li>
-                <li>
-                    <Link to="/logros">Logros</Link>
-                </li>
-                <li>
-                    <Link to="/configuracion">Configuracion</Link>
-                </li>
-                <li>
-                    <Link to="/juego">Juego</Link>
-                </li>
-                <li>
-                    <Link to="/soporte">Soporte</Link>
-                </li>
-                <li>
-                    <Link to="/estadisticas">Estadisticas</Link>
-                </li>
-                </ul>
-*/
 export default NavBar;
