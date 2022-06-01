@@ -79,7 +79,7 @@ class DatosPersonales extends Component {
                 <div>
                     <Input type="text" id="fullname-config" label="nombre completo"  />
                     <Input  type="email" id="email-config" label="email"/>
-                    <input  className="config-input" type="text" 
+                    <input  className="config-input inputGlass" type="text" 
                         placeholder="fecha de nacimiento" 
                         onFocus={(e) => (e.target.type = "date")}
                         onBlur={(e) => (e.target.type = "text")} 
@@ -97,7 +97,7 @@ class DatosPersonales extends Component {
 }
 
 const Input = ({ id, type, label }) => (
-    <input className="config-input" type={type} id={id} placeholder={label}/>
+    <input className="config-input inputGlass" type={type} id={id} placeholder={label}/>
 );
 
 export default ConfigurationView;

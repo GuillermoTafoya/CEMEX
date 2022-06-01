@@ -1,8 +1,17 @@
-$primary: red;
-$secondary: blue;
+$CEMEX-blue: rgb(0, 64, 128);
+$CEMEX-red: rgb(208, 11, 34);
+$CEMEX-gray: rgba(230,231,238,1);
+$ship-cove: rgba(116,137,185,1);
+$wild-blue-yonder: rgba(124,148,181,1);
+
+$primary: $CEMEX-blue;
+$secondary: $CEMEX-red;
+
+$borderRadius: 4px;
+
+
 .config-input{
     color:$primary;
-    background-color: blanchedalmond;
     &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
         color: $secondary;
         opacity: 1; /* Firefox */
@@ -13,5 +22,29 @@ $secondary: blue;
     
     &::-ms-input-placeholder { /* Microsoft Edge */
         color: $secondary;
+    }
+}
+
+.inputGlass{
+    //color:$CEMEX-blue;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 16px;
+    padding: 14px 10px;
+    margin-bottom: 15px;
+    
+    background: rgba(116,137,185, 0.4);;
+    box-shadow: 0 4px 30px rgba(5,52,100, 0.2);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    border: 1px solid rgba(124,148,181, 0.7);
+    border-radius: 2 * $borderRadius;
+    padding: 10px;
+    margin: 10px;
+    &:focus {
+        outline: none;
+        border: 1px solid #fff;
+        background: transparent;
     }
 }
