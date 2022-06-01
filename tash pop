@@ -1,0 +1,113 @@
+[1mdiff --git a/React Approach/cemex-app/src/Pages/Login.js b/React Approach/cemex-app/src/Pages/Login.js[m
+[1mindex 8cf4981..e8630a9 100644[m
+[1m--- a/React Approach/cemex-app/src/Pages/Login.js[m	
+[1m+++ b/React Approach/cemex-app/src/Pages/Login.js[m	
+[36m@@ -29,9 +29,9 @@[m [mclass LoginView extends Component {[m
+                 <div className={`form-block-wrapper form-block-wrapper--is-${this.state.mode}`} ></div>[m
+                     <section className={` form-block form-block--is-${this.state.mode}`}>[m
+                         <header className="form-block__header">[m
+[31m-                            <h1>{this.state.mode === 'login' ? 'Bienvenido!' : 'Registrarse'}</h1>[m
+[32m+[m[32m                            <h1>{this.state.mode === 'login' ? '¡Bienvenido!' : 'Registrarse'}</h1>[m
+                             <div className="form-block__toggle-block">[m
+[31m-                                <span>{this.state.mode === 'login' ? 'Aún no' : 'Ya'} tienes una cuenta?</span>[m
+[32m+[m[32m                                <span>{this.state.mode === 'login' ? '¿Aún no' : '¿Ya'} tienes una cuenta?</span>[m
+                                 <div className = "form-toggler" id="form-toggler" onClick={this.toggleMode.bind(this)}>{this.state.mode === 'login' ? 'Crear Una' : 'Iniciar Sesión'} </div>[m
+                                 {/* <input id="form-toggler" type="checkbox" onClick={this.toggleMode.bind(this)} />[m
+                                 <label htmlFor="form-toggler"></label> */}[m
+[1mdiff --git a/React Approach/cemex-app/src/Pages/Login.scss b/React Approach/cemex-app/src/Pages/Login.scss[m
+[1mindex e1d9f56..393a7a2 100644[m
+[1m--- a/React Approach/cemex-app/src/Pages/Login.scss[m	
+[1m+++ b/React Approach/cemex-app/src/Pages/Login.scss[m	
+[36m@@ -95,6 +95,7 @@[m [mbody {[m
+     h1 {[m
+         font-size: 30px;[m
+         margin: 0 0 20px;[m
+[32m+[m[32m        text-align: center;[m
+     }[m
+ }[m
+ [m
+[1mdiff --git a/React Approach/cemex-app/src/Pages/UserView.js b/React Approach/cemex-app/src/Pages/UserView.js[m
+[1mindex 0828bef..7800631 100644[m
+[1m--- a/React Approach/cemex-app/src/Pages/UserView.js[m	
+[1m+++ b/React Approach/cemex-app/src/Pages/UserView.js[m	
+[36m@@ -11,6 +11,14 @@[m [mimport arrow from '../assets/UserView/arrow.png';[m
+ import snowflake from '../assets/UserView/snowflake.png';[m
+ import waterdrop from '../assets/UserView/waterdrop.png';[m
+ import trophy from '../assets/UserView/trophy.png';[m
+[32m+[m[32mimport ordinary from '../assets/UserView/ordinary.png';[m
+[32m+[m[32mimport general from '../assets/UserView/general.png';[m
+[32m+[m[32mimport helmet from '../assets/UserView/helmet.png';[m
+[32m+[m[32mimport ach2 from '../assets/UserView/ach2.png';[m
+[32m+[m[32mimport ach3 from '../assets/UserView/ach3.png';[m
+[32m+[m[32mimport ach4 from '../assets/UserView/ach4.png';[m
+[32m+[m[32mimport ach5 from '../assets/UserView/ach5.png';[m
+[32m+[m[32mimport ach6 from '../assets/UserView/ach6.png';[m
+ [m
+ import Progressbar from '../components/progressbar.js';[m
+ [m
+[36m@@ -38,37 +46,31 @@[m [mclass UserView extends Component {[m
+                         <div className="col-12 circularMask">[m
+                             <img src={ProfilePlaceholder} alt="Profile" />[m
+                         </div>[m
+[31m-                        <h1 className='col-12 font-weight-bold userText'>Usuario12345</h1>[m
+[32m+[m[32m                        <h1 className='col-12 font-weight-bold userText'>Usuario</h1>[m
+                         <div className="grid-container align-items-center">[m
+[31m-[m
+                             <img className="bulletLogo" src={sword} height="35px" width="35px" />[m
+[31m-                            <Progressbar className="progressBar" mainColor="rgba(208,11,34,1)" bgColor = "rgba(0, 64, 128,0.5)" progress='20'  height={30} w = {90} />[m
+[31m-                        </div>[m
+[31m-                        [m
+[31m-                        <div className="grid-container align-items-center">[m
+[31m-                        <img className="bulletLogo" src={shield} height="35px" width="35px" />   [m
+[31m-                            <Progressbar className="progressBar"  mainColor="rgba(208,11,34,1)" bgColor = "rgba(0, 64, 128,0.5)"  progress='50'  height={30} w = {90} />[m
+[32m+[m[32m                            <Progressbar className="progressBar" mainColor="rgba(208,11,34,1)" bgColor = "rgba(0, 64, 128,0.5)" progress='20 wins'  height={30} w = {90} />[m
+                         </div>[m
+                     </div>[m
+ [m
+                     <div className='col-0 col-md-2'/>[m
+ [m
+                     <div className='col-12 col-md-4 '>[m
+[31m-                        <div className="sectionGlass">[m
+[32m+[m[32m                        <div className="sectionGlass align-items-center">[m
+                             <p className='font-weight-bold'>Tropas</p>[m
+                             <div className="grid-container align-items-center">[m
+[31m-                                <img className="bulletLogo2" src={arrow} height="35px" width="35px" />[m
+[31m-                                <p className='bulletCompanion'>120</p>[m
+[32m+[m[32m                                <img className="bulletLogo2" src={ordinary} height="auto" width="30px" />[m
+[32m+[m[32m                                <p className='my-auto'>120</p>[m
+                             </div>[m
+[31m-                            <br />[m
+[32m+[m[32m                            <br/>[m
+                             <div className="grid-container align-items-center">[m
+[31m-                                <img className="bulletLogo2" src={snowflake} height="35px" width="35px" />[m
+[31m-                                <p className='bulletCompanion'>50</p>[m
+[32m+[m[32m                                <img className="bulletLogo2" src={general} height="auto" width="30px" />[m
+[32m+[m[32m                                <p className='my-auto'>50</p>[m
+                             </div>[m
+                             <br />[m
+                             <div className="grid-container align-items-center">[m
+[31m-                                <img className="bulletLogo2" src={waterdrop} height="35px" width="35px" />[m
+[31m-                                <p className='bulletCompanion'>270</p>[m
+[32m+[m[32m                                <img className="bulletLogo2" src={helmet} height="auto" width="30px" />[m
+[32m+[m[32m                                <p className='my-auto'>270</p>[m
+                             </div>[m
+                         </div>[m
+                         [m
+[36m@@ -76,7 +78,7 @@[m [mclass UserView extends Component {[m
+                             <p className='font-weight-bold'>Logros</p>[m
+                             <div className="grid-container align-items-center align-text-center">[m
+                                 <img className="bulletLogo2" src={trophy} height="35px" width="35px" />[m
+[31m-                                <p className='my-auto'>7/100</p>[m
+[32m+[m[32m                                <p className='my-auto'>2/6</p>[m
+                             </div>[m
+                             [m
+                             <div className='spacer'/>[m
+[36m@@ -84,7 +86,7 @@[m [mclass UserView extends Component {[m
+                             <p className='font-weight-bold'>Monedas</p>[m
+                             <div className="grid-container align-items-center">[m
+                                 <img className="bulletLogo" src={money} height="35px" width="35px" />[m
+[31m-                                <Progressbar className="progressBar" mainColor="orange"  bgColor = "rgba(0, 64, 128,0.5)" progress='60'  height={30} w = {90} />[m
+[32m+[m[32m                                <Progressbar className="progressBar" mainColor="orange"  bgColor = "rgba(0, 64, 128,0.5)" progress='1000'  height={30} w = {90} />[m
+                             </div>[m
+                             [m
+                        
