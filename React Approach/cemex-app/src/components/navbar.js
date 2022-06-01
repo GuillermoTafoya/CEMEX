@@ -1,5 +1,5 @@
 import React, { useState, Component } from 'react';
-import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron } from 'reactstrap';
+import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem } from 'reactstrap';
 import "./navbar.scss";
 import {NavLink} from 'react-router-dom';
 
@@ -11,16 +11,16 @@ class NavBar extends Component{
         this.state = {isNavOpen: false};
     }
     toggleNav() {
-        console.log("Esta jalando.")
+        //console.log("Esta jalando.")
         this.setState(state => ({
             isNavOpen: !(this.state.isNavOpen)
         }));
-        console.log("Esta jalando2.")
+        //console.log("Esta jalando2.")
     }
     render() { 
         return(
             <div>
-                <Navbar dark fixed="top"  collapseOnSelect className = "GlassMorphism" expand="md">
+                <Navbar dark fixed="top" className = "GlassMorphism--navbar" expand="md">
                 <div className="container">
                         <div className="row"> 
                         <NavbarToggler onClick={this.toggleNav} />
@@ -52,7 +52,7 @@ class NavBar extends Component{
                         </div>
                     </div>
                 </Navbar>
-                <div className="spacer" /><div className="spacer" />
+                <div className="spacer" /><div className="spacer" /> <div className="spacer" />
             </div>
             
                 

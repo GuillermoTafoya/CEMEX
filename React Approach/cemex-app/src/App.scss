@@ -8,29 +8,21 @@ $ship-cove: rgba(116,137,185,1);
 $wild-blue-yonder: rgba(124,148,181,1);
 
 .app{
-    
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    overflow-y: scroll;
+    background-repeat: no-repeat;
+    background-size: cover;
     &--is-login {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 100%;
-        overflow-y: scroll;
+        @extend .app;
         background-image: url('../public/assets/imgs/Login/background.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
     }
     &--is-not-login {
-        
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 100%;
-        overflow-y: scroll;
+        @extend .app;
         background-image: url('../public/assets/imgs/General/bg.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
     }
 }
 

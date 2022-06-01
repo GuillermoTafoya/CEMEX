@@ -5,6 +5,13 @@ import "./Achievements.scss";
 
 import trophy from '../assets/UserView/trophy.png';
 
+const Achievement = ({isActive}) => {
+    return(
+    <div className={`centeredAchievement achievementGlass--is-${isActive === 'true' ? 'active' : 'inactive' }`}>
+        <img src={trophy} height="50px" width="50px" />
+    </div>
+    )
+}
 
 class AchievementsView extends Component {
     constructor(props) {
@@ -23,12 +30,15 @@ class AchievementsView extends Component {
         <div className = "app--is-not-login">
             <NavBar />
             <div className='font-weight-bold placeholder-text'>Logros</div>
-            <section className = "sectionGlass container">
-                <div className='row mb-4 mt-4 ml-1 mr-1 align-items-center'>
-                    <div className='achievementGlass'>
-                        <img src={trophy} height="50px" width="50px" />
-                    </div>
-                </div>
+            <section className = "sectionGlass flex-container--achievements">
+                    <Achievement isActive='true' />
+                    <Achievement isActive='false' />
+                    <Achievement isActive='true' />
+                    <Achievement isActive='false' />
+                    <Achievement isActive='false' />
+                    <Achievement isActive='false' />
+
+                    
                 
             </section>
         </div>

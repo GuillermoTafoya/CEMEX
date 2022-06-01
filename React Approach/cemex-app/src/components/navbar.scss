@@ -18,6 +18,10 @@ $CEMEX-blue: rgb(0, 64, 128);
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
     border: 1px solid rgba(147, 219, 232, 0.7);
+    &--navbar{
+        @extend .GlassMorphism;
+        backdrop-filter: blur(30px);
+    }
 }
 
 .spacer{
