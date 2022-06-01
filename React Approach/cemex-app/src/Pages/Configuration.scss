@@ -1,0 +1,17 @@
+$primary: red;
+$secondary: blue;
+.config-input{
+    color:$primary;
+    background-color: blanchedalmond;
+    &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: $secondary;
+        opacity: 1; /* Firefox */
+    }
+    &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: $secondary;
+    }
+    
+    &::-ms-input-placeholder { /* Microsoft Edge */
+        color: $secondary;
+    }
+}

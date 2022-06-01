@@ -2,9 +2,39 @@ $CEMEX-blue: rgb(0, 64, 128);
 $CEMEX-blue-glass: rgba(0, 64, 128,0.1);
 $borderRadius: 4px;
 
+$CEMEX-red: rgb(208, 11, 34);
+$CEMEX-gray: rgba(230,231,238,1);
+$ship-cove: rgba(116,137,185,1);
+$wild-blue-yonder: rgba(124,148,181,1);
+
+
+$inactive-color: rgba(116,137,185, 0.4);
+$inactive-hovered: rgba(116,137,185, 0.8);
+
+$active-color: rgba(255,255, 0, 0.3);
+$active-hovered: rgba(255,255, 0, 0.8);
+
+.centeredAchievement{
+    margin:auto;
+    justify-content: center;
+    align-items: center;
+}
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: center;
+    &--achievements{
+        @extend .flex-container;
+        margin-left: 15vw;
+        margin-right: 15vw;
+        margin-top: 5vh;
+    }
+
+}
 .achievementGlass{
     //color:$CEMEX-blue;
-    background: red;
+    
     box-shadow: 0 4px 30px rgba(5,52,100, 0.2);
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
@@ -12,4 +42,22 @@ $borderRadius: 4px;
     border-radius: 2 * $borderRadius;
     padding: 10px;
     margin: 10px;
+    &--is-inactive{
+        @extend .achievementGlass;
+        background: $inactive-color;
+        &:hover{
+            border: 1px solid rgba(76, 128, 205, 0.7);
+            background: $inactive-hovered;
+            box-shadow: 0 4px 30px $inactive-hovered;
+        }
+    }
+    &--is-active{
+        @extend .achievementGlass;
+        background: $active-color;
+        &:hover{
+            border: 1px solid rgba(76, 128, 205, 0.7);
+            background: $active-hovered;    
+            box-shadow: 0 4px 30px $active-hovered;
+        }
+    }
 }

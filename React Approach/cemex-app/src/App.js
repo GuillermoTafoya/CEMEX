@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 import ReactDOM from "react-dom/client";
 import {Routes, Route, useNavigate} from "react-router-dom";
 
-import './Pages/Login.scss';
-import './Pages/UserView.scss';
 import LoginView from './Pages/Login.js';
 import UserView from './Pages/UserView.js';
 import AchievementsView from './Pages/AchievementsView.js';

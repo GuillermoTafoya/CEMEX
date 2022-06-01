@@ -18,7 +18,7 @@ class StatisticsView extends Component {
 
         <div className = "app--is-not-login">
             <NavBar />
-            <section class = "display-block">
+            <section className = "display-block">
                 <div>Gráfica 1</div>
                 <div>Gráfica 2</div>
             </section>

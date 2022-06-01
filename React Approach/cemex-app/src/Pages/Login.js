@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import '../Pages/Login.scss';
+
 class LoginView extends Component {
     constructor(props) {
         super(props);
@@ -53,7 +55,7 @@ class LoginForm extends Component {
 
                 <div className="form-group form-group--login">
 
-                    <Input  type="email" id="username" label="correo" disabled={this.props.mode === 'signup'}/>
+                    <Input  type="email" id="username" label="email" disabled={this.props.mode === 'signup'}/>
                     <Input  type="password" id="password" label="contraseña" disabled={this.props.mode === 'signup'}/>
 
                 </div>
