@@ -45,7 +45,7 @@ class NavBar extends Component{
                                 <NavLink className="nav-link" to='/soporte'>Soporte</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link" to='/estadisticas'>Estadisticas</NavLink>
+                                <NavLink className="nav-link" to='/estadisticas'>Estadísticas</NavLink>
                             </NavItem>
                             </Nav>
                         </Collapse>

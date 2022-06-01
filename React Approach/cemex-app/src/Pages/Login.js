@@ -29,9 +29,9 @@ class LoginView extends Component {
                 <div className={`form-block-wrapper form-block-wrapper--is-${this.state.mode}`} ></div>
                     <section className={` form-block form-block--is-${this.state.mode}`}>
                         <header className="form-block__header">
-                            <h1>{this.state.mode === 'login' ? 'Bienvenido!' : 'Registrarse'}</h1>
+                            <h1>{this.state.mode === 'login' ? '¡Bienvenido!' : 'Registrarse'}</h1>
                             <div className="form-block__toggle-block">
-                                <span>{this.state.mode === 'login' ? 'Aún no' : 'Ya'} tienes una cuenta?</span>
+                                <span>{this.state.mode === 'login' ? '¿Aún no' : '¿Ya'} tienes una cuenta?</span>
                                 <div className = "form-toggler" id="form-toggler" onClick={this.toggleMode.bind(this)}>{this.state.mode === 'login' ? 'Crear Una' : 'Iniciar Sesión'} </div>
                                 {/* <input id="form-toggler" type="checkbox" onClick={this.toggleMode.bind(this)} />
                                 <label htmlFor="form-toggler"></label> */}
