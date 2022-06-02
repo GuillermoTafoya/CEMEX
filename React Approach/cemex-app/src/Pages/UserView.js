@@ -14,15 +14,6 @@ import ordinary from '../assets/UserView/ordinary.png';
 import general from '../assets/UserView/general.png';
 import helmet from '../assets/UserView/helmet.png';
 
-/*
-import shield from '../assets/UserView/shield.png';
-import arrow from '../assets/UserView/arrow.png';
-import snowflake from '../assets/UserView/snowflake.png';
-import waterdrop from '../assets/UserView/waterdrop.png';
-*/
-
-import Progressbar from '../components/progressbar.js';
-
 
 class UserView extends Component {
     constructor(props) {
@@ -48,37 +39,52 @@ class UserView extends Component {
                             <img src={ProfilePlaceholder} alt="Profile" />
                         </div>
                         <h1 className='col-12 font-weight-bold userText'>Usuario</h1>
+
                         <div className="grid-container align-items-center">
-                            <img className="bulletLogo" src={sword} height="35px" width="35px" />
-                            <Progressbar className="progressBar" mainColor="rgba(208,11,34,1)" bgColor = "rgba(0, 64, 128,0.5)" progress='20 wins'  height={30} w = {90} />
+                            <div className="grid-item-centered">
+                                <img src={sword} height="35px" width="35px" />
+                                <p className='my-auto'>20 Wins</p>
+                            </div>
                         </div>
+
                     </div>
 
                     <div className='col-0 col-md-2'/>
 
                     <div className='col-12 col-md-4 '>
                         <div className="sectionGlass align-items-center">
+
                             <p className='font-weight-bold'>Tropas</p>
+
                             <div className="grid-container align-items-center">
-                                <img className="bulletLogo2" src={ordinary} height="auto" width="30px" />
-                                <p className='my-auto'>120</p>
+                                <div className="grid-item-centered">
+                                    <img src={ordinary} height="43px" width="30px" />
+                                    <p className='my-auto'>120</p>
+                                </div>
                             </div>
+
                             <br/>
                             <div className="grid-container align-items-center">
-                                <img className="bulletLogo2" src={general} height="auto" width="30px" />
-                                <p className='my-auto'>50</p>
+                                <div className="grid-item-centered">
+                                    <img src={general} height="43px" width="30px" />
+                                    <p className='my-auto'>50</p>
+                                </div>
                             </div>
+
                             <br />
+
                             <div className="grid-container align-items-center">
-                                <img className="bulletLogo2" src={helmet} height="auto" width="30px" />
-                                <p className='my-auto'>270</p>
+                                <div className="grid-item-centered">
+                                    <img src={helmet} height="43px" width="30px" />
+                                    <p className='my-auto'>270</p>
+                                </div>
                             </div>
                         </div>
                         
                         <div className='sectionGlass align-items-center'>
                             <p className='font-weight-bold'>Logros</p>
-                            <div className="grid-container align-items-center align-text-center">
-                                <img className="bulletLogo2" src={trophy} height="35px" width="35px" />
+                            <div className="grid-item-centered align-items-center align-text-center">
+                                <img src={trophy} height="35px" width="35px" />
                                 <p className='my-auto'>2/6</p>
                             </div>
                             
@@ -86,8 +92,10 @@ class UserView extends Component {
 
                             <p className='font-weight-bold'>Monedas</p>
                             <div className="grid-container align-items-center">
-                                <img className="bulletLogo" src={money} height="35px" width="35px" />
-                                <Progressbar className="progressBar" mainColor="orange"  bgColor = "rgba(0, 64, 128,0.5)" progress='1000'  height={30} w = {90} />
+                                <div className="grid-item-centered">
+                                    <img src={money} height="35px" width="35px" />
+                                    <p className='my-auto'>1000</p>
+                                </div>
                             </div>
                             
                             
