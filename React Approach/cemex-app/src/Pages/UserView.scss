@@ -45,14 +45,14 @@ $borderRadius: 4px;
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     justify-content: center;
 }
 
-/*.bulletCompanion{
-    grid-column-start: 3;
-    grid-column-end: 3;
-} */
+.grid-item-centered{
+    grid-column-start: 2;
+    grid-column-end: 2;
+}
 
 .bulletLogo{
     grid-column-start: 1;
@@ -77,7 +77,6 @@ $borderRadius: 4px;
     grid-column-start: 2;
     grid-column-end: 5;
 }
-
 
 .user-view-item{
     margin-top: 20px;

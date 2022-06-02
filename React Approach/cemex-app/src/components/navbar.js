@@ -53,7 +53,7 @@ class NavBar extends Component{
                         </div>
                     </div>
                 </Navbar>
-                <div className="spacer" /><div className="spacer" /> <div className="spacer" />
+                <div className="spacer" /><div className="spacer" /> 
             </div>
             
                 

@@ -14,6 +14,23 @@ $inactive-hovered: rgba(116,137,185, 0.8);
 $active-color: rgba(255,255, 0, 0.3);
 $active-hovered: rgba(255,255, 0, 0.8);
 
+.bold{
+    font-weight: bold;
+}
+
+.achievementText{
+    color: $CEMEX-blue;
+    font-size: 1.2em;
+    text-align:center
+}
+
+.centered{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: block;
+}
+
 .centeredAchievement{
     margin:auto;
     justify-content: center;

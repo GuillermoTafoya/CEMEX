@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import NavBar from '../components/navbar.js';
 
 import "./Achievements.scss";
@@ -20,18 +20,40 @@ class achv {
 }
 
 const achievements = [
-                        new achv("Soldados 1",ach1,"Obtén al menos 100 soldados"), 
-                        new achv("Soldados 2",ach2,"Obtén al menos 1000 soldados"), 
-                        new achv("Armas 1",ach3,"Compra tu primer arma para tu ejército"), 
-                        new achv("Batallas 1",ach4,"Gana tu primera batalla"), 
-                        new achv("Batallas 2",ach5,"Gana tu tercera batalla"), 
-                        new achv("Suerte",ach6,"Gana una batalla con al menos 1.5x de desventaja numérica en ejército")];
+                        new achv("Popular",ach1,"Obtuviste al menos 100 soldados."), 
+                        new achv("Gran General",ach2,"Obtuviste al menos 1000 soldados."), 
+                        new achv("Bélico",ach3,"Ganaste una batalla."), 
+                        new achv("Salvaje",ach4,"Ganaste tu tercera batalla."), 
+                        new achv("Estratega",ach5,"Compraste tu primer arma para tu ejército."), 
+                        new achv("Suertudo",ach6,"Ganaste una batalla con al menos 1.5x de desventaja numérica en ejército")];
 
 
-const Achievement = ({isActive,img}) => {
+
+
+const Achievement = ({isActive,img,name,txt}) => {
+    const [isSelected, setIsSelected] = useState(false);
+    const handleMouseOver = () => {
+        setIsSelected(true);
+    };
+
+    const handleMouseOut = () => {
+        setIsSelected(false);
+    };
+
+    const handleClick = () => {
+        setIsSelected(!isSelected);
+        //console.log(isHovering);
+    };
+
     return(
-    <div className={`centeredAchievement achievementGlass--is-${isActive === 'true' ? 'active' : 'inactive' }`}>
-        <img src={img} height="60px" width="84px" />
+    
+    <div className={`${isSelected ? 'achievementGrid-container col-12 order-1' : 'order-12' } align-items-center 
+    centeredAchievement achievementGlass--is-${isActive === 'true' ? 'active' : 'inactive' }`} onClick={handleClick}>
+        <div className="grid-item-centered">
+            {isSelected && <div className='achievementText bold'> {name} </div> }
+            <img className="centered" src={img} height="60px" width="84px" />
+            {isSelected && <div className='achievementText'> {txt} </div> }
+        </div>
     </div>
     )
 }
@@ -53,9 +75,10 @@ class AchievementsView extends Component {
 
         <div className = "app--is-not-login">
             <NavBar />
+            
             <div className='font-weight-bold placeholder-text'>Logros</div>
             <section className = "sectionGlass flex-container--achievements">
-                { achievements.map((ach,index) => <Achievement key={index} isActive={this.state.achievements[index]} img={ach.img} />) }
+                { achievements.map((ach,index) => <Achievement key={index} isActive={this.state.achievements[index]} img={ach.img} name={ach.name} txt={ach.description} />) }
             </section>
         </div>
         
