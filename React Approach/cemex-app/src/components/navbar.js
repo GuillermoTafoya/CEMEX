@@ -21,10 +21,11 @@ class NavBar extends Component{
         return(
             <div>
                 <Navbar dark fixed="top" className = "GlassMorphism--navbar" expand="md">
-                <div className="container">
+                <div className="container align-items-center">
                         <div className="row"> 
                         <NavbarToggler onClick={this.toggleNav} />
-                        <NavbarBrand className=" mr-auto" href="/"><img src='../../logo192.png' height="40" width="40" alt='CEMEX' /></NavbarBrand>
+                        <NavbarBrand className="mr-4 ml-4" href="/"><img src='../../Cemex_logo.jpg' height="35" width="128" alt='CEMEX' /></NavbarBrand>
+                        
 
                         
                         <Collapse isOpen={this.state.isNavOpen} navbar>

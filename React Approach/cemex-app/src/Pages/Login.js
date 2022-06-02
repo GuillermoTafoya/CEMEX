@@ -81,7 +81,7 @@ class LoginForm extends Component {
                 </div>
             </div>
 
-            <button className="button button--primary full-width" type="submit">{this.props.mode === 'login' ? 'Iniciar Sesión' : 'Registrarse'}</button>
+            <button className="loginButton--primary full-width" type="submit">{this.props.mode === 'login' ? 'Iniciar Sesión' : 'Registrarse'}</button>
         </form>
         )
     }
