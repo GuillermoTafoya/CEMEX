@@ -33,8 +33,7 @@ class ConfigurationView extends Component {
             <section class = "container centered display-block justify-content-center">
                 <div className = "row mb-4 mt-4 ml-1 mr-1 align-items-center">
 
-                    <div className='col-0 col-md-1'/>
-                    <div className="sectionGlass col-12 col-md-4">
+                    <div className="sectionGlass col-12 col-md-5">
                         <div className="col-12 circularMask">
                             <img src={ProfilePlaceholder} alt="Profile" />
                         </div>
@@ -48,9 +47,7 @@ class ConfigurationView extends Component {
                         
                     </div>
 
-                    <div className='col-0 col-md-2'/>
-
-                    <div className='col-12 col-md-4 '>
+                    <div className='col-12 col-md-6'>
                         <div className="sectionGlass">
                             <p className='font-weight-bold'>Datos Personales</p>
                             <DatosPersonales />
