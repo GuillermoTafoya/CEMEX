@@ -53,3 +53,28 @@ const videogameAchievements = mongoose.Schema(
 		achSummary: {type: Text}
 	}
 )
+
+const userAchievement = mongoose.Schema(
+	{
+		username: {type: String},
+		achvievements: {type: Array}
+	}
+)
+
+const router = Router();
+
+mongoose.model("User", userSchema);
+mongoose.model("videogameSimulation", videogameSimulation);
+mongoose.model("leaderboard", leaderboard);
+mongoose.model("videogameAchievements", videogameAchievements);
+mongoose.model("userAchievement", userAchievement);
+
+async function connectToDb(){
+	try{
+		await mongoose.connect(URI);
+		console.log("Connected to Database");
+	} catch {
+		console.log(error(error));
+	}
+}
+
