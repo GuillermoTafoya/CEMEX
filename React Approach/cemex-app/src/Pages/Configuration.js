@@ -41,7 +41,7 @@ class ConfigurationView extends Component {
                         <h1 className='col-12 font-weight-bold userText'>Usuario12345</h1>
                         <div className="align-items-center">
 
-                            <button className="my-auto" type="button" name="button" > 
+                            <button className="button button--primary full-width" type="button" name="button" > 
                                 Cambiar imagen de perfil
                             </button>
                         </div>
@@ -56,8 +56,8 @@ class ConfigurationView extends Component {
                             <DatosPersonales />
                         </div>
                         <div className="sectionGlass">
-                            <p className='font-weight-bold'>ELIMINAR CUENTA</p>
-                            <button className="button button--primary full-width" type="submit"> ELIMINAR </button>
+                            <p className='CAUTION'>ELIMINAR CUENTA</p>
+                            <button className="button--CAUTION full-width" type="submit"> ELIMINAR </button>
                         </div>
                     </div>
                 </div>
@@ -75,16 +75,19 @@ class DatosPersonales extends Component {
     render() {
         return (
         <form>
-            <div>
-                <div>
+            <div className=".flex-container--configuration">
+                <div >
                     <Input type="text" id="fullname-config" label="nombre completo"  />
                     <Input  type="email" id="email-config" label="email"/>
+                    
+                </div>
+                <div>
                     <input  className="config-input inputGlass" type="text" 
-                        placeholder="fecha de nacimiento" 
-                        onFocus={(e) => (e.target.type = "date")}
-                        onBlur={(e) => (e.target.type = "text")} 
-                        id="birthday-config" 
-                        />
+                            placeholder="fecha de nacimiento" 
+                            onFocus={(e) => (e.target.type = "date")}
+                            onBlur={(e) => (e.target.type = "text")} 
+                            id="birthday-config" 
+                            />
                     <Input  type="password" id="password-config" label="contraseña" />
                     <Input  type="password" id="password-confirm-config" label="confirmar nueva contraseña" />
                 </div>
@@ -97,7 +100,7 @@ class DatosPersonales extends Component {
 }
 
 const Input = ({ id, type, label }) => (
-    <input className="config-input inputGlass" type={type} id={id} placeholder={label}/>
+    <input className="config-input inputGlass full-width" type={type} id={id} placeholder={label}/>
 );
 
 export default ConfigurationView;

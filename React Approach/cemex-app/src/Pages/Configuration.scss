@@ -5,10 +5,68 @@ $ship-cove: rgba(116,137,185,1);
 $wild-blue-yonder: rgba(124,148,181,1);
 
 $primary: $CEMEX-blue;
-$secondary: $CEMEX-red;
+$secondary: $ship-cove;
 
 $borderRadius: 4px;
 
+$transitionEasing: cubic-bezier(.36,1,.62,.98);
+
+@mixin box-shadow($props...) {
+    -webkit-box-shadow: $props;
+    -moz-box-shadow: $props;
+    box-shadow: $props;
+}
+
+.button {
+    display: inline-block;
+    padding: 15px 12px;
+
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: 2 * $borderRadius;
+    @include box-shadow(0px 0px 13px 8px rgba(0,0,0,0.1));
+
+    background: rgba(0, 64, 128,0.6);
+    color: #fff;
+
+    margin-bottom: 20px;
+    margin-top: 10px;
+
+    border: 1px solid rgba(0, 64, 128, 0.1);
+
+    &:hover {
+        background: $CEMEX-blue;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        @include box-shadow(0px 0px 18px 15px rgba(104, 104, 248, 0.15));
+        
+        
+    }
+
+    &--CAUTION {
+        @extend .button;
+        background: rgba(208, 11, 34,0.8);;
+        color: #fff;
+        border: 1px solid rgba(208, 11, 34, 0.1);
+        &:hover {
+            background:  $CEMEX-red;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            @include box-shadow(0px 0px 18px 15px rgba(255, 52, 52, 0.15));
+    
+        }
+    }
+}
+
+.flex-container--configuration{
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: center;
+}
 
 .config-input{
     color:$primary;
@@ -23,6 +81,14 @@ $borderRadius: 4px;
     &::-ms-input-placeholder { /* Microsoft Edge */
         color: $secondary;
     }
+}
+
+.CAUTION{
+    color: $CEMEX-red;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 10px;
+    font-weight: 700;
 }
 
 .inputGlass{
@@ -41,7 +107,7 @@ $borderRadius: 4px;
     border: 1px solid rgba(124,148,181, 0.7);
     border-radius: 2 * $borderRadius;
     padding: 10px;
-    margin: 10px;
+    
     &:focus {
         outline: none;
         border: 1px solid #fff;
