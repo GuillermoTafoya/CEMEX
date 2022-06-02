@@ -33,14 +33,23 @@ const videogameSimulation = mongoose.Schema(
 		storyID: {type: String},
 		storyName: {type: String},
 		status: {type: String},
-		duration: {type: Number},
-
+		duration: {type: Number}
 	}
 )
 
 const leaderboard = mongoose.Schema(
 	{
 		lbName: {type: String},
-		image:
+		pfp: {type: Image},
+		wins: {type: Number},
+		score: {type: Number}
+	}
+)
+
+const videogameAchievements = mongoose.Schema(
+	{
+		achId: {type: Number},
+		achImg: {type: Image},
+		achSummary: {type: Text}
 	}
 )
