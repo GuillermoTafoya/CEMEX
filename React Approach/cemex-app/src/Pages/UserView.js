@@ -4,21 +4,22 @@ import NavBar from '../components/navbar.js';
 import '../Pages/UserView.scss';
 
 import ProfilePlaceholder from '../assets/UserView/panda.png';  //background.jpg; ProfilePlaceholder.png;
+
 import sword from '../assets/UserView/sword.png';
-import shield from '../assets/UserView/shield.png';
 import money from '../assets/UserView/money.png';
-import arrow from '../assets/UserView/arrow.png';
-import snowflake from '../assets/UserView/snowflake.png';
-import waterdrop from '../assets/UserView/waterdrop.png';
+
+
 import trophy from '../assets/UserView/trophy.png';
 import ordinary from '../assets/UserView/ordinary.png';
 import general from '../assets/UserView/general.png';
 import helmet from '../assets/UserView/helmet.png';
-import ach2 from '../assets/UserView/ach2.png';
-import ach3 from '../assets/UserView/ach3.png';
-import ach4 from '../assets/UserView/ach4.png';
-import ach5 from '../assets/UserView/ach5.png';
-import ach6 from '../assets/UserView/ach6.png';
+
+/*
+import shield from '../assets/UserView/shield.png';
+import arrow from '../assets/UserView/arrow.png';
+import snowflake from '../assets/UserView/snowflake.png';
+import waterdrop from '../assets/UserView/waterdrop.png';
+*/
 
 import Progressbar from '../components/progressbar.js';
 

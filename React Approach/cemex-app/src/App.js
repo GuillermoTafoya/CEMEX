@@ -41,7 +41,7 @@ function App() {
       <Routes>
           <Route path="/" element={<LoginView mode={'login'} onSubmit={loginRouteChange} />} />
           <Route path="login" element={<LoginView mode={'login'} onSubmit={loginRouteChange} />} />
-          <Route path="logros" element={<AchievementsView />} />
+          <Route path="logros" element={<AchievementsView achievements = {["false","false","true","true","false","false"]} />} />
           <Route path="usuario" element={ <UserView />} />
           <Route path="juego" element={ <GameView />} />
           <Route path="configuracion" element={ <ConfigurationView />} />
