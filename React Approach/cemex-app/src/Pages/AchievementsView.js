@@ -3,12 +3,12 @@ import NavBar from '../components/navbar.js';
 
 import "./Achievements.scss";
 
-import ach1 from '../assets/UserView/Ach1.png';
-import ach2 from '../assets/UserView/Ach2.png';
-import ach3 from '../assets/UserView/Ach3.png';
-import ach4 from '../assets/UserView/Ach4.png';
-import ach5 from '../assets/UserView/Ach5.png';
-import ach6 from '../assets/UserView/Ach6.png';
+import ach1 from '../assets/UserView/ach1.png';
+import ach2 from '../assets/UserView/ach2.png';
+import ach3 from '../assets/UserView/ach3.png';
+import ach4 from '../assets/UserView/ach4.png';
+import ach5 from '../assets/UserView/ach5.png';
+import ach6 from '../assets/UserView/ach6.png';
 
 class achv {
     constructor(name, img, description) {
