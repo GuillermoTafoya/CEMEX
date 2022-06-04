@@ -80,20 +80,20 @@ async function connectToDb(){
 
 // Get all users
 async function getUsers(req, res) {
-	const users = await User.find();
+	const users = await userSchema.find();
 	res.json(users);
 }
 
 // Get specific user by ObjectId
 async function getUser(req, res) {
-	const users = await User.findById(req.params.id);
+	const users = await userSchema.findById(req.params.id);
 	res.json(users);
 }
 
 // Create a new user through signup form
 async function postUsers(req, res) {
 	const { name, email, dob, passwordHash, score, helmetNum, ordinaryNum, generalNum, totalNum, coins, admin, numAchUnlocked, weapon1, weapon2, weapon3, weapon4 } = req.body;
-	const user = new User({name, email, dob, passwordHash, score, helmetNum, ordinaryNum, generalNum, totalNum, coins, admin, numAchUnlocked, weapon1, weapon2, weapon3, weapon4});
+	const user = new userSchema({name, email, dob, passwordHash, score, helmetNum, ordinaryNum, generalNum, totalNum, coins, admin, numAchUnlocked, weapon1, weapon2, weapon3, weapon4});
 	// Uno de estos dos:
 	// var nameQuery = req.query.name;
 	var namePost = req.params.name;
@@ -144,7 +144,7 @@ async function putUsers(req, res) {
 
 // no funciona
 async function deleteUsers(req, res) {
-	const user = await User.findByIdAndDelete(req.params.id);
+	const user = await userSchema.findByIdAndDelete(req.params.id);
 	// res.json(user);
 }
 
