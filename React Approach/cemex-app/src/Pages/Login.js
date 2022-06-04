@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import '../Pages/Login.scss';
+import '../API/index.js';
 
 class LoginView extends Component {
     constructor(props) {
@@ -50,7 +51,7 @@ class LoginForm extends Component {
     }
     render() {
         return (
-        <form onSubmit={this.props.onSubmit} method={this.props.mode == 'login' ? "GET" : "POST"} action="/users">
+        <form onSubmit={this.props.onSubmit} method={this.props.mode == 'login' ? "GET" : "POST"} action="/userEnter">
             <div className=" form-block__input-wrapper ">
 
                 <div className="form-group form-group--login">
