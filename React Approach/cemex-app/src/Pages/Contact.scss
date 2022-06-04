@@ -1,0 +1,14 @@
+.no-resize {
+    resize: none;
+    @media only screen and (max-width: 600px) {
+        height: 30vw;
+    }
+
+    @media only screen and (min-width: 600px) {
+        height: 25vw;
+    }
+
+    @media only screen and (min-width: 1080px) {
+        height: 20vw;
+    }
+}

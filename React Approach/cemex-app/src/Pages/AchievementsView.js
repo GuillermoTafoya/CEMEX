@@ -25,24 +25,17 @@ const achievements = [
                         new achv("Bélico",ach3,"Ganaste una batalla."), 
                         new achv("Salvaje",ach4,"Ganaste tu tercera batalla."), 
                         new achv("Estratega",ach5,"Compraste tu primer arma para tu ejército."), 
-                        new achv("Suertudo",ach6,"Ganaste una batalla con al menos 1.5x de desventaja numérica en ejército")];
+                        new achv("Suertudo",ach6,"Ganaste una batalla con al menos 1.5x de desventaja numérica en ejército")
+                    ];
 
 
 
 
 const Achievement = ({isActive,img,name,txt}) => {
     const [isSelected, setIsSelected] = useState(false);
-    const handleMouseOver = () => {
-        setIsSelected(true);
-    };
-
-    const handleMouseOut = () => {
-        setIsSelected(false);
-    };
 
     const handleClick = () => {
         setIsSelected(!isSelected);
-        //console.log(isHovering);
     };
 
     return(
@@ -62,7 +55,8 @@ class AchievementsView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            achievements: this.props.achievements
+            achievements: this.props.achievements,
+            selected: null
         }
         console.log(this.state.achievements);
         
@@ -76,9 +70,11 @@ class AchievementsView extends Component {
         <div className = "app--is-not-login">
             <NavBar />
             
-            <div className='font-weight-bold placeholder-text'>Logros</div>
-            <section className = "sectionGlass flex-container--achievements">
-                { achievements.map((ach,index) => <Achievement key={index} isActive={this.state.achievements[index]} img={ach.img} name={ach.name} txt={ach.description} />) }
+            <section className = "sectionGlass col-10 col-md-8 col-lg-6 centered">
+                <div className='font-weight-bold placeholder-text centered'>Logros</div>
+                <div className="flex-container--achievements">
+                    { achievements.map((ach,index) => <Achievement key={index} isActive={index < this.state.achievements.length ? this.state.achievements[index] : "false"} img={ach.img} name={ach.name} txt={ach.description} />) }
+                </div>
             </section>
         </div>
         

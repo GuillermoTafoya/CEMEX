@@ -18,6 +18,7 @@ $active-hovered: rgba(255,255, 0, 0.8);
     font-weight: bold;
 }
 
+
 .achievementText{
     color: $CEMEX-blue;
     font-size: 1.2em;
@@ -43,8 +44,6 @@ $active-hovered: rgba(255,255, 0, 0.8);
     justify-content: center;
     &--achievements{
         @extend .flex-container;
-        margin-left: 15vw;
-        margin-right: 15vw;
         margin-top: 5vh;
     }
 
