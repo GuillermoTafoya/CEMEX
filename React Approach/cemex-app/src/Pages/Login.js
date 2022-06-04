@@ -50,7 +50,7 @@ class LoginForm extends Component {
     }
     render() {
         return (
-        <form onSubmit={this.props.onSubmit}>
+        <form onSubmit={this.props.onSubmit} method={this.props.mode == 'login' ? "GET" : "POST"} action="/users">
             <div className=" form-block__input-wrapper ">
 
                 <div className="form-group form-group--login">

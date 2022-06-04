@@ -78,17 +78,17 @@ async function connectToDb(){
 	}
 }
 
-export async function getUsers(req, res) {
+async function getUsers(req, res) {
 	const users = await User.find();
 	res.json(users);
 }
 
-export async function getUser(req, res) {
+async function getUser(req, res) {
 	const users = await User.findById(req.params.id);
 	res.json(users);
 }
 
-export async function postUsers(req, res) {
+async function postUsers(req, res) {
 	const { name, gamertag, points } = req.body;
 	const user = new User({name, email, dob, passwordHash, score, helmetNum, ordinaryNum, generalNum, totalNum, coins, admin, numAchUnlocked, weapon1, weapon2, weapon3, weapon4});
 	// Uno de estos dos:
@@ -98,17 +98,19 @@ export async function postUsers(req, res) {
 	res.json(user);
 }
 
-export async function putUsers(req, res) {
+async function putUsers(req, res) {
 	const user = await User.findByIdAndUpdate(req.params.id, req.body, {
 		new: true,
 	});
 	res.json(user);
 }
 // no funciona
-export async function deleteUsers(req, res) {
+async function deleteUsers(req, res) {
 	const user = await User.findByIdAndDelete(req.params.id);
 	// res.json(user);
 }
+
+connectToDb();
 
 router.get("/users", getUsers);
 router.get("/users/:id", getUser);
