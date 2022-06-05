@@ -1,23 +1,27 @@
-import User from "./user.model.js";
+import modelUser from "./model.user.js";
+import modelLeaderboard from "./model.leaderboard";
+import modelVidAch from "./model.vidAch.js";
+import modelVidSim from "./model.vidSim.js";
+import modelUserAch from "./model.userAch.js";
 
 const crypto = require("crypto-js");
 
 // Get all registered users
 export async function getUsers(req, res){
-	const users = await User.find();
+	const users = await modelUser.find();
 	res.json(users);
 }
 
 // Get specific user by ObjectId
 export async function getUser(req, res){
-	const users = await User.findById(res.params.id);
+	const users = await modelUser.findById(res.params.id);
 	res.json(users);
 }
 
 // Create a new user through sign up form
 export async function postUser(req, res){
 	const { name, email, dob, passwordHash, score, helmetNum, ordinaryNum, generalNum, totalNum, coins, admin, numAchUnlocked, weapon1, weapon2, weapon3, weapon4 } = req.body;
-	const user = new User({name, email, dob, passwordHash, score, helmetNum, ordinaryNum, generalNum, totalNum, coins, admin, numAchUnlocked, weapon1, weapon2, weapon3, weapon4});
+	const user = new modelUser({name, email, dob, passwordHash, score, helmetNum, ordinaryNum, generalNum, totalNum, coins, admin, numAchUnlocked, weapon1, weapon2, weapon3, weapon4});
 
 	const hashing = cyprto.createHash("sha512");
 	var passwordHashPost = hashing.update(mensaje).digest("base64");
@@ -49,7 +53,7 @@ export async function postUser(req, res){
 
 // Change user data
 export async function putUser(req, res){
-	const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+	const user = await modelUser.findByIdAndUpdate(req.params.id, req.body, {
 		new: true,
 	});
 
@@ -75,7 +79,7 @@ export async function putUser(req, res){
 // Delete user from DB
 // no funciona
 export async function deleteUser(req, res){
-	const user = await User.findOneAndDelete(res.params.id);
+	const user = await modelUser.findOneAndDelete(res.params.id);
 	res.json.user();
 }
 
@@ -83,3 +87,4 @@ export async function deleteUser(req, res){
 export async function userLogin(req, res){
 
 }
+

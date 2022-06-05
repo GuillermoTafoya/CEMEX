@@ -1,7 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
-import userRoutes from "./user.routes.js";
+import userRoutes from "./routes.js";
 
 const server = express();
 

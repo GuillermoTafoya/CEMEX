@@ -5,8 +5,8 @@ import {
 	postUser,
 	putUser,
 	deleteUser,
-
-} from "./user.controller.js";
+	userLogin
+} from "./controller.js";
 
 const router = Router();
 
@@ -16,6 +16,6 @@ router.post("/user", postUser);
 router.put("/user/:id", putUser);
 router.delete("/user/:id", deleteUser);
 
-router.get("/users/:id", userLogin);
+router.get("/userLogin", userLogin);
 
 export default router;
