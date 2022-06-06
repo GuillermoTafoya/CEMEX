@@ -23,8 +23,8 @@ export async function postUser(req, res){
 	const { name, email, dob, passwordHash, score, helmetNum, ordinaryNum, generalNum, totalNum, coins, admin, numAchUnlocked, weapon1, weapon2, weapon3, weapon4 } = req.body;
 	const user = new modelUser({name, email, dob, passwordHash, score, helmetNum, ordinaryNum, generalNum, totalNum, coins, admin, numAchUnlocked, weapon1, weapon2, weapon3, weapon4});
 
-	const hashing = cyprto.createHash("sha512");
-	var passwordHashPost = hashing.update(mensaje).digest("base64");
+	const hashing = crypto.createHash("sha512");
+	var passwordHashPost = hashing.update(passwordHash).digest("base64");
 
 	// Uno de estos:
 
