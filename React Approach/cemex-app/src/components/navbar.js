@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react';
+import React, { Component } from 'react';
 import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem } from 'reactstrap';
 import "./navbar.scss";
 import {NavLink} from 'react-router-dom';
@@ -44,6 +44,9 @@ class NavBar extends Component{
                             </NavItem>
                             <NavItem>
                                 <NavLink className="nav-link" to='/soporte'>Soporte</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink className="nav-link" to='/leaderboard'>Leaderboard</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink className="nav-link" to='/estadisticas'>Estadísticas</NavLink>

@@ -9,7 +9,8 @@ import AchievementsView from './Pages/AchievementsView.js';
 import GameView from './Pages/Game.js';
 import ContactView from './Pages/Contact.js';
 import ConfigurationView from './Pages/Configuration';
-import StatisticsView from './Pages/statistics';
+import StatisticsView from './Pages/Statistics';
+import LeaderboardView from './Pages/LeaderboardView.js';
 
 import PageNotFound from './Pages/PageNotFound.js';
 
@@ -47,6 +48,7 @@ function App() {
           <Route path="configuracion" element={ <ConfigurationView />} />
           <Route path="soporte" element={ <ContactView />} />
           <Route path="estadisticas" element={ <StatisticsView />} />
+          <Route path="leaderboard" element={ <LeaderboardView />} />
           <Route path="*" element={<PageNotFound /> } />
           
       </Routes>

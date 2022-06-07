@@ -58,8 +58,13 @@ class AchievementsView extends Component {
             achievements: this.props.achievements,
             selected: null
         }
-        console.log(this.state.achievements);
-        
+        //console.log(this.state.achievements);
+        this.handler = this.handler.bind(this)
+    }
+    handler({idx}) {
+        this.setState({
+            selected: idx
+        })
     }
     componentDidMount() {
         document.title = 'Logros'
