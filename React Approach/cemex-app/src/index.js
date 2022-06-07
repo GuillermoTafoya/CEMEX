@@ -9,7 +9,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './App.scss';
 
+//Api
+const express = require("express");
 
+const server = express();
+
+server.use("/", express.static("public"));
+
+server.listen(3000, console.log("http://localhost:3000"));
+// /Api 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
