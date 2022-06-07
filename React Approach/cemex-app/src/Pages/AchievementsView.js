@@ -25,7 +25,7 @@ const achievements = [
                         new achv("Bélico",ach3,"Ganaste una batalla."), 
                         new achv("Salvaje",ach4,"Ganaste tu tercera batalla."), 
                         new achv("Estratega",ach5,"Compraste tu primer arma para tu ejército."), 
-                        new achv("Suertudo",ach6,"Ganaste una batalla con al menos 1.5x de desventaja numérica en ejército")
+                        new achv("Suertudo",ach6,"Ganaste una batalla con una desventaja numérica inicial en ejército.")
                     ];
 
 
@@ -75,7 +75,7 @@ class AchievementsView extends Component {
         <div className = "app--is-not-login">
             <NavBar />
             
-            <section className = "sectionGlass col-10 col-md-8 col-lg-6 centered">
+            <section className="sectionGlass col-11 col-md-9 col-lg-7 centered">
                 <div className='font-weight-bold placeholder-text centered'>Logros</div>
                 <div className="flex-container--achievements">
                     { achievements.map((ach,index) => <Achievement key={index} isActive={index < this.state.achievements.length ? this.state.achievements[index] : "false"} img={ach.img} name={ach.name} txt={ach.description} />) }

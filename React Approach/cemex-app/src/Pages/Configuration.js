@@ -74,7 +74,7 @@ class DatosPersonales extends Component {
         <form>
             <div className=".flex-container--configuration">
                 <div >
-                    <Input type="text" id="fullname-config" label="nombre completo"  />
+                    <Input type="text" id="fullname-config" label="nombre de usuario"  />
                     <Input  type="email" id="email-config" label="email"/>
                     
                 </div>

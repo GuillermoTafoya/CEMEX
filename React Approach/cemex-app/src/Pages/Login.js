@@ -62,7 +62,7 @@ class LoginForm extends Component {
                 <div className="form-group form-group--signup">
 
 
-                        <Input type="text" id="fullname" label="nombre completo" disabled={this.props.mode === 'login'} />
+                        <Input type="text" id="fullname" label="nombre de usuario" disabled={this.props.mode === 'login'} />
                         
                         <Input  type="email" id="email" label="email" disabled={this.props.mode === 'login'} />
 
