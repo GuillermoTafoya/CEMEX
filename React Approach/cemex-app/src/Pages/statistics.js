@@ -1,26 +1,23 @@
 import React, { Component } from 'react';
 import NavBar from '../components/navbar.js';
+import DynamicChart from '../components/Chart.js';
 
 
 //// GRAPH JS ////
 class StatisticsView extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            test: this.props.test
-        }
-    }
+    
     componentDidMount() {
         document.title = 'Estadísticas'
     }
     render() {
+        
         return(
+        
 
         <div className = "app--is-not-login">
             <NavBar />
-            <section className = "display-block">
-                <div>Gráfica 1</div>
-                <div>Gráfica 2</div>
+            <section className = "sectionGlass container">
+                <DynamicChart className="col-12" id={"example"} />
             </section>
         </div>
         

@@ -33,8 +33,7 @@ class LoginView extends Component {
                             <div className="form-block__toggle-block">
                                 <span>{this.state.mode === 'login' ? '¿Aún no' : '¿Ya'} tienes una cuenta?</span>
                                 <div className = "form-toggler" id="form-toggler" onClick={this.toggleMode.bind(this)}>{this.state.mode === 'login' ? 'Crear Una' : 'Iniciar Sesión'} </div>
-                                {/* <input id="form-toggler" type="checkbox" onClick={this.toggleMode.bind(this)} />
-                                <label htmlFor="form-toggler"></label> */}
+
                             </div>
                         </header>
                         <LoginForm mode={this.state.mode} onSubmit={this.props.onSubmit} />
@@ -63,7 +62,7 @@ class LoginForm extends Component {
                 <div className="form-group form-group--signup">
 
 
-                        <Input type="text" id="fullname" label="nombre completo" disabled={this.props.mode === 'login'} />
+                        <Input type="text" id="fullname" label="nombre de usuario" disabled={this.props.mode === 'login'} />
                         
                         <Input  type="email" id="email" label="email" disabled={this.props.mode === 'login'} />
 

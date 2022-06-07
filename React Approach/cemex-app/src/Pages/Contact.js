@@ -17,12 +17,15 @@ class ContactView extends Component {
 
         <div className = "app--is-not-login">
             <NavBar />
-            <form className = "sectionGlass col-10 col-md-8 col-lg-6 centered" method='POST'>
+            <div className="spacer" />
+            <div className="sectionGlass col-10 col-md-8 col-lg-6 centered">
                 <div className='font-weight-bold placeholder-text'>Contáctanos</div>
-                <div className="spacer" />
-                <Input type="text" id="contact-form" label="Mensaje"  />
-                <button className="button button--primary full-width" type="submit"> Enviar </button>
-            </form>
+                    <div className="spacer" />
+                    <form className = "" method="POST">
+                        <Input type="text" id="contact-form" label="Mensaje"  />
+                        <button className="button button--primary full-width" type="submit"> Enviar </button>
+                    </form>
+            </div>
         </div>
         
         )
