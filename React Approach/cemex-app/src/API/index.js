@@ -1,7 +1,7 @@
-import {connectToDb} from "./db.js";
-import server from "./server.js";
+// import {connectToDb} from "./db.js";
+// // import server from "./server.js";
 
-connectToDb();
+// connectToDb();
 
-server.listen(5000);
+// server.listen(5000);
 // server.listen(3000);

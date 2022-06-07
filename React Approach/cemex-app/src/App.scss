@@ -18,11 +18,11 @@ $wild-blue-yonder: rgba(124,148,181,1);
     background-size: cover;
     &--is-login {
         @extend .app;
-        background-image: url('../public/assets/imgs/Login/background.jpg');
+        background-image: url('./assets/UserView/background.jpg');
     }
     &--is-not-login {
         @extend .app;
-        background-image: url('../public/assets/imgs/General/bg.jpg');
+        background-image: url('./assets/UserView/bg.jpg');
     }
 }
 
