@@ -4,7 +4,7 @@ import DynamicChart from '../components/Chart.js';
 
 
 //// GRAPH JS ////
-class StatisticsView extends Component {
+class LeaderboardView extends Component {
     
     componentDidMount() {
         document.title = 'Estadísticas'
@@ -16,8 +16,8 @@ class StatisticsView extends Component {
 
         <div className = "app--is-not-login">
             <NavBar />
-            <section className = "sectionGlass container">
-                <DynamicChart className="col-12" id={"example"} />
+            <section className = "sectionGlass">
+                <p className='CAUTION centered'>Leaderboard</p>
             </section>
         </div>
         
@@ -25,4 +25,4 @@ class StatisticsView extends Component {
     }
 }
 
-export default StatisticsView;
+export default LeaderboardView;
