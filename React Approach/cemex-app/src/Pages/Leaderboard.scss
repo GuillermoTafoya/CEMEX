@@ -1,0 +1,46 @@
+$CEMEX-gray: rgba(230,231,238,0.3);
+$ship-cove: rgba(116,137,185,0.3);
+$border: rgba(4, 22, 119, 0.7);
+$border-dark: rgba(4, 22, 119, 0.6);
+$border-radius: 4px;
+
+
+.last-row{
+    background: rgba(208, 11, 34,0.6) !important;
+    color: whitesmoke;
+}
+
+.table-cell{
+    vertical-align: middle;
+    padding: 0.5em;
+    font-size: 1em;
+    border: 2px solid $border;
+    &--odd{
+        @extend .table-cell;
+        background-color: $CEMEX-gray;
+    }
+    &--even{
+        @extend .table-cell;
+        background-color: $ship-cove;
+    }
+    &--header{
+        @extend .table-cell;
+        font-weight: bold;
+        font-size: 1.2em;
+        background: $border-dark;
+        color: whitesmoke;
+    }
+}
+
+.top-left-corner{
+    border-radius: $border-radius 0px 0px 0px;
+}
+.top-right-corner{
+    border-radius: 0px $border-radius 0px 0px;
+}
+.bottom-right-corner{
+    border-radius: 0px 0px $border-radius 0px;
+}
+.bottom-left-corner{
+    border-radius: 0px 0px 0px $border-radius;
+}

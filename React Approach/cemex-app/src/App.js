@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 
 import ReactDOM from "react-dom/client";
 import {Routes, Route, useNavigate} from "react-router-dom";
@@ -15,11 +15,23 @@ import LeaderboardView from './Pages/LeaderboardView.js';
 import PageNotFound from './Pages/PageNotFound.js';
 
 
-//node js
+const loader = document.querySelector('.loader');
+
+// if you want to show the loader when React loads data again
+const showLoader = () => loader.classList.remove('loader--hide');
+
+const hideLoader = () => loader.classList.add('loader--hide');
 
 
 
 function App() {
+  useEffect(hideLoader, []);
+    const [achievements, setAchievements] = useState([]);
+    useEffect(() => {
+        fetch('/api/achievements')
+            .then(res => res.json())
+            .then(data => setAchievements(data));
+    }, []);
 
     let navigate = useNavigate();
     
@@ -42,7 +54,7 @@ function App() {
       <Routes>
           <Route path="/" element={<LoginView mode={'login'} onSubmit={loginRouteChange} />} />
           <Route path="login" element={<LoginView mode={'login'} onSubmit={loginRouteChange} />} />
-          <Route path="logros" element={<AchievementsView achievements = {["false","false","true","true","false","false"]} />} />
+          <Route path="logros" element={<AchievementsView achievements = {["false","false","true","true","false","false"]} />} /> {/*ACHIEVEMENTS*/}
           <Route path="usuario" element={ <UserView />} />
           <Route path="juego" element={ <GameView />} />
           <Route path="configuracion" element={ <ConfigurationView />} />
