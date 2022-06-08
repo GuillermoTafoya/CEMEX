@@ -42,7 +42,7 @@ class UserView extends Component {
 
                         <div className="grid-container align-items-center">
                             <div className="grid-item-centered">
-                                <img src={sword} height="35px" width="35px" />
+                                <img src={sword} height="35px" width="35px" alt="Wins"/>
                                 <p className='my-auto'>20 Wins</p>
                             </div>
                         </div>
@@ -58,7 +58,7 @@ class UserView extends Component {
 
                             <div className="grid-container align-items-center">
                                 <div className="grid-item-centered">
-                                    <img src={ordinary} height="43px" width="30px" />
+                                    <img src={ordinary} height="43px" width="30px" alt="Ordinary"/>
                                     <p className='my-auto'>120</p>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@ class UserView extends Component {
                             <br/>
                             <div className="grid-container align-items-center">
                                 <div className="grid-item-centered">
-                                    <img src={general} height="43px" width="30px" />
+                                    <img src={general} height="43px" width="30px" alt="General"/>
                                     <p className='my-auto'>50</p>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@ class UserView extends Component {
 
                             <div className="grid-container align-items-center">
                                 <div className="grid-item-centered">
-                                    <img src={helmet} height="43px" width="30px" />
+                                    <img src={helmet} height="43px" width="30px" alt="Helmet"/>
                                     <p className='my-auto'>270</p>
                                 </div>
                             </div>
@@ -84,7 +84,7 @@ class UserView extends Component {
                         <div className='sectionGlass align-items-center'>
                             <p className='font-weight-bold'>Logros</p>
                             <div className="grid-item-centered align-items-center align-text-center">
-                                <img src={trophy} height="35px" width="35px" />
+                                <img src={trophy} height="35px" width="35px" alt="trophy"/>
                                 <p className='my-auto'>2/6</p>
                             </div>
                             
@@ -93,7 +93,7 @@ class UserView extends Component {
                             <p className='font-weight-bold'>Monedas</p>
                             <div className="grid-container align-items-center">
                                 <div className="grid-item-centered">
-                                    <img src={money} height="35px" width="35px" />
+                                    <img src={money} height="35px" width="35px" alt="Coins"/>
                                     <p className='my-auto'>1000</p>
                                 </div>
                             </div>

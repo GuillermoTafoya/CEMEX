@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
+import React from 'react';
 
-import ReactDOM from "react-dom/client";
+// import ReactDOM from "react-dom/client";
 import {Routes, Route, useNavigate} from "react-router-dom";
 
 import LoginView from './Pages/Login.js';

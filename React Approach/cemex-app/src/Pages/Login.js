@@ -46,9 +46,9 @@ class LoginView extends Component {
 }
 
 class LoginForm extends Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
     render() {
         return (
         <form onSubmit={this.props.onSubmit} method={this.props.mode === 'login' ? "GET" : "POST"} action={this.props.mode === 'login' ? "/userLogin" : "/user"}>

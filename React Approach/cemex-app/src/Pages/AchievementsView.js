@@ -32,13 +32,13 @@ const achievements = [
 
 const Achievement = ({isActive,img,name,txt}) => {
     const [isSelected, setIsSelected] = useState(false);
-    const handleMouseOver = () => {
-        setIsSelected(true);
-    };
+    // const handleMouseOver = () => {
+    //     setIsSelected(true);
+    // };
 
-    const handleMouseOut = () => {
-        setIsSelected(false);
-    };
+    // const handleMouseOut = () => {
+    //     setIsSelected(false);
+    // };
 
     const handleClick = () => {
         setIsSelected(!isSelected);
@@ -51,7 +51,7 @@ const Achievement = ({isActive,img,name,txt}) => {
     centeredAchievement achievementGlass--is-${isActive === 'true' ? 'active' : 'inactive' }`} onClick={handleClick}>
         <div className="grid-item-centered">
             {isSelected && <div className='achievementText bold'> {name} </div> }
-            <img className="centered" src={img} height="60px" width="84px" />
+            <img className="centered" src={img} height="60px" width="84px" alt='Achievement'/>
             {isSelected && <div className='achievementText'> {txt} </div> }
         </div>
     </div>
