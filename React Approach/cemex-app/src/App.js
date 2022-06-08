@@ -13,11 +13,7 @@ import ConfigurationView from './Pages/Configuration';
 import StatisticsView from './Pages/statistics';
 
 import PageNotFound from './Pages/PageNotFound.js';
-
-
 //node js
-
-
 
 function App() {
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import '../Pages/Login.scss';
-import '../API/index.js';
+import '../index.js';
 
 class LoginView extends Component {
     constructor(props) {

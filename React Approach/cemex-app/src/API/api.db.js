@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const URI = "mongodb+srv://a01284213:cyberpunksAdmin@cluster0.mc4qniu.mongodb.net/?retryWrites=true&w=majority";
+const URI = "mongodb+srv://A01284213:cyberpunksAdmin@web-be-cluster.ti48frj.mongodb.net/?retryWrites=true&w=majority";
 
 export async function connectToDb(){
 	try {

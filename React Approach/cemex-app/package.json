@@ -9,6 +9,7 @@
     "crypto": "^1.0.1",
     "mongoose": "^6.3.5",
     "node-sass": "^7.0.1",
+    "nodemon": "^2.0.16",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-popper": "^2.3.0",

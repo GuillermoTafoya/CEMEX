@@ -9,7 +9,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './App.scss';
 
+// import {connectToDb} from "./api.db.js";
+// import server from "./api.server";
 
+// connectToDb();
+
+// server.listen(5000);
+// server.listen(3000);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
