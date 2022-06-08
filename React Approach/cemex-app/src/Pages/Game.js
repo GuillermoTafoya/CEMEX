@@ -17,7 +17,12 @@ class GameView extends Component {
 
         <div className = "app--is-not-login">
             <NavBar />
+            
+            <div className="spacer" />
             <section className = "sectionGlass container align-items-center justify-content-center">
+                
+            <div className="spacer" />
+            <div className="spacer" />
                 <img className='centered row col-8' src={Placeholder} alt="Placeholder" />
             </section>
         </div>

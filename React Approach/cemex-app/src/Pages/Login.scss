@@ -259,18 +259,22 @@ body {
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    text-transform: capitalize;
     font-weight: 300;
     color: rgba(255, 2505, 255, .5);
 }
 ::-moz-placeholder { /* Firefox 19+ */
+    text-transform: capitalize;
     font-weight: 300;
     color: rgba(255, 255, 255, .5);
 }
 :-ms-input-placeholder { /* IE 10+ */
+    text-transform: capitalize;
     font-weight: 300;
     color: rgba(255, 255, 255, .5);
 }
 :-moz-placeholder { /* Firefox 18- */
+    text-transform: capitalize;
     font-weight: 300;
     color: rgba(255, 255, 255, .5);
 }
