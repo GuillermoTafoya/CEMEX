@@ -17,6 +17,12 @@ import PageNotFound from './Pages/PageNotFound.js';
 
 function App() {
 
+// 	fetch('https://mywebsite.com/endpoint/', {
+// 		method: 'POST',
+  		
+//   })
+// })
+
     let navigate = useNavigate();
     
     
