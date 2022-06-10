@@ -48,16 +48,17 @@ function App() {
       const repeatPassword = e.target[6].value;
 
       if (createPassword == repeatPassword){
-
+          // 200 ok
+          // 500 error en el server
+          // 404 no coinciden usuario y contraseña
+          // En base al error que devuelve, hace cosas diferentes con el fetch
       }
 
       const payload = JSON.stringify({
         username: usernameRegister, email: email, dob: birthday, passwordHash: createPassword
       })
 
-      // 200 ok
-      // 500 error en el server
-      // 404 no coinciden usuario y contraseña
+    
       const response = await fetch("/userRegister", {
         method: "POST", 
         body: payload,
