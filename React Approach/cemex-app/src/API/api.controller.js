@@ -34,12 +34,15 @@ export async function postUser(req, res){
 	await user.save();
 	res.json(user);
 }
-/*
+
 const loginController = {
-    login: function (req, res) {
+    login: async function (req, res) {
+		const hashing = crypto.createHash("sha512");
+		const passwordHash = hashing.update(req.body.contrasena).digest("base64");
+
         const query = {
             Email: req.body.email,
-            Contrasena: req.body.contrasena // Contraseña hasheada
+            Contrasena: passwordHash // Contraseña hasheada
         };
 
 		
@@ -62,7 +65,7 @@ const loginController = {
 		}
 		
 	}
-}*/
+}
 
 
 // // Change user data

@@ -36,7 +36,7 @@ function App() {
     let navigate = useNavigate();
     
     
-    const loginRouteChange = async (e) =>{ 
+    const signupRouteChange = async (e) =>{ 
       console.log(e);
       e.preventDefault();
       const usernameLogin = e.target[0].value;
@@ -77,12 +77,40 @@ function App() {
       navigate(path);
     }
 
-      
+	const loginRouteChange = async (e) =>{ 
+		console.log(e);
+		e.preventDefault();
+		const emailLogin = e.target[0].value;
+		const passwordLogin = e.target[1].value;
+
+		const payload = JSON.stringify({
+			email: emailLogin, password: passwordLogin
+		})
+		const response = await fetch("/userLogin", {
+		  method: "GET", 
+		  body: payload,
+		  headers: {
+			"Content-Type": "application/json" 
+		  }
+		});
+  
+
+		// !!! Missing user validation with mongoDB
+		//// TO DO ////
+		/*
+		- ROUTER
+		- DIFERENT FUNCTIONS, DEPENDING ON LOGIN OR SIGN IN
+		*/
+		let path = 'usuario'; 
+		navigate(path);
+	  }
 
   
   return (
       <Routes>
-          <Route path="/" element={<LoginView mode={'login'} onSubmit={loginRouteChange} />} />
+          <Route path="/" element={<LoginView mode={'signup'} onSubmit={signupRouteChange} />} />
+          <Route path="signup" element={<LoginView mode={'signup'} onSubmit={signupRouteChange} />} />
+		  <Route path="/" element={<LoginView mode={'login'} onSubmit={loginRouteChange} />} />
           <Route path="login" element={<LoginView mode={'login'} onSubmit={loginRouteChange} />} />
           <Route path="logros" element={<AchievementsView achievements = {["false","false","false","false","false","false"]} />} /> {/*ACHIEVEMENTS*/}
           <Route path="usuario" element={ <UserView />} />
