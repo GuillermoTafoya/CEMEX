@@ -55,7 +55,7 @@ function App() {
       }
 
       const payload = JSON.stringify({
-        username: usernameRegister, email: email, dob: birthday, passwordHash: createPassword
+        username: usernameRegister, email: email, dob: birthday, passwordRegister: createPassword
       })
 
     

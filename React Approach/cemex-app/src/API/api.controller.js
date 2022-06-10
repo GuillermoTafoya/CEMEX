@@ -3,15 +3,17 @@ import modelLeaderboard from "./api.model.leaderboard.js";
 import modelVidSim from "./api.model.vidSim.js";
 import modelUserAch from "./api.model.userAch.js";
 
-// const crypto = require("crypto-js");
+
+//const crypto = require("crypto-js");
+
 import crypto from "crypto";
+import { toBePartiallyChecked } from "@testing-library/jest-dom/dist/matchers.js";
 
 // Get all registered users
 export async function getUsers(req, res){
 	const users = await modelUser.find();
 	res.json(users);
 }
-
 // Get specific user by ObjectId
 // export async function getUser(req, res){
 // 	const users = await modelUser.findById(res.params.id);
@@ -20,19 +22,48 @@ export async function getUsers(req, res){
 
 // Create a new user through sign up form
 export async function postUser(req, res){
-	const {username, email, dob, passwordHash } = req.body;
+	const {username, email, dob, passwordRegister } = req.body;
+
+	const hashing = crypto.createHash("sha512");
+    const passwordHash = hashing.update(passwordRegister).digest("base64");
+
 	const user = new modelUser({username, email, dob, passwordHash, admin: "false", wins: 0, score: "0", helmetNum: 0,
-	ordinaryNum: 0, generalNum: 0, totalNum: 0, coins: 0, numAchUnlocked: 0, weapon: "false", weapon2: "false", weapon3: "false",
+	ordinaryNum: 0, generalNum: 0, totalNum: 0, coins: 0, numAchUnlocked: 0, weapon1: "false", weapon2: "false", weapon3: "false",
 	weapon4: "false"});
-
-	//const hashing = crypto.createHash("sha512");
-	// var passwordHashPost = hashing.update(passwordHash).digest("base64");
-
-	// Uno de estos:
 
 	await user.save();
 	res.json(user);
 }
+/*
+const loginController = {
+    login: function (req, res) {
+        const query = {
+            Email: req.body.email,
+            Contrasena: req.body.contrasena // Contraseña hasheada
+        };
+
+		
+
+		try {
+			const queryResult = await test.user.findOne(query);
+
+			if (queryResult) {
+				res.sendStatus(200);
+			  }
+			  else {
+				res.sendStatus(404);
+			  }
+		} catch (error) {
+			res.sendStatus(500);
+               // return ERROR.sendErrorResponse(res, 
+                   // 'Error al intentar iniciar sesión', 
+                    //`Error al buscar usuario en la base de datos: ${error}`); 
+							
+		}
+		
+	}
+}*/
+
 
 // // Change user data
 // export async function putUser(req, res){
