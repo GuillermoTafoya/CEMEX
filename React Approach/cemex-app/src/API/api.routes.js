@@ -2,7 +2,7 @@ import { Router } from "express";
 import {
 	getUsers,
 	// getUser,
-	// postUser,
+	postUser,
 	// putUser,
 	deleteUser,
 	userLogin
@@ -13,9 +13,10 @@ const router = Router();
 // User routes
 router.get("/users", getUsers);
 // router.get("/user/:id", getUser);
-// router.post("/user", postUser);
+router.post("/userRegister", postUser);
+router.get("/userLogin", userLogin);
 // router.put("/user/:id", putUser);
 router.delete("/user/:id", deleteUser);
-router.get("/userLogin", userLogin);
+
 
 export default router;

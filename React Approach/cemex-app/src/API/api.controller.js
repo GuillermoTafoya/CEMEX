@@ -20,33 +20,15 @@ export async function getUsers(req, res){
 
 // Create a new user through sign up form
 export async function postUser(req, res){
-	const { name, email, dob, passwordHash, score, helmetNum, ordinaryNum, generalNum, totalNum, coins, admin, numAchUnlocked, weapon1, weapon2, weapon3, weapon4 } = req.body;
-	const user = new modelUser({name, email, dob, passwordHash, score, helmetNum, ordinaryNum, generalNum, totalNum, coins, admin, numAchUnlocked, weapon1, weapon2, weapon3, weapon4});
+	const {username, email, dob, passwordHash } = req.body;
+	const user = new modelUser({username, email, dob, passwordHash, admin: "false", wins: 0, score: "0", helmetNum: 0,
+	ordinaryNum: 0, generalNum: 0, totalNum: 0, coins: 0, numAchUnlocked: 0, weapon: "false", weapon2: "false", weapon3: "false",
+	weapon4: "false"});
 
-	// const hashing = crypto.createHash("sha512");
+	//const hashing = crypto.createHash("sha512");
 	// var passwordHashPost = hashing.update(passwordHash).digest("base64");
 
 	// Uno de estos:
-
-	//var nameQuery = req.query.name;
-	var namePost = req.params.name;
-	
-	var emailPost = req.params.email;
-	var dobPost = req.params.dob;
-	// passwordHashPost = req.params.passwordHash;
-	var passwordHashPost = req.params.passwordHash;
-	var scorePost = req.params.score;
-	var helmetNumPost = req.params.helmetNum;
-	var ordinaryNumPost = req.params.ordinaryNum;
-	var generalNumPost = req.params.generalNu;
-	var totalNumPost = req.params.totalNum;
-	var coinsPost = req.params.coins;
-	var adminPost = req.params.admi;
-	var numAchUnlockedPost = req.params.numAchUnlocked;
-	var weapon1Post = req.params.weapon1;
-	var weapon2Post = req.params.weapon2;
-	var weapon3Post = req.params.weapon3;
-	var weapon4Post = req.params.weapon4;
 
 	await user.save();
 	res.json(user);
@@ -89,3 +71,9 @@ export async function userLogin(req, res){
 
 }
 
+export async function user(req, res){
+	const doc = {username: res.params.users, admin: "false", email: res.params.email, wins: 0, dob: "", passwordHash: res.params.password, 
+	score: "0", helmetNum: 0, ordinaryNum: 0, generalNum: 0, totalNum: 0, coins: 0, numAchUnlocked: 0, weapon: "false", 
+	weapon2: "false", weapon3: "false", weapon4: "false"};
+	const userPost = await postUser.insertOne(doc);
+}

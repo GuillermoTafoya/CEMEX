@@ -36,7 +36,36 @@ function App() {
     let navigate = useNavigate();
     
     
-    const loginRouteChange = () =>{ 
+    const loginRouteChange = async (e) =>{ 
+      console.log(e);
+      e.preventDefault();
+      const usernameLogin = e.target[0].value;
+      const passwordLogin = e.target[1].value;
+      const usernameRegister = e.target[2].value;
+      const email = e.target[3].value;
+      const birthday = e.target[4].value;
+      const createPassword  = e.target[5].value; 
+      const repeatPassword = e.target[6].value;
+
+      if (createPassword == repeatPassword){
+
+      }
+
+      const payload = JSON.stringify({
+        username: usernameRegister, email: email, dob: birthday, passwordHash: createPassword
+      })
+
+      // 200 ok
+      // 500 error en el server
+      // 404 no coinciden usuario y contraseña
+      const response = await fetch("/userRegister", {
+        method: "POST", 
+        body: payload,
+        headers: {
+          "Content-Type": "application/json" 
+        }
+      });
+
       // !!! Missing user validation with mongoDB
       //// TO DO ////
       /*
@@ -54,7 +83,7 @@ function App() {
       <Routes>
           <Route path="/" element={<LoginView mode={'login'} onSubmit={loginRouteChange} />} />
           <Route path="login" element={<LoginView mode={'login'} onSubmit={loginRouteChange} />} />
-          <Route path="logros" element={<AchievementsView achievements = {["false","false","true","true","false","false"]} />} /> {/*ACHIEVEMENTS*/}
+          <Route path="logros" element={<AchievementsView achievements = {["false","false","false","false","false","false"]} />} /> {/*ACHIEVEMENTS*/}
           <Route path="usuario" element={ <UserView />} />
           <Route path="juego" element={ <GameView />} />
           <Route path="configuracion" element={ <ConfigurationView />} />
