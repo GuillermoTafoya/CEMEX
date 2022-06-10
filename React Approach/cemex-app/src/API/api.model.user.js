@@ -2,8 +2,10 @@ import mongoose from "mongoose";
 
 const userSchema = mongoose.Schema(
 	{
-		name: {type: String },
+		username: {type: String},
 		email: {type: String},
+		admin: {type: Boolean},
+		win: {type: Number},
 		dob: {type: Date},
 		passwordHash: {type: String},
 		score: {type: Number},
@@ -12,7 +14,6 @@ const userSchema = mongoose.Schema(
 		generalNum: {type: Number},
 		totalNum: {type: Number},
 		coins: {type: Number},
-		admin: {type: Boolean},
 		numAchUnlocked: {type: Number},
 		weapon1: {type: Boolean},
 		weapon2: {type: Boolean},

@@ -54,15 +54,15 @@ class LoginForm extends Component {
 
                 <div className="form-group form-group--login">
 
-                    <Input  type="email" id="username" label="email" disabled={this.props.mode === 'signup'}/>
-                    <Input  type="password" id="password" label="contraseña" disabled={this.props.mode === 'signup'}/>
+                    <Input  type="email" id="usernameLogin" label="email" disabled={this.props.mode === 'signup'}/>
+                    <Input  type="password" id="passwordLogin" label="contraseña" disabled={this.props.mode === 'signup'}/>
 
                 </div>
 
                 <div className="form-group form-group--signup">
 
 
-                        <Input type="text" id="fullname" label="nombre de usuario" disabled={this.props.mode === 'login'} />
+                        <Input type="text" id="usernameRegister" label="nombre de usuario" disabled={this.props.mode === 'login'} />
                         
                         <Input  type="email" id="email" label="email" disabled={this.props.mode === 'login'} />
 
@@ -89,5 +89,11 @@ class LoginForm extends Component {
 const Input = ({ id, type, label, disabled }) => (
     <input className="form-group__input" type={type} id={id} placeholder={label} disabled={disabled}/>
 );
+
+/*username: document.getElementById('fullname').value,
+passwordHash: document.getElementById("password").value,
+email: document.getElementById('email').value,
+dof: document.getElementById('birthday').value*/
+
 
 export default LoginView;
