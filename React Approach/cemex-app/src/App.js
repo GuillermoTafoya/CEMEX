@@ -48,8 +48,9 @@ function App() {
       const createPassword  = e.target[5].value; 
       const repeatPassword = e.target[6].value;
 
-      if (createPassword == repeatPassword){
+      if (createPassword != null && repeatPassword != null && createPassword != repeatPassword){
           navigate();
+          // Validar contraseña repetida
       }
 
       // 200 ok
