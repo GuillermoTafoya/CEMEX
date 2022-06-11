@@ -9,16 +9,28 @@ import modelUserAch from "./api.model.userAch.js";
 import crypto from "crypto";
 import { toBePartiallyChecked } from "@testing-library/jest-dom/dist/matchers.js";
 
-// Get all registered users
+// Get all registered users, funciona
 export async function getUsers(req, res){
 	const users = await modelUser.find();
 	res.json(users);
 }
-// Get specific user by ObjectId
-// export async function getUser(req, res){
-// 	const users = await modelUser.findById(res.params.id);
-// 	res.json(users);
-// }
+// Get specific user data, funciona
+export async function getUserData(req, res){
+	const userData = await modelUser.find({
+		username: req.params.username,
+	}
+	);
+	res.json(userData);
+}
+
+// Put specific user data, funciona, poner datos en body
+export async function putUserData(req, res){
+	const userputData = await modelUser.findOneAndUpdate({ "username" : req.params.username }, req.body, {
+		new: true,
+	  });
+	res.json(userputData);
+}
+
 
 // Create a new user through sign up form
 export async function postUser(req, res){
@@ -100,6 +112,7 @@ export async function userLogin(req, res){
 
 }
 
+// No está bien
 export async function user(req, res){
 	const doc = {username: res.params.users, admin: "false", email: res.params.email, wins: 0, dob: "", passwordHash: res.params.password, 
 	score: "0", helmetNum: 0, ordinaryNum: 0, generalNum: 0, totalNum: 0, coins: 0, numAchUnlocked: 0, weapon: "false", 
