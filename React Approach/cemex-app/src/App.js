@@ -53,6 +53,8 @@ function App() {
           // Validar contraseña repetida
       }
 
+      console.log(e);
+      console.log(e.mode);
       // 200 ok
           // 500 error en el server
           // 404 no coinciden usuario y contraseña
