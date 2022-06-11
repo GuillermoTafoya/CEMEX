@@ -14,7 +14,7 @@ export function UnityApp() {
   return (
     <Unity
       unityContext={unityContext}
-      style={{ width: "100%", height: "auto" }}
+      style={{ width: "100%", height: "100%" }}
     />
   );
 }
