@@ -14,6 +14,8 @@ import LeaderboardView from './Pages/LeaderboardView.js';
 
 import PageNotFound from './Pages/PageNotFound.js';
 
+import Unity, {UnityContext} from "react-unity-webgl";
+
 
 const loader = document.querySelector('.loader');
 
@@ -37,7 +39,6 @@ function App() {
     
     
     const loginRouteChange = async (e) =>{ 
-      console.log(e);
       e.preventDefault();
       const usernameLogin = e.target[0].value;
       const passwordLogin = e.target[1].value;
@@ -48,12 +49,14 @@ function App() {
       const repeatPassword = e.target[6].value;
 
       if (createPassword == repeatPassword){
-          // 200 ok
+          navigate();
+      }
+
+      // 200 ok
           // 500 error en el server
           // 404 no coinciden usuario y contraseña
           // En base al error que devuelve, hace cosas diferentes con el fetch
-      }
-
+          
       const payload = JSON.stringify({
         username: usernameRegister, email: email, dob: birthday, passwordRegister: createPassword
       })
@@ -67,12 +70,6 @@ function App() {
         }
       });
 
-      // !!! Missing user validation with mongoDB
-      //// TO DO ////
-      /*
-      - ROUTER
-      - DIFERENT FUNCTIONS, DEPENDING ON LOGIN OR SIGN IN
-      */
       let path = 'usuario'; 
       navigate(path);
     }

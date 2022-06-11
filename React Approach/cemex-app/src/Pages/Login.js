@@ -73,8 +73,8 @@ class LoginForm extends Component {
                         id="birthday" 
                         disabled={this.props.mode === 'login'} />
 
-                        <Input  type="password" id="createpassword" label="contraseña" disabled={this.props.mode === 'login'} />
-                        <Input  type="password" id="repeatpassword" label="repetir contraseña" disabled={this.props.mode === 'login'} />
+                        <Input  type="password" id="createPassword" label="contraseña" disabled={this.props.mode === 'login'} />
+                        <Input  type="password" id="repeatPassword" label="repetir contraseña" disabled={this.props.mode === 'login'} />
                     
 
                 </div>

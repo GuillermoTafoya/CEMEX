@@ -27,7 +27,7 @@ export async function postUser(req, res){
 	const hashing = crypto.createHash("sha512");
     const passwordHash = hashing.update(passwordRegister).digest("base64");
 
-	const user = new modelUser({username, email, dob, passwordHash, admin: "false", wins: 0, score: "0", helmetNum: 0,
+	const user = new modelUser({username, email, dob, passwordHash, admin: "false", win: 0, score: "0", helmetNum: 0,
 	ordinaryNum: 0, generalNum: 0, totalNum: 0, coins: 0, numAchUnlocked: 0, weapon1: "false", weapon2: "false", weapon3: "false",
 	weapon4: "false"});
 
@@ -41,8 +41,6 @@ const loginController = {
             Email: req.body.email,
             Contrasena: req.body.contrasena // Contraseña hasheada
         };
-
-		
 
 		try {
 			const queryResult = await test.user.findOne(query);
