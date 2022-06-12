@@ -82,8 +82,8 @@ function App() {
 	const loginRouteChange = async (e) =>{ 
 		console.log(e);
 		e.preventDefault();
-		const emailLogin = e.target[0].value;
-		const passwordLogin = e.target[1].value;
+		const email = e.target[0].value;
+		const passwordHash = e.target[1].value;
 
 		const payload = JSON.stringify({
 			email: email, password: passwordHash
@@ -96,13 +96,14 @@ function App() {
 		  }
 		});
 
-		const userData = response.find((user => user.email === emailLogin.value));
+		const userData = response.find((user => user.email === email.value));
   
 		if (userData){
 			const hashing = crypto.createHash("sha512");
 			const passwordLoginHash = hashing.update(user.passwordLogin).digest("base64");
 			if (passwordLoginHash !== user.password){
 				// Show wrong user-or-pass warning with bootstrap form validation
+				alert("Incorrect username or password!");
 			} else {
 				let path = 'usuario';
 				navigate(path);
