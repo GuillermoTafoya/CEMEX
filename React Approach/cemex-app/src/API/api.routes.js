@@ -1,4 +1,6 @@
 import { Router } from "express";
+import { login } from "./api.login.controller.js"; // Login
+
 import {
 	getUsers,
 	getUserData,
@@ -18,10 +20,13 @@ router.get("/users/:username", getUserData);
 router.get("/userLogin", userLogin);
 
 router.post("/userRegister", postUser);
+router.post("/login", login); // Login
+
 
 router.put("/users/:username", putUserData);
 
 router.delete("/user/:id", deleteUser);
+
 
 
 export default router;

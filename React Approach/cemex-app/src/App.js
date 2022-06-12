@@ -27,19 +27,28 @@ const hideLoader = () => loader.classList.add('loader--hide');
 
 
 class user{
-  constructor(name, img, wins, army, achievements, coins) {
-    this.name = name;
+  constructor(username, email, passwordHash, admin, img, wins, dob, coins, ordinaryNum, generalNum, helmetNum, totalNum, numAchUnlocked, achievements, weapons) {
+    this.username = username;
+    this.email = email ;
+    this.passwordHash = passwordHash;
+    this.admin = admin ;
+    this.dob = dob ;
+    this.ordinaryNum = ordinaryNum ;
+    this.generalNum = generalNum ;
+    this.helmetNum = helmetNum ;
+    this.totalNum = totalNum ;
+    this.numAchUnlocked = numAchUnlocked ;
+    this.weapons = weapons ;
     this.img = img;
     this.wins = wins;
-    this.army = army;
     this.achievements = achievements;
     this.coins = coins;
     
 }
 }
 class player {
-  constructor(name, wins, score) {
-      this.name = name;
+  constructor(username, wins, score) {
+      this.username = username;
       this.wins = wins;
       this.score = score;
   }
@@ -87,8 +96,38 @@ function App() {
         "Content-Type": "application/json" 
     }
   });
+
+
   // GET THE DATA HERE!!!
-  setUserData(new user("Usuario12345", ProfilePlaceholder,0, [100,100,50], ["false","false","true","true","false","false"], 500));
+  // Validar Login:
+  const username = e.target[0].value;
+  const password = e.target[1].value;
+
+  // Enviar datos al servidor mediante un POST
+
+  const data = { email: username, password: password}; 
+  const opciones = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  };
+  const respuesta = await fetch("http://localhost:5000/login", opciones);
+  const datos = await respuesta.json();
+
+  console.log(datos);
+  if (datos.isLogin) {
+    setUserData(new user(
+      datos.user.username, datos.user.email, datos.user.passwordHash, datos.user.admin, datos.user.img, datos.user.wins, datos.user.dob, datos.user.coins,
+      datos.user.ordinaryNum, datos.user.generalNum, datos.user.helmetNum, datos.user.totalNum, datos.user.numAchUnlocked, datos.user.achievements, datos.user.weapons
+      ));
+    //sessionStorage.setItem("username", datos.user.username);
+    alert("¡Datos Correctos!");
+  } else {
+    alert("Datos incorrectos");
+  }
+
+  
+  //setUserData(new user("Usuario12345", ProfilePlaceholder,0, [100,100,50], ["false","false","true","true","false","false"], 500));
   setLeaderboardData(
     [
       new player("Johny",100,100),

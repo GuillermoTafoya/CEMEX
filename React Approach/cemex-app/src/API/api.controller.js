@@ -39,9 +39,8 @@ export async function postUser(req, res){
 	const hashing = crypto.createHash("sha512");
     const passwordHash = hashing.update(passwordRegister).digest("base64");
 
-	const user = new modelUser({username, email, dob, passwordHash, admin: "false", win: 0, score: "0", helmetNum: 0,
-	ordinaryNum: 0, generalNum: 0, totalNum: 0, coins: 0, numAchUnlocked: 0, weapon1: "false", weapon2: "false", weapon3: "false",
-	weapon4: "false"});
+	const user = new modelUser({username, email, passwordHash, admin: "false", img: "", dob, wins: 0, coins: "0",  ordinaryNum: 0, generalNum: 0,  helmetNum: 0,
+		totalNum: 0, coins: 0, numAchUnlocked: 0, achievements: [false, false, false, false, false, false], weapons: [false, false, false, false]});
 
 	await user.save();
 	res.json(user);

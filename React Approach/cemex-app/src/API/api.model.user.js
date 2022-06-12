@@ -4,21 +4,19 @@ const userSchema = mongoose.Schema(
 	{
 		username: {type: String},
 		email: {type: String},
-		admin: {type: Boolean},
-		win: {type: Number},
-		dob: {type: Date},
 		passwordHash: {type: String},
-		score: {type: Number},
-		helmetNum: {type: Number},
+		admin: {type: Boolean},
+		img: {type: String},
+		wins: {type: Number},
+		dob: {type: Date},
+		coins: {type: Number},
 		ordinaryNum: {type: Number},
 		generalNum: {type: Number},
+		helmetNum: {type: Number},
 		totalNum: {type: Number},
-		coins: {type: Number},
 		numAchUnlocked: {type: Number},
-		weapon1: {type: Boolean},
-		weapon2: {type: Boolean},
-		weapon3: {type: Boolean},
-		weapon4: {type: Boolean}
+		achievements: {type: Array},
+		weapons: {type: Array},
 	}	
 )
 
