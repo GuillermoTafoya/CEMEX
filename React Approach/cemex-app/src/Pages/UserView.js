@@ -3,7 +3,7 @@ import NavBar from '../components/navbar.js';
 
 import '../Pages/UserView.scss';
 
-import ProfilePlaceholder from '../assets/UserView/panda.png';  //background.jpg; ProfilePlaceholder.png;
+//import ProfilePlaceholder from '../assets/UserView/panda.png';  //background.jpg; ProfilePlaceholder.png;
 
 import sword from '../assets/UserView/sword.png';
 import money from '../assets/UserView/money.png';
@@ -19,7 +19,7 @@ class UserView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            test: this.props.test
+            data: this.props.data
         }
     }
     componentDidMount() {
@@ -36,14 +36,14 @@ class UserView extends Component {
                     <div className='col-0 col-md-1'/>
                     <div className="sectionGlass col-12 col-md-4">
                         <div className="col-12 circularMask">
-                            <img src={ProfilePlaceholder} alt="Profile" />
+                            <img src={this.state.data.img} alt="Profile" />
                         </div>
-                        <h1 className='col-12 font-weight-bold userText'>Usuario</h1>
+                        <h1 className='col-12 font-weight-bold userText'>{this.state.data.name}</h1>
 
                         <div className="grid-container align-items-center">
                             <div className="grid-item-centered">
                                 <img src={sword} height="35px" width="35px" />
-                                <p className='my-auto'>20 Wins</p>
+                                <p className='my-auto'>{this.state.data.wins} Wins</p>
                             </div>
                         </div>
 
@@ -59,7 +59,7 @@ class UserView extends Component {
                             <div className="grid-container align-items-center">
                                 <div className="grid-item-centered">
                                     <img src={ordinary} height="43px" width="30px" />
-                                    <p className='my-auto'>120</p>
+                                    <p className='my-auto'>{this.state.data.army[0]}</p>
                                 </div>
                             </div>
 
@@ -67,7 +67,7 @@ class UserView extends Component {
                             <div className="grid-container align-items-center">
                                 <div className="grid-item-centered">
                                     <img src={general} height="43px" width="30px" />
-                                    <p className='my-auto'>50</p>
+                                    <p className='my-auto'>{this.state.data.army[1]}</p>
                                 </div>
                             </div>
 
@@ -76,7 +76,7 @@ class UserView extends Component {
                             <div className="grid-container align-items-center">
                                 <div className="grid-item-centered">
                                     <img src={helmet} height="43px" width="30px" />
-                                    <p className='my-auto'>270</p>
+                                    <p className='my-auto'>{this.state.data.army[2]}</p>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +85,7 @@ class UserView extends Component {
                             <p className='font-weight-bold'>Logros</p>
                             <div className="grid-item-centered align-items-center align-text-center">
                                 <img src={trophy} height="35px" width="35px" />
-                                <p className='my-auto'>2/6</p>
+                            <p className='my-auto'>{this.state.data.achievements.filter(x => x == "true").length}/{this.state.data.achievements.length}</p>
                             </div>
                             
                             <div className='spacer'/>
@@ -94,7 +94,7 @@ class UserView extends Component {
                             <div className="grid-container align-items-center">
                                 <div className="grid-item-centered">
                                     <img src={money} height="35px" width="35px" />
-                                    <p className='my-auto'>1000</p>
+                                    <p className='my-auto'>{this.state.data.coins}</p>
                                 </div>
                             </div>
                             

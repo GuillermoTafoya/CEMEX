@@ -6,9 +6,7 @@ import App from '../App.js';
 class GameView extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            test: this.props.test
-        }
+        
     }
     componentDidMount() {
         document.title = 'Juego'

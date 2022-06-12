@@ -5,9 +5,6 @@ import '../Pages/Contact.scss';
 class ContactView extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            test: this.props.test
-        }
     }
     componentDidMount() {
         document.title = 'Soporte'
