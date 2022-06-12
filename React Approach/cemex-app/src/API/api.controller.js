@@ -20,7 +20,7 @@ export async function getUserData(req, res){
 		username: req.params.username,
 	}
 	);
-	res.json(userData);
+	res.json(userData[0]);
 }
 
 // Put specific user data, funciona, poner datos en body
