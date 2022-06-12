@@ -24,7 +24,7 @@ class GameView extends Component {
             <UnityApp/>
             <div className="spacer" />
             <div className="spacer" />
-               
+            
             {/* </section> */}
         </div>
         )   
