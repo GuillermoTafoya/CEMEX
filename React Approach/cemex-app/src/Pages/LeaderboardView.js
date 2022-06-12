@@ -2,24 +2,6 @@ import React, { Component, useState, useEffect } from 'react';
 import NavBar from '../components/navbar.js';
 import "../Pages/Leaderboard.scss";
 
-
-class player {
-    constructor(name, wins, score) {
-        this.name = name;
-        this.wins = wins;
-        this.score = score;
-    }
-}
-const players = [
-                        new player("Johny",100,100),
-                        new player("Bob",90,90),
-                        new player("Juan",80,80),
-                        new player("Pedro",70,70),
-                        new player("Lucas",60,60),
-                        new player("Dylan",50,50),
-                        new player("Tú",0,0)
-                    ];
-
 const User = ({rank,name,wins,score,length}) => {
     const [data, setData] = useState([]);
     const [len, setLen] = useState(length);
@@ -44,12 +26,17 @@ const User = ({rank,name,wins,score,length}) => {
 }
 
 class LeaderboardView extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            leaderboardData: this.props.data
+        }
+    }
     
     componentDidMount() {
         document.title = 'Leaderboard'
     }
     render() {
-        console.log(players.length);
         
         return(
         
@@ -72,7 +59,7 @@ class LeaderboardView extends Component {
                     }
                     <div className="spacer" />
                 </div>
-                    {players.map((player,index) => <User key={index+4} id={index+4} rank={index+1} name={player.name} wins={player.wins} score={player.score} length={players.length}/>)}
+                    {this.state.leaderboardData.map((player,index) => <User key={index+4} id={index+4} rank={index+1} name={player.name} wins={player.wins} score={player.score} length={this.state.leaderboardData.length}/>)}
                     <div className="spacer" />
                     <div className="spacer" />
                 </section>

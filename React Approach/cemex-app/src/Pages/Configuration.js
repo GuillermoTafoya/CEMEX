@@ -3,8 +3,6 @@ import NavBar from '../components/navbar.js';
 
 import '../Pages/Configuration.scss';
 
-import ProfilePlaceholder from '../assets/UserView/panda.png';  //background.jpg; ProfilePlaceholder.png;
-
 /*import sword from '../assets/UserView/sword.png';
 import shield from '../assets/UserView/shield.png';
 import money from '../assets/UserView/money.png';
@@ -19,7 +17,7 @@ class ConfigurationView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            test: this.props.test
+            data: this.props.data
         }
     }
     componentDidMount() {
@@ -35,9 +33,9 @@ class ConfigurationView extends Component {
 
                     <div className="sectionGlass col-12 col-md-5">
                         <div className="col-12 circularMask">
-                            <img src={ProfilePlaceholder} alt="Profile" />
+                            <img src={this.state.data.img} alt="Profile" />
                         </div>
-                        <h1 className='col-12 font-weight-bold userText'>Usuario12345</h1>
+                        <h1 className='col-12 font-weight-bold userText'>{this.state.data.name}</h1>
                         <div className="align-items-center">
 
                             <button className="button button--primary full-width" type="button" name="button" > 

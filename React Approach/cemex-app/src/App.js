@@ -14,6 +14,8 @@ import LeaderboardView from './Pages/LeaderboardView.js';
 
 import PageNotFound from './Pages/PageNotFound.js';
 
+import ProfilePlaceholder from './assets/UserView/panda.png'; 
+
 
 const loader = document.querySelector('.loader');
 
@@ -23,49 +25,144 @@ const showLoader = () => loader.classList.remove('loader--hide');
 const hideLoader = () => loader.classList.add('loader--hide');
 
 
+class user{
+  constructor(name, img, wins, army, achievements, coins) {
+    this.name = name;
+    this.img = img;
+    this.wins = wins;
+    this.army = army;
+    this.achievements = achievements;
+    this.coins = coins;
+    
+}
+}
+class player {
+  constructor(name, wins, score) {
+      this.name = name;
+      this.wins = wins;
+      this.score = score;
+  }
+}
 
 function App() {
   useEffect(hideLoader, []);
-    const [achievements, setAchievements] = useState([]);
-    useEffect(() => {
-        fetch('/api/achievements')
-            .then(res => res.json())
-            .then(data => setAchievements(data));
-    }, []);
+  const [userData, setUserData] = useState(null);
+  const [leaderboardData, setLeaderboardData] = useState(null);
+  const [statisticsData, setStatisticsData] = useState(null);
+  const [loggedIn, setLoggedIn] = useState(false);
+  let navigate = useNavigate()
+  const loginRouteChange = () =>{ 
+    // !!! Missing user validation with mongoDB
+    //// TO DO ////
+    /*
+    - ROUTER
+    - DIFERENT FUNCTIONS, DEPENDING ON LOGIN OR SIGN IN
+    -
+    */
+    setLoggedIn(true);
 
-    let navigate = useNavigate();
-    
-    
-    const loginRouteChange = () =>{ 
-      // !!! Missing user validation with mongoDB
-      //// TO DO ////
-      /*
-      - ROUTER
-      - DIFERENT FUNCTIONS, DEPENDING ON LOGIN OR SIGN IN
-      */
-      let path = 'usuario'; 
-      navigate(path);
-    }
+    // GET THE DATA HERE!!!
+    setUserData(new user("Usuario12345", ProfilePlaceholder,0, [100,100,50], ["false","false","true","true","false","false"], 500));
+    setLeaderboardData(
+      [
+        new player("Johny",100,100),
+        new player("Bob",90,90),
+        new player("Juan",80,80),
+        new player("Pedro",70,70),
+        new player("Lucas",60,60),
+        new player("Dylan",50,50),
+        new player("Tú",0,0)
+    ]
+    )
+    setStatisticsData(
+      {
+        labels: ["Wins", "Losses", "Ties"],
+        data: [100, 90, 80],
+      }
 
-      
+    )
+
+    
+    let path = 'usuario'; 
+    navigate(path);
+
+    
+    //
+
+  }
+
+/*
+Flow:
+Login, if not logged in -> do not show pages -> redirect to login
+Get data & insert as props 
+Maybe loading screen to get all data? 
+Get ALL data just after logging in
+
+*/
 
   
-  return (
+  if (loggedIn){
+    return (
+      <LoggedInSection fun={loginRouteChange} userData={userData} leaderboardData={leaderboardData} statisticsData={statisticsData} />
+    );
+  }
+  else{
+    return(
+      <NotLoggedIn fun={loginRouteChange} />
+    );
+    
+  }
+    
+}
+
+class NotLoggedIn extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      fun : this.props.fun
+    }
+  }
+
+  render(){
+    return(
       <Routes>
-          <Route path="/" element={<LoginView mode={'login'} onSubmit={loginRouteChange} />} />
-          <Route path="login" element={<LoginView mode={'login'} onSubmit={loginRouteChange} />} />
-          <Route path="logros" element={<AchievementsView achievements = {["false","false","true","true","false","false"]} />} /> {/*ACHIEVEMENTS*/}
-          <Route path="usuario" element={ <UserView />} />
-          <Route path="juego" element={ <GameView />} />
-          <Route path="configuracion" element={ <ConfigurationView />} />
-          <Route path="soporte" element={ <ContactView />} />
-          <Route path="estadisticas" element={ <StatisticsView />} />
-          <Route path="leaderboard" element={ <LeaderboardView />} />
-          <Route path="*" element={<PageNotFound /> } />
-          
+          <Route path="*" element={<LoginView mode={'login'} onSubmit={this.state.fun} /> } />
       </Routes>
-      
-  );
+    );
+  }
+}
+
+class LoggedInSection extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      fun: this.props.fun,
+      userData : this.props.userData,
+      leaderboardData : this.props.leaderboardData,
+      statisticsData : this.props.statisticsData
+
+  }
+  //console.log("User there 1:",this.state.userData)
+  //console.log("User there 2:",this.props.userData)
+  //console.log("Control here:",this.props.statisticsData)
+  
+  
+  }
+  render(){
+    return(
+        <Routes>
+          <Route path="/" element={ <UserView data = {this.state.userData} />} />
+          <Route path="logros" element={<AchievementsView data = {this.state.userData} />} /> 
+          <Route path="usuario" element={ <UserView data = {this.state.userData} />} />
+          <Route path="juego" element={ <GameView data = {this.state.userData} />} />
+          <Route path="configuracion" element={ <ConfigurationView data = {this.state.userData} />} />
+          <Route path="soporte" element={ <ContactView />} />
+          <Route path="estadisticas" element={ <StatisticsView data = {this.state.statisticsData} />} />
+          <Route path="leaderboard" element={ <LeaderboardView data = {this.state.leaderboardData} />} />
+          <Route path="*" element={<PageNotFound /> } />
+        </Routes>
+    );
+  }
 }
 
 export default App;

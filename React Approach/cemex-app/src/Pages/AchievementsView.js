@@ -55,7 +55,7 @@ class AchievementsView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            achievements: this.props.achievements,
+            data: this.props.data,
             selected: null
         }
         //console.log(this.state.achievements);
@@ -78,7 +78,7 @@ class AchievementsView extends Component {
             <section className="sectionGlass col-11 col-md-9 col-lg-7 centered">
                 <div className='font-weight-bold placeholder-text centered'>Logros</div>
                 <div className="flex-container--achievements">
-                    { achievements.map((ach,index) => <Achievement key={index} isActive={index < this.state.achievements.length ? this.state.achievements[index] : "false"} img={ach.img} name={ach.name} txt={ach.description} />) }
+                    { achievements.map((ach,index) => <Achievement key={index} isActive={index < this.state.data.achievements.length ? this.state.data.achievements[index] : "false"} img={ach.img} name={ach.name} txt={ach.description} />) }
                 </div>
             </section>
         </div>

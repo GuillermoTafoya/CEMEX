@@ -17,7 +17,10 @@ class PageNotFound extends Component {
         <div className = "app--is-not-login">
             <NavBar />
             <div className="sectionGlass container align-items-center">
+                <div className='spacer' />
+                <div className='spacer' />
                 <h1 className='centered CAUIION IMPORTANT'>ESTA PÁGINA NO EXISTE</h1>
+                
             </div>
         </div>
         
