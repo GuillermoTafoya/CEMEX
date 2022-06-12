@@ -3,54 +3,77 @@ import modelLeaderboard from "./api.model.leaderboard.js";
 import modelVidSim from "./api.model.vidSim.js";
 import modelUserAch from "./api.model.userAch.js";
 
-// const crypto = require("crypto-js");
-import crypto from "crypto";
 
-// Get all registered users
+//const crypto = require("crypto-js");
+
+import crypto from "crypto";
+import { toBePartiallyChecked } from "@testing-library/jest-dom/dist/matchers.js";
+
+// Get all registered users, funciona
 export async function getUsers(req, res){
 	const users = await modelUser.find();
 	res.json(users);
 }
+// Get specific user data, funciona
+export async function getUserData(req, res){
+	const userData = await modelUser.find({
+		username: req.params.username,
+	}
+	);
+	res.json(userData[0]);
+}
 
-// Get specific user by ObjectId
-// export async function getUser(req, res){
-// 	const users = await modelUser.findById(res.params.id);
-// 	res.json(users);
-// }
+// Put specific user data, funciona, poner datos en body
+export async function putUserData(req, res){
+	const userputData = await modelUser.findOneAndUpdate({ "username" : req.params.username }, req.body, {
+		new: true,
+	  });
+	res.json(userputData);
+}
+
 
 // Create a new user through sign up form
 export async function postUser(req, res){
-	const { name, email, dob, passwordHash, score, helmetNum, ordinaryNum, generalNum, totalNum, coins, admin, numAchUnlocked, weapon1, weapon2, weapon3, weapon4 } = req.body;
-	const user = new modelUser({name, email, dob, passwordHash, score, helmetNum, ordinaryNum, generalNum, totalNum, coins, admin, numAchUnlocked, weapon1, weapon2, weapon3, weapon4});
+	const {username, email, dob, passwordRegister } = req.body;
 
-	// const hashing = crypto.createHash("sha512");
-	// var passwordHashPost = hashing.update(passwordHash).digest("base64");
+	const hashing = crypto.createHash("sha512");
+    const passwordHash = hashing.update(passwordRegister).digest("base64");
 
-	// Uno de estos:
-
-	//var nameQuery = req.query.name;
-	var namePost = req.params.name;
-	
-	var emailPost = req.params.email;
-	var dobPost = req.params.dob;
-	// passwordHashPost = req.params.passwordHash;
-	var passwordHashPost = req.params.passwordHash;
-	var scorePost = req.params.score;
-	var helmetNumPost = req.params.helmetNum;
-	var ordinaryNumPost = req.params.ordinaryNum;
-	var generalNumPost = req.params.generalNu;
-	var totalNumPost = req.params.totalNum;
-	var coinsPost = req.params.coins;
-	var adminPost = req.params.admi;
-	var numAchUnlockedPost = req.params.numAchUnlocked;
-	var weapon1Post = req.params.weapon1;
-	var weapon2Post = req.params.weapon2;
-	var weapon3Post = req.params.weapon3;
-	var weapon4Post = req.params.weapon4;
+	const user = new modelUser({username, email, dob, passwordHash, admin: "false", win: 0, score: "0", helmetNum: 0,
+	ordinaryNum: 0, generalNum: 0, totalNum: 0, coins: 0, numAchUnlocked: 0, weapon1: "false", weapon2: "false", weapon3: "false",
+	weapon4: "false"});
 
 	await user.save();
 	res.json(user);
 }
+/*
+const loginController = {
+    login: function (req, res) {
+        const query = {
+            Email: req.body.email,
+            Contrasena: req.body.contrasena // Contraseña hasheada
+        };
+
+		try {
+			const queryResult = await test.user.findOne(query);
+
+			if (queryResult) {
+				res.sendStatus(200);
+			  }
+			  else {
+				res.sendStatus(404);
+			  }
+		} catch (error) {
+			res.sendStatus(500);
+               // return ERROR.sendErrorResponse(res, 
+                   // 'Error al intentar iniciar sesión', 
+                    //`Error al buscar usuario en la base de datos: ${error}`); 
+							
+		}
+		
+	}
+}*/
+
 
 // // Change user data
 // export async function putUser(req, res){
@@ -89,3 +112,10 @@ export async function userLogin(req, res){
 
 }
 
+// No está bien
+export async function user(req, res){
+	const doc = {username: res.params.users, admin: "false", email: res.params.email, wins: 0, dob: "", passwordHash: res.params.password, 
+	score: "0", helmetNum: 0, ordinaryNum: 0, generalNum: 0, totalNum: 0, coins: 0, numAchUnlocked: 0, weapon: "false", 
+	weapon2: "false", weapon3: "false", weapon4: "false"};
+	const userPost = await postUser.insertOne(doc);
+}

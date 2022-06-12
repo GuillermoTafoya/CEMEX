@@ -15,6 +15,7 @@ import LeaderboardView from './Pages/LeaderboardView.js';
 import PageNotFound from './Pages/PageNotFound.js';
 
 import ProfilePlaceholder from './assets/UserView/panda.png'; 
+import Unity, {UnityContext} from "react-unity-webgl";
 
 
 const loader = document.querySelector('.loader');
@@ -52,14 +53,43 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   let navigate = useNavigate()
   const loginRouteChange = () =>{ 
-    // !!! Missing user validation with mongoDB
-    //// TO DO ////
-    /*
-    - ROUTER
-    - DIFERENT FUNCTIONS, DEPENDING ON LOGIN OR SIGN IN
-    -
-    */
-    setLoggedIn(true);
+    loginRouteChange = async (e) =>{ 
+      e.preventDefault();
+      const usernameLogin = e.target[0].value;
+      const passwordLogin = e.target[1].value;
+      const usernameRegister = e.target[2].value;
+      const email = e.target[3].value;
+      const birthday = e.target[4].value;
+      const createPassword  = e.target[5].value; 
+      const repeatPassword = e.target[6].value;
+
+      if (createPassword != null && repeatPassword != null && createPassword != repeatPassword){
+          setLoggedIn(true);
+          let path = 'usuario'; 
+          navigate(path);
+          // Validar contraseña repetida
+          console.log("Contraseñas");
+      }
+
+      // 200 ok
+          // 500 error en el server
+          // 404 no coinciden usuario y contraseña
+          // En base al error que devuelve, hace cosas diferentes con el fetch
+          
+      const payload = JSON.stringify({
+        username: usernameRegister, email: email, dob: birthday, passwordRegister: createPassword
+      })
+
+    
+      const response = await fetch("/userRegister", {
+        method: "POST", 
+        body: payload,
+        headers: {
+          "Content-Type": "application/json" 
+        }
+      });
+
+    
 
     // GET THE DATA HERE!!!
     setUserData(new user("Usuario12345", ProfilePlaceholder,0, [100,100,50], ["false","false","true","true","false","false"], 500));
@@ -79,16 +109,9 @@ function App() {
         labels: ["Wins", "Losses", "Ties"],
         data: [100, 90, 80],
       }
-
     )
-
-    
     let path = 'usuario'; 
     navigate(path);
-
-    
-    //
-
   }
 
 /*
@@ -148,21 +171,22 @@ class LoggedInSection extends Component{
   
   
   }
-  render(){
-    return(
-        <Routes>
-          <Route path="/" element={ <UserView data = {this.state.userData} />} />
-          <Route path="logros" element={<AchievementsView data = {this.state.userData} />} /> 
-          <Route path="usuario" element={ <UserView data = {this.state.userData} />} />
-          <Route path="juego" element={ <GameView data = {this.state.userData} />} />
-          <Route path="configuracion" element={ <ConfigurationView data = {this.state.userData} />} />
-          <Route path="soporte" element={ <ContactView />} />
-          <Route path="estadisticas" element={ <StatisticsView data = {this.state.statisticsData} />} />
-          <Route path="leaderboard" element={ <LeaderboardView data = {this.state.leaderboardData} />} />
-          <Route path="*" element={<PageNotFound /> } />
-        </Routes>
-    );
-  }
+    render(){
+      return(
+          <Routes>
+            <Route path="/" element={ <UserView data = {this.state.userData} />} />
+            <Route path="logros" element={<AchievementsView data = {this.state.userData} />} /> 
+            <Route path="usuario" element={ <UserView data = {this.state.userData} />} />
+            <Route path="juego" element={ <GameView data = {this.state.userData} />} />
+            <Route path="configuracion" element={ <ConfigurationView data = {this.state.userData} />} />
+            <Route path="soporte" element={ <ContactView />} />
+            <Route path="estadisticas" element={ <StatisticsView data = {this.state.statisticsData} />} />
+            <Route path="leaderboard" element={ <LeaderboardView data = {this.state.leaderboardData} />} />
+            <Route path="*" element={<PageNotFound /> } />
+          </Routes>
+      );
+    }
+}
 }
 
 export default App;
