@@ -14,6 +14,8 @@ import LeaderboardView from './Pages/LeaderboardView.js';
 
 import PageNotFound from './Pages/PageNotFound.js';
 
+import crypto from "crypto-js";
+import { user } from './API/api.controller.js';
 
 const loader = document.querySelector('.loader');
 
@@ -84,29 +86,32 @@ function App() {
 		const passwordLogin = e.target[1].value;
 
 		const payload = JSON.stringify({
-			email: emailLogin, password: passwordLogin
+			email: email, password: passwordHash
 		})
-		const response = await fetch("/userLogin", {
+		const response = await fetch("/users", {
 		  method: "GET", 
 		  body: payload,
 		  headers: {
 			"Content-Type": "application/json" 
 		  }
 		});
-  
 
-		// !!! Missing user validation with mongoDB
-		//// TO DO ////
-		/*
-		- ROUTER
-		- DIFERENT FUNCTIONS, DEPENDING ON LOGIN OR SIGN IN
-		*/
-		let path = 'usuario'; 
-		navigate(path);
-	  }
+		const userData = response.find((user => user.email === emailLogin.value));
+  
+		if (userData){
+			const hashing = crypto.createHash("sha512");
+			const passwordLoginHash = hashing.update(user.passwordLogin).digest("base64");
+			if (passwordLoginHash !== user.password){
+				// Show wrong user-or-pass warning with bootstrap form validation
+			} else {
+				let path = 'usuario';
+				navigate(path);
+			}
+		}
+	}
 
   
-  return (
+	return (
       <Routes>
           <Route path="/" element={<LoginView mode={'signup'} onSubmit={signupRouteChange} />} />
           <Route path="signup" element={<LoginView mode={'signup'} onSubmit={signupRouteChange} />} />

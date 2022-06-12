@@ -51,32 +51,21 @@ class LoginForm extends Component {
         return (
         <form onSubmit={this.props.onSubmit} method={this.props.mode === 'login' ? 'GET' : 'POST'}>
             <div className=" form-block__input-wrapper ">
-
                 <div className="form-group form-group--login">
-
                     <Input  type="email" id="usernameLogin" label="email" disabled={this.props.mode === 'signup'}/>
                     <Input  type="password" id="passwordLogin" label="contraseña" disabled={this.props.mode === 'signup'}/>
-
                 </div>
-
                 <div className="form-group form-group--signup">
-
-
                         <Input type="text" id="usernameRegister" label="nombre de usuario" disabled={this.props.mode === 'login'} />
-                        
                         <Input  type="email" id="email" label="email" disabled={this.props.mode === 'login'} />
-
                         <input  className="form-group__input" type="text" 
                         placeholder="fecha de nacimiento" 
                         onFocus={(e) => (e.target.type = "date")}
                         onBlur={(e) => (e.target.type = "text")} 
                         id="birthday" 
                         disabled={this.props.mode === 'login'} />
-
                         <Input  type="password" id="createpassword" label="contraseña" disabled={this.props.mode === 'login'} />
                         <Input  type="password" id="repeatpassword" label="repetir contraseña" disabled={this.props.mode === 'login'} />
-                    
-
                 </div>
             </div>
 

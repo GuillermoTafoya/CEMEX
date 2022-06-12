@@ -6,7 +6,7 @@ import modelUserAch from "./api.model.userAch.js";
 
 //const crypto = require("crypto-js");
 
-import crypto from "crypto";
+import crypto from "crypto-js";
 import { toBePartiallyChecked } from "@testing-library/jest-dom/dist/matchers.js";
 
 // Get all registered users
@@ -37,8 +37,10 @@ export async function postUser(req, res){
 
 const loginController = {
     login: async function (req, res) {
+		const {email, password} = req.body;
+
 		const hashing = crypto.createHash("sha512");
-		const passwordHash = hashing.update(req.body.contrasena).digest("base64");
+		const passwordHash = hashing.update(req.body.password).digest("base64");
 
         const query = {
             Email: req.body.email,
