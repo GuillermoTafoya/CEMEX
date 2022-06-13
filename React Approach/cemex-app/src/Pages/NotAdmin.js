@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from '../components/navbar.js';
 
-class PageNotFound extends Component {
+class NotAdmin extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,7 +19,7 @@ class PageNotFound extends Component {
             <div className="sectionGlass container align-items-center">
                 <div className='spacer' />
                 <div className='spacer' />
-                <h1 className='centered CAUIION IMPORTANT'>ESTA PÁGINA NO EXISTE</h1>
+                <h1 className='centered CAUIION IMPORTANT'>No tienes permisos para visualizar esta página.</h1>
                 
             </div>
         </div>
@@ -28,4 +28,4 @@ class PageNotFound extends Component {
     }
 }
 
-export default PageNotFound;
+export default NotAdmin;

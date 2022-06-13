@@ -21,7 +21,7 @@ class StatisticsView extends Component {
         
 
         <div className = "app--is-not-login">
-            <NavBar />
+            <div className='spacer'/> <div className='spacer'/>
             <section className = "sectionGlass container">
                 <DynamicChart className="col-12" id={"example"} data={this.state.data}/>
             </section>

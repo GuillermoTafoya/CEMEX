@@ -42,9 +42,7 @@ class LeaderboardView extends Component {
         
 
         <div className = "app--is-not-login">
-            <NavBar />
-            
-            <div className="spacer" />
+            <div className="spacer" /> <div className='spacer'/>
 
             <div className = "sectionGlass col-10 centered">
                 <p className='font-weight-bold placeholder-text centered'>Leaderboard</p>

@@ -13,8 +13,7 @@ class ContactView extends Component {
         return(
 
         <div className = "app--is-not-login">
-            <NavBar />
-            <div className="spacer" />
+            <div className='spacer'/> <div className='spacer'/> 
             <div className="sectionGlass col-10 col-md-8 col-lg-6 centered">
                 <div className='font-weight-bold placeholder-text'>Contáctanos</div>
                     <div className="spacer" />

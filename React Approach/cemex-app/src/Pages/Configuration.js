@@ -27,7 +27,7 @@ class ConfigurationView extends Component {
         return(
 
         <div className = "app--is-not-login">
-            <NavBar />
+            <div className='spacer'/> <div className='spacer'/> 
             <section class = "container centered display-block justify-content-center">
                 <div className = "row mb-4 mt-4 ml-1 mr-1 align-items-center">
 

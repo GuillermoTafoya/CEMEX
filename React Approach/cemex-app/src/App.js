@@ -1,5 +1,8 @@
 import React, { Component, useState, useEffect } from 'react';
 
+
+import { useSessionStorage } from './components/useStorage.js';
+
 import ReactDOM from "react-dom/client";
 import {Routes, Route, useNavigate} from "react-router-dom";
 
@@ -11,14 +14,19 @@ import ContactView from './Pages/Contact.js';
 import ConfigurationView from './Pages/Configuration';
 import StatisticsView from './Pages/Statistics';
 import LeaderboardView from './Pages/LeaderboardView.js';
+import NotAdmin from './Pages/NotAdmin.js';
 
 import PageNotFound from './Pages/PageNotFound.js';
 
 import ProfilePlaceholder from './assets/UserView/panda.png'; 
 import Unity, {UnityContext} from "react-unity-webgl";
 
+import NavBar from "./components/navbar.js";
+
 
 const loader = document.querySelector('.loader');
+
+
 
 // if you want to show the loader when React loads data again
 const showLoader = () => loader.classList.remove('loader--hide');
@@ -55,16 +63,16 @@ class player {
 
 function App() {
   useEffect(hideLoader, []);
-  const [userData, setUserData] = useState(null);
-  const [leaderboardData, setLeaderboardData] = useState(null);
-  const [statisticsData, setStatisticsData] = useState(null);
-  const [loggedIn, setLoggedIn] = useState(false);
+    const [userData, setUserData] = useSessionStorage('userData',null);
+    const [leaderboardData, setLeaderboardData] = useSessionStorage('leaderboardData',null);
+    const [statisticsData, setStatisticsData] = useSessionStorage('statisticsData',null);
+    const [loggedIn, setLoggedIn] = useSessionStorage('loggedIn',false);
   let navigate = useNavigate()
-
-
 
   const loginRouteChange = mode => async (e) =>{ 
     console.log("mode of form: ",mode);
+    console.log("e: ",e.target.elements);
+    console.log("all use states 1: ",userData, leaderboardData, statisticsData, loggedIn);
     e.preventDefault();
     const usernameLogin = e.target[0].value;
     const passwordLogin = e.target[1].value;
@@ -95,7 +103,7 @@ function App() {
       if(!datosRegistro.invalidUsername && !datosRegistro.invalidEmail){ // Valida que el usuario y el email no estén repetidos
         alert("¡Datos de registro válidos!");
       // Prepara datos a ser enviados
-      const data = { email: usernameRegister, password: createPassword}; 
+      const data = { email: email, password: createPassword}; 
       const opciones = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -104,12 +112,15 @@ function App() {
 
       // Hace request
       const requestLogin = await fetch("http://localhost:5000/login", opciones);
+
+
       // Obtiene respuesta de datos
       const datos = await requestLogin.json();
         setUserData(new user(
           datos.user.username, datos.user.email, datos.user.passwordHash, datos.user.admin, ProfilePlaceholder, datos.user.wins, datos.user.dob, datos.user.coins,
           datos.user.ordinaryNum, datos.user.generalNum, datos.user.helmetNum, datos.user.totalNum, datos.user.numAchUnlocked, datos.user.achievements, datos.user.weapons
           ));
+          
           setLeaderboardData(
             [
               new player("Johny",100,100),
@@ -121,13 +132,25 @@ function App() {
               new player("Tú",0,0)
           ]
           )
+
           setStatisticsData(
             {
               labels: ["Wins", "Losses", "Ties"],
               data: [100, 90, 80],
             }
           )
+
           setLoggedIn(true);
+
+            sessionStorage.setItem('user', JSON.stringify(userData));
+            sessionStorage.setItem('leaderboardData', JSON.stringify(leaderboardData));
+            sessionStorage.setItem('statisticsData', JSON.stringify(statisticsData));
+            sessionStorage.setItem('loggedIn', JSON.stringify(loggedIn));
+        
+            console.log("all use states 0: ",userData, leaderboardData, statisticsData, loggedIn);
+            console.log("all session storage: ",sessionStorage.getItem('user'), sessionStorage.getItem('leaderboardData'), sessionStorage.getItem('statisticsData'), sessionStorage.getItem('loggedIn'));
+            console.log("Cccc", sessionStorage.getItem('user'));
+
           let path = 'usuario'; 
           navigate(path);
       }else if(datosRegistro.invalidUsername && !datosRegistro.invalidEmail){// Valida el usuario
@@ -140,6 +163,18 @@ function App() {
         
       // / REGISTRO
     }
+
+
+
+
+
+
+
+
+
+
+
+
     else{ // ESTÁ EN LOGIN
       // Validar Login:
 
@@ -156,14 +191,18 @@ function App() {
       // Obtiene respuesta de datos
       const datos = await requestLogin.json();
     
-      console.log(datos);
+      console.log("Datos:",datos);
+
       if (datos.isLogin) { // Si el login fue correcto
+
+
         setUserData(new user(
           datos.user.username, datos.user.email, datos.user.passwordHash, datos.user.admin, ProfilePlaceholder, datos.user.wins, datos.user.dob, datos.user.coins,
           datos.user.ordinaryNum, datos.user.generalNum, datos.user.helmetNum, datos.user.totalNum, datos.user.numAchUnlocked, datos.user.achievements, datos.user.weapons
           ));
-        //sessionStorage.setItem("username", datos.user.username);
+
         alert("¡Datos de Login Correctos!");
+
         setLeaderboardData(
           [
             new player("Johny",100,100),
@@ -175,17 +214,35 @@ function App() {
             new player("Tú",0,0)
         ]
         )
+
         setStatisticsData(
           {
             labels: ["Wins", "Losses", "Ties"],
             data: [100, 90, 80],
           }
         )
+
         setLoggedIn(true);
+
+
+        
+    
+          sessionStorage.setItem('user', JSON.stringify(userData));
+          sessionStorage.setItem('leaderboardData', JSON.stringify(leaderboardData));
+          sessionStorage.setItem('statisticsData', JSON.stringify(statisticsData));
+          sessionStorage.setItem('loggedIn', JSON.stringify(loggedIn));
+      
+          console.log("all use states 0: ",userData, leaderboardData, statisticsData, loggedIn);
+          console.log("all session storage: ",sessionStorage.getItem('user'), sessionStorage.getItem('leaderboardData'), sessionStorage.getItem('statisticsData'), sessionStorage.getItem('loggedIn'));
+          console.log("Cccc", sessionStorage.getItem('user'));  
+      
+        
+
+        console.log("all use states 2: ",userData, leaderboardData, statisticsData, loggedIn);
+
         let path = 'usuario'; 
         navigate(path);
         // Validar contraseña repetida
-        console.log("Contraseñas");
 
       } else {
         alert("Datos de Login incorrectos");
@@ -210,6 +267,7 @@ Get ALL data just after logging in
 
   
   if (loggedIn){
+    console.log("Control:",userData)
     return (
       <LoggedInSection fun={loginRouteChange} userData={userData} leaderboardData={leaderboardData} statisticsData={statisticsData} />
     );
@@ -233,9 +291,11 @@ class NotLoggedIn extends Component{
 
   render(){
     return(
-      <Routes>
-          <Route path="*" element={<LoginView mode={'login'} onSubmit={this.state.fun} /> } />
-      </Routes>
+      <div className="app">
+        <Routes>
+            <Route path="*" element={<LoginView mode={'login'} onSubmit={this.state.fun} /> } />
+        </Routes>
+      </div>
     );
   }
 }
@@ -247,31 +307,49 @@ class LoggedInSection extends Component{
       fun: this.props.fun,
       userData : this.props.userData,
       leaderboardData : this.props.leaderboardData,
-      statisticsData : this.props.statisticsData
-
+      statisticsData : this.props.statisticsData,
   }
-  //console.log("User there 1:",this.state.userData)
+  
   //console.log("User there 2:",this.props.userData)
   //console.log("Control here:",this.props.statisticsData)
-  
+  console.log("Control logged in:",this.props.userData)
+  console.log("Control logged in 2:",this.state.userData)
+  console.log("Control logged in 3:",sessionStorage.getItem('user'))
+  console.log("Control logged in 4:",sessionStorage.getItem('loggedIn'))
+
   
   }
     render(){
       return(
+        <div className="App">
+          <NavBar data = {this.state.userData} />
           <Routes>
-            <Route path="/" element={ <UserView data = {this.state.userData} />} />
+            <Route path="/" element={<SpacedComponent children = {<UserView data = {this.state.userData} /> } /> } />
             <Route path="logros" element={<AchievementsView data = {this.state.userData} />} /> 
             <Route path="usuario" element={ <UserView data = {this.state.userData} />} />
             <Route path="juego" element={ <GameView data = {this.state.userData} />} />
             <Route path="configuracion" element={ <ConfigurationView data = {this.state.userData} />} />
             <Route path="soporte" element={ <ContactView />} />
-            <Route path="estadisticas" element={ <StatisticsView data = {this.state.statisticsData} />} />
+            <Route path="estadisticas" element={ this.state.userData.admin ? <StatisticsView data = {this.state.statisticsData} /> :< NotAdmin />} />
             <Route path="leaderboard" element={ <LeaderboardView data = {this.state.leaderboardData} />} />
             <Route path="*" element={<PageNotFound /> } />
           </Routes>
+        </div>
       );
     }
 }
+
+class SpacedComponent extends Component{
+  render(){
+    return(
+      <div>
+        <div className="spacer" /> <div className="spacer" /> 
+        {this.props.children}
+      </div>
+    );
+  }
+}
+      
 
 
 export default App;
