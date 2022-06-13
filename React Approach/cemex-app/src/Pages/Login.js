@@ -54,27 +54,27 @@ class LoginForm extends Component {
 
                 <div className="form-group form-group--login">
 
-                    <Input  type="email" id="usernameLogin" label="email" disabled={this.props.mode === 'signup'}/>
-                    <Input  type="password" id="passwordLogin" label="contraseña" disabled={this.props.mode === 'signup'}/>
+                    <Input  type="email" id="usernameLogin" label="email" disabled={this.props.mode === 'signup'} required={this.props.mode === 'login'}/>
+                    <Input  type="password" id="passwordLogin" label="contraseña" disabled={this.props.mode === 'signup'} required={this.props.mode === 'login'}/>
 
                 </div>
 
                 <div className="form-group form-group--signup">
 
 
-                        <Input type="text" id="usernameRegister" label="nombre de usuario" disabled={this.props.mode === 'login'} />
-                        
-                        <Input  type="email" id="email" label="email" disabled={this.props.mode === 'login'} />
+                        <Input type="text" id="usernameRegister" label="nombre de usuario" disabled={this.props.mode === 'login'} required={this.props.mode === 'signup'}/>                        
+                        <Input  type="email" id="email" label="email" disabled={this.props.mode === 'login'} required={this.props.mode === 'signup'}/>
 
                         <input  className="form-group__input" type="text" 
                         placeholder="fecha de nacimiento" 
                         onFocus={(e) => (e.target.type = "date")}
                         onBlur={(e) => (e.target.type = "text")} 
                         id="birthday" 
-                        disabled={this.props.mode === 'login'} />
+                        disabled={this.props.mode === 'login'} 
+                        required={this.props.mode === 'signup'}/>
 
                         <Input  type="password" id="createPassword" label="contraseña" disabled={this.props.mode === 'login'} />
-                        <Input  type="password" id="repeatPassword" label="repetir contraseña" disabled={this.props.mode === 'login'} />
+                        <Input  type="password" id="repeatPassword" label="repetir contraseña" disabled={this.props.mode === 'login'} required={this.props.mode === 'signup'} />
                     
 
                 </div>
@@ -86,8 +86,8 @@ class LoginForm extends Component {
     }
 }
 
-const Input = ({ id, type, label, disabled }) => (
-    <input className="form-group__input" type={type} id={id} placeholder={label} disabled={disabled}/>
+const Input = ({ id, type, label, disabled, required }) => (
+    <input className="form-group__input" type={type} id={id} placeholder={label} disabled={disabled} required={required}/>
 );
 
 /*username: document.getElementById('fullname').value,
