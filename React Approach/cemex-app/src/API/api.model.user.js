@@ -18,6 +18,35 @@ const userSchema = mongoose.Schema(
 		achievements: {type: Array},
 		weapons: {type: Array},
 	}	
-)
+);
+
+userSchema.statics.isThisUsernameInUse = async function(username){
+	try{
+		const userBool = await this.findOne({username});
+		if (userBool){	
+			return true;
+		}
+		else{
+			return false;
+		}
+	} catch(error) {
+		return false;
+	}
+}
+
+userSchema.statics.isThisEmailInUse = async function(email){
+	try{
+		const emailBool = await this.findOne({email});
+		if (emailBool){	
+			return true;
+		}
+		else{
+			return false;
+		}
+	} catch(error) {
+		return false;
+	}
+}
+
 
 export default mongoose.model("User", userSchema);

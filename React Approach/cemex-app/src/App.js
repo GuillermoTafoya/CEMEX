@@ -71,62 +71,76 @@ function App() {
     const createPassword  = e.target[5].value; 
     const repeatPassword = e.target[6].value;
 
-    if (createPassword != null && repeatPassword != null && createPassword != repeatPassword){
-        setLoggedIn(true);
+    if (createPassword.length != 0){ // CONDICIONAL PARA SABER SI ESTÁ EN LOGIN O EN SIGNUP, FALTA VALIDAR EL REPETIR CONTRASEÑAS
+
+      // REGISTRO
+      const payload = {
+        username: usernameRegister, email: email, dob: birthday, passwordRegister: createPassword
+      }
+
+      // Envía req
+      const response = await fetch("/userRegister", {
+        method: "POST", 
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-Type": "application/json" 
+        }
+      });
+    
+      const datosRegistro = await response.json(); // Obtiene res
+
+      console.log(datosRegistro);
+      console.log(!datosRegistro.invalidUsername);
+      console.log(!datosRegistro.invalidEmail);
+      if(!datosRegistro.invalidUsername && !datosRegistro.invalidEmail){ // Valida que el usuario y el email no estén repetidos
+        alert("¡Datos de registro válidos!");
+      }else if(datosRegistro.invalidUsername && !datosRegistro.invalidEmail){// Valida el usuario
+        alert("Este usuario ya está siendo usado");
+      }else if(datosRegistro.invalidEmail && !datosRegistro.invalidUsername){ // Valida el email
+        alert("Este email ya está siendo usado");
+      }else{
+        alert("El email y el usuario ya están siendo usados");
+      }
+        
+      // / REGISTRO
+    }
+    else{ // ESTÁ EN LOGIN
+      // Validar Login:
+      const username = e.target[0].value;
+      const password = e.target[1].value;
+
+      // Prepara datos a ser enviados
+      const data = { email: username, password: password}; 
+      const opciones = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      };
+
+      // Hace request
+      const requestLogin = await fetch("http://localhost:5000/login", opciones);
+      // Obtiene respuesta de datos
+      const datos = await requestLogin.json();
+    
+      console.log(datos);
+      if (datos.isLogin) { // Si el login fue correcto
+        setUserData(new user(
+          datos.user.username, datos.user.email, datos.user.passwordHash, datos.user.admin, datos.user.img, datos.user.wins, datos.user.dob, datos.user.coins,
+          datos.user.ordinaryNum, datos.user.generalNum, datos.user.helmetNum, datos.user.totalNum, datos.user.numAchUnlocked, datos.user.achievements, datos.user.weapons
+          ));
+        //sessionStorage.setItem("username", datos.user.username);
+        alert("¡Datos de Login Correctos!");
+      } else {
+        alert("Datos de Login incorrectos");
+      }
+      setLoggedIn(true);
         let path = 'usuario'; 
         navigate(path);
         // Validar contraseña repetida
         console.log("Contraseñas");
+       // / LOGIN
     }
 
-    // 200 ok
-        // 500 error en el server
-        // 404 no coinciden usuario y contraseña
-        // En base al error que devuelve, hace cosas diferentes con el fetch
-        
-    const payload = JSON.stringify({
-      username: usernameRegister, email: email, dob: birthday, passwordRegister: createPassword
-    })
-
-  
-    const response = await fetch("/userRegister", {
-      method: "POST", 
-      body: payload,
-      headers: {
-        "Content-Type": "application/json" 
-    }
-  });
-
-
-  // GET THE DATA HERE!!!
-  // Validar Login:
-  const username = e.target[0].value;
-  const password = e.target[1].value;
-
-  // Enviar datos al servidor mediante un POST
-
-  const data = { email: username, password: password}; 
-  const opciones = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  };
-  const respuesta = await fetch("http://localhost:5000/login", opciones);
-  const datos = await respuesta.json();
-
-  console.log(datos);
-  if (datos.isLogin) {
-    setUserData(new user(
-      datos.user.username, datos.user.email, datos.user.passwordHash, datos.user.admin, datos.user.img, datos.user.wins, datos.user.dob, datos.user.coins,
-      datos.user.ordinaryNum, datos.user.generalNum, datos.user.helmetNum, datos.user.totalNum, datos.user.numAchUnlocked, datos.user.achievements, datos.user.weapons
-      ));
-    //sessionStorage.setItem("username", datos.user.username);
-    alert("¡Datos Correctos!");
-  } else {
-    alert("Datos incorrectos");
-  }
-
-  
   //setUserData(new user("Usuario12345", ProfilePlaceholder,0, [100,100,50], ["false","false","true","true","false","false"], 500));
   setLeaderboardData(
     [

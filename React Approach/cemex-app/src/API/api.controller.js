@@ -35,15 +35,23 @@ export async function putUserData(req, res){
 // Create a new user through sign up form
 export async function postUser(req, res){
 	const {username, email, dob, passwordRegister } = req.body;
+	
+	const doesEmailExists = await modelUser.isThisEmailInUse(email);
+	const doesUsernameExists = await modelUser.isThisUsernameInUse(username);
 
-	const hashing = crypto.createHash("sha512");
-    const passwordHash = hashing.update(passwordRegister).digest("base64");
+	console.log(doesEmailExists);
+	console.log(doesUsernameExists);
 
-	const user = new modelUser({username, email, passwordHash, admin: "false", img: "", dob, wins: 0, coins: "0",  ordinaryNum: 0, generalNum: 0,  helmetNum: 0,
+	if(!doesEmailExists && !doesUsernameExists){
+   	 	const passwordHash = crypto.createHash("sha512").update(passwordRegister).digest("base64");
+		const usuario = new modelUser({username, email, passwordHash, admin: "false", img: "", dob, wins: 0, coins: "0",  ordinaryNum: 0, generalNum: 0,  helmetNum: 0,
 		totalNum: 0, coins: 0, numAchUnlocked: 0, achievements: [false, false, false, false, false, false], weapons: [false, false, false, false]});
-
-	await user.save();
-	res.json(user);
+		await usuario.save();
+		res.status(200).json({usuario, invalidEmail: doesEmailExists, invalidUsername: doesUsernameExists});
+	}
+	else{
+		res.status(404).json({error: "El usuario y/o email ya están siendo usados por otro usuario", invalidEmail: doesEmailExists, invalidUsername: doesUsernameExists});
+	}	
 }
 /*
 const loginController = {
