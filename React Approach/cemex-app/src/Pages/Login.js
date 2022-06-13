@@ -36,7 +36,7 @@ class LoginView extends Component {
 
                             </div>
                         </header>
-                        <LoginForm mode={this.state.mode} onSubmit={this.props.onSubmit} />
+                        <LoginForm mode={this.state.mode} onSubmit={this.props.onSubmit(this.state.mode)} />
                     </section>
             </div>
         )
