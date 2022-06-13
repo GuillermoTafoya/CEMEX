@@ -43,7 +43,7 @@ class UserView extends Component {
                         <div className="grid-container align-items-center">
                             <div className="grid-item-centered">
                                 <img src={sword} height="35px" width="35px" />
-                                <p className='my-auto'>{this.state.data.wins} Wins</p>
+                                <p className='my-auto'>{this.state.data.wins ? this.state.data.wins  : 0} Wins</p>
                             </div>
                         </div>
 
@@ -59,7 +59,7 @@ class UserView extends Component {
                             <div className="grid-container align-items-center">
                                 <div className="grid-item-centered">
                                     <img src={ordinary} height="43px" width="30px" />
-                                    <p className='my-auto'>{this.state.data.ordinaryNum}</p>
+                                    <p className='my-auto'>{this.state.data.ordinaryNum ? this.state.data.ordinaryNum : 0}</p>
                                 </div>
                             </div>
 
@@ -67,7 +67,7 @@ class UserView extends Component {
                             <div className="grid-container align-items-center">
                                 <div className="grid-item-centered">
                                     <img src={general} height="43px" width="30px" />
-                                    <p className='my-auto'>{this.state.data.generalNum}</p>
+                                    <p className='my-auto'>{this.state.data.generalNum ? this.state.data.generalNum : 0}</p>
                                 </div>
                             </div>
 
@@ -76,8 +76,8 @@ class UserView extends Component {
                             <div className="grid-container align-items-center">
                                 <div className="grid-item-centered">
                                     <img src={helmet} height="43px" width="30px" />
-                                    <p className='my-auto'>{this.state.data.helmetNum}</p>
-                                </div>
+                                    <p className='my-auto'>{this.state.data.helmetNum ? this.state.data.helmetNum : 0}</p>
+                                </div> 
                             </div>
                         </div>
                         
@@ -94,7 +94,7 @@ class UserView extends Component {
                             <div className="grid-container align-items-center">
                                 <div className="grid-item-centered">
                                     <img src={money} height="35px" width="35px" />
-                                    <p className='my-auto'>{this.state.data.coins}</p>
+                                    <p className='my-auto'>{this.state.data.coins ? this.state.data.coins : 0}</p>
                                 </div>
                             </div>
                             

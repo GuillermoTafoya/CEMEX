@@ -59,7 +59,7 @@ class LeaderboardView extends Component {
                     }
                     <div className="spacer" />
                 </div>
-                    {this.state.leaderboardData.map((player,index) => <User key={index+4} id={index+4} rank={index+1} name={player.name} wins={player.wins} score={player.score} length={this.state.leaderboardData.length}/>)}
+                    {this.state.leaderboardData.map((player,index) => <User key={index+4} id={index+4} rank={index+1} name={player.username} wins={player.wins} score={player.score} length={this.state.leaderboardData.length}/>)}
                     <div className="spacer" />
                     <div className="spacer" />
                 </section>

@@ -60,7 +60,11 @@ function App() {
   const [statisticsData, setStatisticsData] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
   let navigate = useNavigate()
-  const loginRouteChange = async (e) =>{ 
+
+
+
+  const loginRouteChange = mode => async (e) =>{ 
+    console.log("mode of form: ",mode);
     e.preventDefault();
     const usernameLogin = e.target[0].value;
     const passwordLogin = e.target[1].value;
@@ -70,7 +74,7 @@ function App() {
     const createPassword  = e.target[5].value; 
     const repeatPassword = e.target[6].value;
 
-    if (createPassword.length != 0){ // CONDICIONAL PARA SABER SI ESTÁ EN LOGIN O EN SIGNUP, FALTA VALIDAR EL REPETIR CONTRASEÑAS
+    if (mode === "signup"){ // CONDICIONAL PARA SABER SI ESTÁ EN LOGIN O EN SIGNUP, FALTA VALIDAR EL REPETIR CONTRASEÑAS
 
       // REGISTRO
       const payload = {
@@ -90,6 +94,42 @@ function App() {
 
       if(!datosRegistro.invalidUsername && !datosRegistro.invalidEmail){ // Valida que el usuario y el email no estén repetidos
         alert("¡Datos de registro válidos!");
+      // Prepara datos a ser enviados
+      const data = { email: usernameRegister, password: createPassword}; 
+      const opciones = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      };
+
+      // Hace request
+      const requestLogin = await fetch("http://localhost:5000/login", opciones);
+      // Obtiene respuesta de datos
+      const datos = await requestLogin.json();
+        setUserData(new user(
+          datos.user.username, datos.user.email, datos.user.passwordHash, datos.user.admin, ProfilePlaceholder, datos.user.wins, datos.user.dob, datos.user.coins,
+          datos.user.ordinaryNum, datos.user.generalNum, datos.user.helmetNum, datos.user.totalNum, datos.user.numAchUnlocked, datos.user.achievements, datos.user.weapons
+          ));
+          setLeaderboardData(
+            [
+              new player("Johny",100,100),
+              new player("Bob",90,90),
+              new player("Juan",80,80),
+              new player("Pedro",70,70),
+              new player("Lucas",60,60),
+              new player("Dylan",50,50),
+              new player("Tú",0,0)
+          ]
+          )
+          setStatisticsData(
+            {
+              labels: ["Wins", "Losses", "Ties"],
+              data: [100, 90, 80],
+            }
+          )
+          setLoggedIn(true);
+          let path = 'usuario'; 
+          navigate(path);
       }else if(datosRegistro.invalidUsername && !datosRegistro.invalidEmail){// Valida el usuario
         alert("Este usuario ya está siendo usado");
       }else if(datosRegistro.invalidEmail && !datosRegistro.invalidUsername){ // Valida el email
@@ -102,11 +142,9 @@ function App() {
     }
     else{ // ESTÁ EN LOGIN
       // Validar Login:
-      const username = e.target[0].value;
-      const password = e.target[1].value;
 
       // Prepara datos a ser enviados
-      const data = { email: username, password: password}; 
+      const data = { email: usernameLogin, password: passwordLogin}; 
       const opciones = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -126,38 +164,39 @@ function App() {
           ));
         //sessionStorage.setItem("username", datos.user.username);
         alert("¡Datos de Login Correctos!");
-      } else {
-        alert("Datos de Login incorrectos");
-      }
-      setLoggedIn(true);
+        setLeaderboardData(
+          [
+            new player("Johny",100,100),
+            new player("Bob",90,90),
+            new player("Juan",80,80),
+            new player("Pedro",70,70),
+            new player("Lucas",60,60),
+            new player("Dylan",50,50),
+            new player("Tú",0,0)
+        ]
+        )
+        setStatisticsData(
+          {
+            labels: ["Wins", "Losses", "Ties"],
+            data: [100, 90, 80],
+          }
+        )
+        setLoggedIn(true);
         let path = 'usuario'; 
         navigate(path);
         // Validar contraseña repetida
         console.log("Contraseñas");
-       // / LOGIN
+
+      } else {
+        alert("Datos de Login incorrectos");
+      }
+
     }
 
   //setUserData(new user("Usuario12345", ProfilePlaceholder,0, [100,100,50], ["false","false","true","true","false","false"], 500));
-  setLeaderboardData(
-    [
-      new player("Johny",100,100),
-      new player("Bob",90,90),
-      new player("Juan",80,80),
-      new player("Pedro",70,70),
-      new player("Lucas",60,60),
-      new player("Dylan",50,50),
-      new player("Tú",0,0)
-  ]
-  )
-  setStatisticsData(
-    {
-      labels: ["Wins", "Losses", "Ties"],
-      data: [100, 90, 80],
-    }
-  )
-  setLoggedIn(true);
-  let path = 'usuario'; 
-  navigate(path);
+  
+  
+  
   }
   
 /*
