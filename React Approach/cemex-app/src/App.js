@@ -43,7 +43,6 @@ class user{
     this.wins = wins;
     this.achievements = achievements;
     this.coins = coins;
-    
 }
 }
 class player {
@@ -89,9 +88,6 @@ function App() {
     
       const datosRegistro = await response.json(); // Obtiene res
 
-      console.log(datosRegistro);
-      console.log(!datosRegistro.invalidUsername);
-      console.log(!datosRegistro.invalidEmail);
       if(!datosRegistro.invalidUsername && !datosRegistro.invalidEmail){ // Valida que el usuario y el email no estén repetidos
         alert("¡Datos de registro válidos!");
       }else if(datosRegistro.invalidUsername && !datosRegistro.invalidEmail){// Valida el usuario
@@ -125,7 +121,7 @@ function App() {
       console.log(datos);
       if (datos.isLogin) { // Si el login fue correcto
         setUserData(new user(
-          datos.user.username, datos.user.email, datos.user.passwordHash, datos.user.admin, datos.user.img, datos.user.wins, datos.user.dob, datos.user.coins,
+          datos.user.username, datos.user.email, datos.user.passwordHash, datos.user.admin, ProfilePlaceholder, datos.user.wins, datos.user.dob, datos.user.coins,
           datos.user.ordinaryNum, datos.user.generalNum, datos.user.helmetNum, datos.user.totalNum, datos.user.numAchUnlocked, datos.user.achievements, datos.user.weapons
           ));
         //sessionStorage.setItem("username", datos.user.username);

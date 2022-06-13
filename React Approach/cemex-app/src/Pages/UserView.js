@@ -59,7 +59,7 @@ class UserView extends Component {
                             <div className="grid-container align-items-center">
                                 <div className="grid-item-centered">
                                     <img src={ordinary} height="43px" width="30px" />
-                                    <p className='my-auto'>{this.state.data.army[0]}</p>
+                                    <p className='my-auto'>{this.state.data.ordinaryNum}</p>
                                 </div>
                             </div>
 
@@ -67,7 +67,7 @@ class UserView extends Component {
                             <div className="grid-container align-items-center">
                                 <div className="grid-item-centered">
                                     <img src={general} height="43px" width="30px" />
-                                    <p className='my-auto'>{this.state.data.army[1]}</p>
+                                    <p className='my-auto'>{this.state.data.generalNum}</p>
                                 </div>
                             </div>
 
@@ -76,7 +76,7 @@ class UserView extends Component {
                             <div className="grid-container align-items-center">
                                 <div className="grid-item-centered">
                                     <img src={helmet} height="43px" width="30px" />
-                                    <p className='my-auto'>{this.state.data.army[2]}</p>
+                                    <p className='my-auto'>{this.state.data.helmetNum}</p>
                                 </div>
                             </div>
                         </div>
