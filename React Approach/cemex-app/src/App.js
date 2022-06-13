@@ -53,13 +53,6 @@ class user{
     this.coins = coins;
 }
 }
-class player {
-  constructor(username, wins, score) {
-      this.username = username;
-      this.wins = wins;
-      this.score = score;
-  }
-}
 
 function App() {
   useEffect(hideLoader, []);
@@ -120,17 +113,26 @@ function App() {
           datos.user.username, datos.user.email, datos.user.passwordHash, datos.user.admin, ProfilePlaceholder, datos.user.wins, datos.user.dob, datos.user.coins,
           datos.user.ordinaryNum, datos.user.generalNum, datos.user.helmetNum, datos.user.totalNum, datos.user.numAchUnlocked, datos.user.achievements, datos.user.weapons
           ));
+
+      // Hace request
+      const requestLeaderboard = await fetch(`http://localhost:5000/leaderboard?username=${datos.user.username}`, {
+        method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            }
+    })
+      
+      
+      const datosLeaderboard = await requestLeaderboard.json();
+      console.log("leader",datosLeaderboard)
+
+
+      // Obtiene respuesta de datos
+      //const datos = await requestLogin.json();
           
           setLeaderboardData(
-            [
-              new player("Johny",100,100),
-              new player("Bob",90,90),
-              new player("Juan",80,80),
-              new player("Pedro",70,70),
-              new player("Lucas",60,60),
-              new player("Dylan",50,50),
-              new player("Tú",0,0)
-          ]
+            datosLeaderboard
           )
 
           setStatisticsData(
@@ -203,17 +205,27 @@ function App() {
 
         alert("¡Datos de Login Correctos!");
 
-        setLeaderboardData(
-          [
-            new player("Johny",100,100),
-            new player("Bob",90,90),
-            new player("Juan",80,80),
-            new player("Pedro",70,70),
-            new player("Lucas",60,60),
-            new player("Dylan",50,50),
-            new player("Tú",0,0)
-        ]
-        )
+
+        // Hace request
+        const requestLeaderboard = await fetch(`http://localhost:5000/leaderboard?username=${datos.user.username}`, {
+          method: 'GET',
+              headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json',
+              }
+      })
+        
+        
+        const datosLeaderboard = await requestLeaderboard.json();
+        console.log("leader",datosLeaderboard)
+  
+  
+        // Obtiene respuesta de datos
+        //const datos = await requestLogin.json();
+            
+            setLeaderboardData(
+              datosLeaderboard
+            )
 
         setStatisticsData(
           {
@@ -331,7 +343,7 @@ class LoggedInSection extends Component{
             <Route path="configuracion" element={ <ConfigurationView data = {this.state.userData} />} />
             <Route path="soporte" element={ <ContactView />} />
             <Route path="estadisticas" element={ this.state.userData.admin ? <StatisticsView data = {this.state.statisticsData} /> :< NotAdmin />} />
-            <Route path="leaderboard" element={ <LeaderboardView data = {this.state.leaderboardData} />} />
+            <Route path="leaderboard" element={ <LeaderboardView data = {this.state.leaderboardData} user = {this.state.userData}/>} />
             <Route path="*" element={<PageNotFound /> } />
           </Routes>
         </div>
