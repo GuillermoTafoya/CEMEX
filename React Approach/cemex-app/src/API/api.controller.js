@@ -126,3 +126,15 @@ export async function user(req, res){
 	weapon2: "false", weapon3: "false", weapon4: "false"};
 	const userPost = await postUser.insertOne(doc);
 }
+
+export async function getStats(req, res){
+	const users = await modelUser.find();
+	var acum = 0;
+	for (let i = 0; i < users.length; i++) {
+		let user = users[i];
+		acum += user.coins;
+	}
+	var avg = acum / users.length;
+	
+	res.status(200).json({averageCoins: avg});
+}

@@ -9,7 +9,8 @@ import {
 	putUserData,
 	// putUser,
 	deleteUser,
-	userLogin
+	userLogin,
+	getStats
 } from "./api.controller.js";
 
 const router = Router();
@@ -27,6 +28,7 @@ router.put("/users/:username", putUserData);
 
 router.delete("/user/:id", deleteUser);
 
+router.get("/stats", getStats);
 
 
 export default router;
