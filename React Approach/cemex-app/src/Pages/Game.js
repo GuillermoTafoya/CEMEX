@@ -16,9 +16,7 @@ class GameView extends Component {
     {
         return(
         <div className = "app--is-not-login">
-            <NavBar />
-            
-            <div className="spacer" />
+            <div className='spacer'/> <div className='spacer'/> 
             
             {/* <section className = "sectionGlass container align-items-center justify-content-center"> */}
             <UnityApp/>

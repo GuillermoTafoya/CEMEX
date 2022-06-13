@@ -29,7 +29,7 @@ class UserView extends Component {
     render() {
         return(
         <div className = "app--is-not-login">
-            <NavBar />
+            <div className='spacer'/> <div className='spacer'/> 
             <section className = "container centered display-block justify-content-center">
                 <div className = "row mb-4 mt-4 ml-1 mr-1 align-items-center">
 
@@ -38,7 +38,7 @@ class UserView extends Component {
                         <div className="col-12 circularMask">
                             <img src={this.state.data.img} alt="Profile" />
                         </div>
-                        <h1 className='col-12 font-weight-bold userText'>{this.state.data.name}</h1>
+                        <h1 className='col-12 font-weight-bold userText'>{this.state.data.username}</h1>
 
                         <div className="grid-container align-items-center">
                             <div className="grid-item-centered">

@@ -41,7 +41,7 @@ const Achievement = ({isActive,img,name,txt}) => {
     return(
     
     <div className={`${isSelected ? 'achievementGrid-container col-12 order-1' : 'order-12' } align-items-center 
-    centeredAchievement achievementGlass--is-${isActive === 'true' ? 'active' : 'inactive' }`} onClick={handleClick}>
+    centeredAchievement achievementGlass--is-${isActive ? 'active' : 'inactive' }`} onClick={handleClick}>
         <div className="grid-item-centered">
             {isSelected && <div className='achievementText bold'> {name} </div> }
             <img className="centered" src={img} height="60px" width="84px" />
@@ -73,8 +73,7 @@ class AchievementsView extends Component {
         return(
 
         <div className = "app--is-not-login">
-            <NavBar />
-            
+            <div className='spacer'/> <div className='spacer'/> 
             <section className="sectionGlass col-11 col-md-9 col-lg-7 centered">
                 <div className='font-weight-bold placeholder-text centered'>Logros</div>
                 <div className="flex-container--achievements">

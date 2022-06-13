@@ -6,9 +6,14 @@ import {NavLink} from 'react-router-dom';
 class NavBar extends Component{
     constructor(props) {
         super(props);
-    
+        
         this.toggleNav = this.toggleNav.bind(this);
-        this.state = {isNavOpen: false};
+        this.state = {
+            isNavOpen: false,
+            data: this.props.data
+        }
+        console.log("User there 1:",this.props.data)
+        console.log("User there 2:",this.state.data)
     }
     toggleNav() {
         //console.log("Esta jalando.")
@@ -48,15 +53,19 @@ class NavBar extends Component{
                             <NavItem>
                                 <NavLink className="nav-link" to='/leaderboard'>Leaderboard</NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink className="nav-link" to='/estadisticas'>Estadísticas</NavLink>
-                            </NavItem>
+                            {
+                                this.state.data.admin &&
+                                <NavItem>
+                                    <NavLink className="nav-link" to='/estadisticas'>Estadísticas</NavLink>
+                                </NavItem>
+                            }
+                            
                             </Nav>
                         </Collapse>
                         </div>
                     </div>
                 </Navbar>
-                <div className="spacer" /><div className="spacer" /> 
+                
             </div>
             
                 
