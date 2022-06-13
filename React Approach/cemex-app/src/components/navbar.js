@@ -51,12 +51,12 @@ class NavBar extends Component{
                                 <NavLink className="nav-link" to='/soporte'>Soporte</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link" to='/leaderboard'>Leaderboard</NavLink>
+                                <NavLink className="nav-link" to='/leaderboard'>Top 10</NavLink>
                             </NavItem>
                             {
                                 this.state.data.admin &&
                                 <NavItem>
-                                    <NavLink className="nav-link" to='/estadisticas'>Estadísticas</NavLink>
+                                    <NavLink className="nav-link" to='/estadisticas'>Stats</NavLink>
                                 </NavItem>
                             }
                             

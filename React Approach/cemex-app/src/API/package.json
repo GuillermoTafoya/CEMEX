@@ -8,5 +8,14 @@
   },
   "author": "",
   "license": "ISC",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "crypto": "^1.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.10.2"
+  },
+  "browser": {
+    "crypto": false
+  }
 }

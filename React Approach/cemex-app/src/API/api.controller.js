@@ -3,7 +3,7 @@ import modelUser from "./api.model.user.js";
 //const crypto = require("crypto-js");
 
 import crypto from "crypto";
-import { toBePartiallyChecked } from "@testing-library/jest-dom/dist/matchers.js";
+//import { toBePartiallyChecked } from "@testing-library/jest-dom/dist/matchers.js";
 
 // Get all registered users, funciona
 export async function getUsers(req, res){
@@ -23,7 +23,7 @@ export async function getUserData(req, res){
 export async function putUserData(req, res){
 	const userputData = await modelUser.findOneAndUpdate({ "username" : req.params.username }, req.body, {
 		new: true,
-	  });
+	});
 	res.json(userputData);
 }
 
@@ -36,7 +36,7 @@ export async function postUser(req, res){
 	const doesUsernameExists = await modelUser.isThisUsernameInUse(username);
 
 	if(!doesEmailExists && !doesUsernameExists){
-   	 	const passwordHash = crypto.createHash("sha512").update(passwordRegister).digest("base64");
+		const passwordHash = crypto.createHash("sha512").update(passwordRegister).digest("base64");
 		const usuario = new modelUser({username, email, passwordHash, admin: "false", img: "", dob, wins: 0, coins: "0",  ordinaryNum: 0, generalNum: 0,  helmetNum: 0,
 		totalNum: 0, coins: 0, numAchUnlocked: 0, achievements: [false, false, false, false, false, false], weapons: [false, false, false, false]});
 		await usuario.save();
