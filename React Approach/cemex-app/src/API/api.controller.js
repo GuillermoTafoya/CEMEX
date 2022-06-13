@@ -39,9 +39,6 @@ export async function postUser(req, res){
 	const doesEmailExists = await modelUser.isThisEmailInUse(email);
 	const doesUsernameExists = await modelUser.isThisUsernameInUse(username);
 
-	console.log(doesEmailExists);
-	console.log(doesUsernameExists);
-
 	if(!doesEmailExists && !doesUsernameExists){
    	 	const passwordHash = crypto.createHash("sha512").update(passwordRegister).digest("base64");
 		const usuario = new modelUser({username, email, passwordHash, admin: "false", img: "", dob, wins: 0, coins: "0",  ordinaryNum: 0, generalNum: 0,  helmetNum: 0,
