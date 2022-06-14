@@ -13,6 +13,14 @@ export async function getUsers(req, res){
 	res.json(users);
 }
 
+export async function getUserData2(req, res){
+	const userData = await modelUser.find({
+		username: req.params.username,
+	}
+	);
+	res.json(userData[0]);
+}
+
 // Get specific user data, funciona
 export async function getUserData(req, res){
 	// First, we retrieve the user from the DB
