@@ -30,7 +30,7 @@ router.get("/leaderboard", leaderboard); // Leaderboard
 
 router.post("/userUpdate", updateUser);
 
-router.delete("/user/:id", deleteUser);
+router.delete("/deleteUser", deleteUser);
 
 router.get("/stats", getStats);
 router.get("/userCount", countUsers);

@@ -31,10 +31,35 @@ class ConfigurationView extends Component {
             data: this.props.data,
             updateUser: this.updateUser.bind(this)
         }
+		deleteUser: this.deleteUser.bind(this);
     }
     componentDidMount() {
         document.title = 'Configuración'
     }
+
+	deleteUser = async (e) => {
+		e.preventDefault();
+		const userToDelete = {
+            username: this.state.data.username,
+        }
+        const payload = {
+            method: "DELETE", 
+            headers: {
+                "Content-Type": "application/json" 
+            },
+            body: JSON.stringify(userToDelete),
+        }
+    
+        // Envía req
+        const response = await fetch("http://localhost:5000/deleteUser", payload);
+        const confirmation = await response.json(); // Obtiene respuesta
+
+        console.log(confirmation);
+	}
+
+
+
+
     updateUser = async (e) => {
         e.preventDefault();
         //console.log("data 1: ",e.target.elements.length);
@@ -147,7 +172,7 @@ class ConfigurationView extends Component {
                         </div>
                         <div className="sectionGlass">
                             <p className='CAUTION'>ELIMINAR CUENTA</p>
-                            <button className="button--CAUTION full-width" type="submit"> ELIMINAR </button>
+                            <button className="button--CAUTION full-width" type="submit" onClick={this.deleteUser}> ELIMINAR </button>
                         </div>
                     </div>
                 </div>

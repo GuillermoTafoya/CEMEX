@@ -53,8 +53,9 @@ export async function postUser(req, res){
 // Delete user from DB
 // no funciona
 export async function deleteUser(req, res){
-	const user = await modelUser.findOneAndDelete(res.params.id);
-	res.json.user();
+	const {username} = req.body;
+	const user = await modelUser.findOneAndDelete({ username: username });
+	res.status(200).json({msg: "User deleted."});
 }
 
 
