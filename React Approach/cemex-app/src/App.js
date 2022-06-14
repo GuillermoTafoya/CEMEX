@@ -390,10 +390,12 @@ class LoggedInSection extends Component{
       leaderboardData : this.props.leaderboardData,
       statisticsData : this.props.statisticsData,
       currentPage: 'usuario',
+      showNav: true,
   }
     
     this.updateState = this.updateState.bind(this);
     this.updateCurrentPage = this.updateCurrentPage.bind(this);
+    this.updateNavbar = this.updateNavbar.bind(this);
     //console.log("Control1:",this.state.userData)
     //console.log("Control2:",this.props.userData)
   }
@@ -403,6 +405,11 @@ class LoggedInSection extends Component{
   componentDidMount() {
     this.updateState()
     setInterval(this.updateState, 10e3); // x seconds
+  }
+  updateNavbar(){
+    this.setState({
+      showNav: !this.state.showNav
+    })
   }
 
   async updateData(){
@@ -487,12 +494,12 @@ updateState(){
     render(){
       return(
         <div className="App">
-          {(this.state.currentPage !== 'juego') && <NavBar data = {this.state.userData} />}
+          {this.state.showNav && <NavBar data = {this.state.userData} />}
           <Routes>
             <Route path="/" element={<UserView data = {this.state.userData} updateCurrentPage={this.updateCurrentPage} /> } />
             <Route path="logros" element={<AchievementsView data = {this.state.userData} updateCurrentPage={this.updateCurrentPage}/>} /> 
             <Route path="usuario" element={ <UserView data = {this.state.userData} updateCurrentPage={this.updateCurrentPage}/>} />
-            <Route path="juego" element={ <GameView data = {this.state.userData} updateCurrentPage={this.updateCurrentPage}/>} />
+            <Route path="juego" element={ <GameView data = {this.state.userData} updateCurrentPage={this.updateCurrentPage} updateNavbar={this.updateNavbar} />} />
             <Route path="configuracion" element={ <ConfigurationView data = {this.state.userData} updateCurrentPage={this.updateCurrentPage}/>} />
             <Route path="soporte" element={ <ContactView updateCurrentPage={this.updateCurrentPage}/>} />
             <Route path="estadisticas" element={ this.state.userData.admin ? <StatisticsView data = {this.state.statisticsData} updateCurrentPage={this.updateCurrentPage}/> :< NotAdmin updateCurrentPage={this.updateCurrentPage}/>} />
@@ -503,18 +510,5 @@ updateState(){
       );
     }
 }
-
-class SpacedComponent extends Component{
-  render(){
-    return(
-      <div>
-        <div className="spacer" /> <div className="spacer" /> 
-        {this.props.children}
-      </div>
-    );
-  }
-}
-      
-
 
 export default App;
