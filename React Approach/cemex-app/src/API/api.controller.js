@@ -129,3 +129,27 @@ export async function updateUser(req, res){
 	});
 	res.json(user);
 }
+export async function getStats(req, res){
+	const users = await modelUser.find();
+	const totalUsers = users.length;
+	var acumCoins = 0;
+	var acumOrdinary = 0;
+	var acumGeneral = 0;
+	var acumHelmet = 0;
+	var acumTotal = 0;
+
+	for (let i = 0; i < totalUsers; i++) {
+		let user = users[i];
+		acumCoins += user.coins;
+		acumOrdinary += user.ordinaryNum;
+		acumGeneral += user.generalNum;
+		acumHelmet += user.helmetNum;
+		acumTotal += user.totalNum;
+	}
+	var avgCoins = acumCoins / totalUsers;
+	var avgOrdinary = acumOrdinary / totalUsers;
+	var avgGeneral = acumGeneral / totalUsers;
+	var avgHelmet = acumHelmet / totalUsers;
+	var avgTotal = acumTotal / totalUsers;
+	res.status(200).json({averageCoins: avgCoins, averageOrdinary: avgOrdinary, averageGeneral: avgGeneral, averageHelmet: avgHelmet, averageTotal: avgTotal});
+}

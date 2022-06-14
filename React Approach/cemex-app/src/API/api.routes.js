@@ -10,6 +10,8 @@ import {
 	putUserData,
 	// putUser,
 	deleteUser,
+	userLogin,
+	getStats
 } from "./api.controller.js";
 
 const router = Router();
@@ -28,6 +30,7 @@ router.post("/userUpdate", putUserData);
 
 router.delete("/user/:id", deleteUser);
 
+router.get("/stats", getStats);
 
 
 export default router;
