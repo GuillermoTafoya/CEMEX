@@ -11,16 +11,22 @@ class GameView extends Component {
     componentDidMount() {
         document.title = 'Juego'
         this.props.updateCurrentPage("juego")
+        
     }
 
+    updateNavbar = () => {
+        this.props.updateNavbar() // Show or hide navbar
+    }
     render() 
 
     {
         
         return(
         <div className = "app--is-not-login">
-                <UnityApp />
+            <UnityApp update = {this.updateNavbar} />
         </div>
+        // <button className="button--CAUTION centered" type="submit" onClick={this.updateNavbar}> NAVBAR </button>
+        // <button className="button button--primary centered" type="submit" onClick={this.updateNavbar}> NAVBAR </button>
         )   
     }
 }

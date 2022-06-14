@@ -34,16 +34,16 @@ class ConfigurationView extends Component {
 
         //const response = await fetch("http://localhost:5000/deleteUser", payload);
         //const confirmation = await response.json(); // Obtiene respuesta
+        alert("Cuenta eliminada")
 
-        sessionStorage.set("loggedIn", false);
+        sessionStorage.setItem("loggedIn", false);
 
         console.log("confirmation");
+        window.location.reload(false);
 	}
 
     updateUser = async (e) => {
         e.preventDefault();
-        //console.log("data 1: ",e.target.elements.length);
-        //console.log("data 2: ",e.target.elements);
         
         var data = [];
 

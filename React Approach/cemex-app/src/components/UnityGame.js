@@ -1,7 +1,7 @@
-import React from "react";
+import React, { Component, Fragment, useEffect } from "react";
 import Unity, { UnityContext } from "react-unity-webgl";
 
-export function UnityApp() {
+export function UnityApp({update}) {
   const unityProvider = new UnityContext({
     loaderUrl: "./UnityGame/Build/UnityGame.loader.js", // Starts directory at public folder
     dataUrl: "./UnityGame/Build/UnityGame.data",
@@ -21,16 +21,23 @@ export function UnityApp() {
     },
   });
 
+
+  
+
+
   return (
+      < Fragment >
         <Unity unityContext={unityProvider} 
+        id="juego-unity"
         style = {{
             // Resize the Unity container to fit the parent container
             width: "100%",
-            height: "auto",
-            
-            
+            height: "100%",
         }}
         />
+        <button className="overlap button button--primary" type="submit" onClick={update}> NAVBAR </button>
+        
+      </Fragment>
     
   );
 }

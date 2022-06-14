@@ -14,7 +14,8 @@ import {
 	countUsers,
 	updateUser,
 	getEnemyUser,
-	sendSupport
+	sendSupport,
+	getUserData2
 } from "./api.controller.js";
 
 const router = Router();
@@ -22,6 +23,7 @@ const router = Router();
 // User routes
 router.get("/users", getUsers);
 router.get("/user", getUserData);
+
 router.get("/users/:username", getUserData2);
 
 router.post("/userRegister", postUser);

@@ -22,8 +22,8 @@ class achv {
 const achievements = [
                         new achv("Popular",ach1,"Obtuviste al menos 100 soldados."), 
                         new achv("Gran General",ach2,"Obtuviste al menos 1000 soldados."), 
-                        new achv("Bélico",ach3,"Ganaste una batalla."), 
-                        new achv("Salvaje",ach4,"Ganaste tu tercera batalla."), 
+                        new achv("Triunfador",ach3,"Ganaste una batalla."), 
+                        new achv("Veterano",ach4,"Ganaste tu tercera batalla."), 
                         new achv("Estratega",ach5,"Compraste tu primer arma para tu ejército."), 
                         new achv("Suertudo",ach6,"Ganaste una batalla con una desventaja numérica inicial en ejército.")
                     ];

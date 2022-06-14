@@ -27,7 +27,10 @@ class UserView extends Component {
         document.title = 'Usuario'
         this.props.updateCurrentPage("usuario")
     }
-    
+    logout(){
+        sessionStorage.setItem("loggedIn", false);
+        window.location.reload(false);
+    }
     render() {
         return(
         <div className = "app--is-not-login">
@@ -36,24 +39,30 @@ class UserView extends Component {
                 <div className = "row mb-4 mt-4 ml-1 mr-1 align-items-center">
 
                     <div className='col-0 col-md-1'/>
-                    <div className="sectionGlass col-12 col-md-4">
-                        <div className="col-12 circularMask">
-                            <img src={this.state.data.img} alt="Profile" />
-                        </div>
-                        <h1 className='col-12 font-weight-bold userText'>{this.state.data.username}</h1>
-
-                        <div className="grid-container align-items-center">
-                            <div className="grid-item-centered">
-                                <img src={sword} height="35px" width="35px" />
-                                <p className='my-auto'>{this.state.data.wins ? this.state.data.wins  : 0} Wins</p>
+                        <div className="col-12 col-md-5">
+                        <div className="sectionGlass">
+                            <div className="col-12 circularMask">
+                                <img src={this.state.data.img} alt="Profile" />
                             </div>
-                        </div>
+                            <h1 className='col-12 font-weight-bold userText'>{this.state.data.username}</h1>
 
+                            <div className="grid-container align-items-center">
+                                <div className="grid-item-centered">
+                                    <img src={sword} height="35px" width="35px" />
+                                    <p className='my-auto'>{this.state.data.wins ? this.state.data.wins  : 0} Wins</p>
+                                </div>
+                            </div>
+                            
+
+                        </div>
+                        <div className="sectionGlass">
+                                <p className='CAUTION'>LOGOUT</p>
+                                <button className="button--CAUTION full-width" type="submit" onClick={this.logout}> LOGOUT </button>
+                        </div>
                     </div>
 
-                    <div className='col-0 col-md-2'/>
 
-                    <div className='col-12 col-md-4 '>
+                    <div className='col-12 col-md-5 '>
                         <div className="sectionGlass align-items-center">
 
                             <p className='font-weight-bold'>Tropas</p>

@@ -1,3 +1,13 @@
 .unity-canvas-container{
     position: absolute;
 }
+
+.overlap{
+    // Put the butto on top of the canvas
+    position: absolute;
+    // Put the button at the bottom left of the canvas
+    bottom: 0;
+    left: 0;
+
+
+}
