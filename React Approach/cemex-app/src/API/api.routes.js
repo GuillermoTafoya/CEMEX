@@ -10,7 +10,9 @@ import {
 	putUserData,
 	// putUser,
 	deleteUser,
-	getStats
+	getStats,
+	countUsers
+
 } from "./api.controller.js";
 
 const router = Router();
@@ -30,6 +32,7 @@ router.post("/userUpdate", putUserData);
 router.delete("/user/:id", deleteUser);
 
 router.get("/stats", getStats);
+router.get("/userCount", countUsers);
 
 
 export default router;

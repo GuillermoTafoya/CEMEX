@@ -153,3 +153,9 @@ export async function getStats(req, res){
 	var avgTotal = acumTotal / totalUsers;
 	res.status(200).json({averageCoins: avgCoins, averageOrdinary: avgOrdinary, averageGeneral: avgGeneral, averageHelmet: avgHelmet, averageTotal: avgTotal});
 }
+
+export async function countUsers(req, res){
+	const users = await modelUser.find();
+	const totalUsers = users.length;
+	res.status(200).json({userCount: totalUsers});
+}
