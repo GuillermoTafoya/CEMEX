@@ -61,12 +61,28 @@ function App() {
   const [statisticsData, setStatisticsData] = useSessionStorage('statisticsData',null);
   const [loggedIn, setLoggedIn] = useSessionStorage('loggedIn',false);
   let navigate = useNavigate()
-  let [count, setCount] = useState(0)
+
+
+  function updateLoggedIn(){
+    sessionStorage.getItem('loggedIn') 
+    console.log(
+      "Session Storage:", 
+      sessionStorage.getItem('user'), 
+      sessionStorage.getItem('leaderboardData'), 
+      sessionStorage.getItem('statisticsData'), 
+      sessionStorage.getItem('loggedIn'))
+    console.log("Updating Logged In")
+  }
+
 
   useEffect(() => {
-    const timer = setTimeout(() => loggedIn && setCount(count+1), 10e3)
-    return () => clearTimeout(timer)
-  })
+    const interval = setInterval(() => {
+      updateLoggedIn();
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  
 
   const loginRouteChange = mode => async (e) =>{ 
     //console.log("mode of form: ",mode);
@@ -317,17 +333,22 @@ Get ALL data just after logging in
 
   
   
-  if (loggedIn){
-    //console.log("Control:",userData)
+  if (loggedIn === true){
+    console.log("Control:",userData)
+    console.log("Control2222:",loggedIn)
     return (
       <LoggedInSection fun={loginRouteChange} userData={userData} leaderboardData={leaderboardData} statisticsData={statisticsData} />
     );
   }
-  else{
+  else if (loggedIn === false){
     return(
       <NotLoggedIn fun={loginRouteChange} />
     );
     
+  }
+  else {
+    console.log("Error:",loggedIn)
+    setLoggedIn(false)
   }
     
 }
@@ -351,6 +372,13 @@ class NotLoggedIn extends Component{
   }
 }
 
+
+
+
+
+
+
+
 class LoggedInSection extends Component{
   constructor(props){
     super(props);
@@ -361,18 +389,22 @@ class LoggedInSection extends Component{
       statisticsData : this.props.statisticsData,
       currentPage: 'usuario',
   }
+    
     this.updateState = this.updateState.bind(this);
     this.updateCurrentPage = this.updateCurrentPage.bind(this);
+    console.log("Control1:",this.state.userData)
+    console.log("Control2:",this.props.userData)
   }
 
 
 
   componentDidMount() {
     this.updateState()
-    setInterval(this.updateState, 1e3); // x seconds
+    setInterval(this.updateState, 10e3); // x seconds
   }
 
   async updateData(){
+    
     try{
       //console.log("Initial State:", this.state)
       // Print session storage

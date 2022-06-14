@@ -4,26 +4,6 @@ import NavBar from '../components/navbar.js';
 
 import '../Pages/Configuration.scss';
 
-class user{
-    constructor(username, email, passwordHash, admin, img, wins, dob, coins, ordinaryNum, generalNum, helmetNum, totalNum, numAchUnlocked, achievements, weapons) {
-    this.username = username;
-    this.email = email ;
-    this.passwordHash = passwordHash;
-    this.admin = admin ;
-    this.dob = dob ;
-    this.ordinaryNum = ordinaryNum ;
-    this.generalNum = generalNum ;
-    this.helmetNum = helmetNum ;
-    this.totalNum = totalNum ;
-    this.numAchUnlocked = numAchUnlocked ;
-    this.weapons = weapons ;
-    this.img = img;
-    this.wins = wins;
-    this.achievements = achievements;
-    this.coins = coins;
-    }
-}
-
 class ConfigurationView extends Component {
     constructor(props) {
         super(props);
@@ -38,8 +18,7 @@ class ConfigurationView extends Component {
         this.props.updateCurrentPage("configuracion")
     }
 
-	deleteUser = async (e) => {
-		e.preventDefault();
+	deleteUser = async () => {
 		const userToDelete = {
             username: this.state.data.username,
         }
@@ -52,10 +31,13 @@ class ConfigurationView extends Component {
         }
     
         // Envía req
-        const response = await fetch("http://localhost:5000/deleteUser", payload);
-        const confirmation = await response.json(); // Obtiene respuesta
 
-        console.log(confirmation);
+        //const response = await fetch("http://localhost:5000/deleteUser", payload);
+        //const confirmation = await response.json(); // Obtiene respuesta
+
+        sessionStorage.set("loggedIn", false);
+
+        console.log("confirmation");
 	}
 
     updateUser = async (e) => {
