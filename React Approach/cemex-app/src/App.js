@@ -56,11 +56,17 @@ class user{
 
 function App() {
   useEffect(hideLoader, []);
-    const [userData, setUserData] = useSessionStorage('userData',null);
-    const [leaderboardData, setLeaderboardData] = useSessionStorage('leaderboardData',null);
-    const [statisticsData, setStatisticsData] = useSessionStorage('statisticsData',null);
-    const [loggedIn, setLoggedIn] = useSessionStorage('loggedIn',false);
+  const [userData, setUserData] = useSessionStorage('userData',null);
+  const [leaderboardData, setLeaderboardData] = useSessionStorage('leaderboardData',null);
+  const [statisticsData, setStatisticsData] = useSessionStorage('statisticsData',null);
+  const [loggedIn, setLoggedIn] = useSessionStorage('loggedIn',false);
   let navigate = useNavigate()
+  let [count, setCount] = useState(0)
+
+  useEffect(() => {
+    const timer = setTimeout(() => loggedIn && setCount(count+1), 10e3)
+    return () => clearTimeout(timer)
+  })
 
   const loginRouteChange = mode => async (e) =>{ 
     //console.log("mode of form: ",mode);
@@ -79,7 +85,7 @@ function App() {
 
       // REGISTRO
       if( createPassword  !== repeatPassword){
-        alert("Passwords do not match");
+        alert("Las contraseñas no coinciden");
         return;
       }
       const payload = {
@@ -221,7 +227,7 @@ function App() {
           datos.user.ordinaryNum, datos.user.generalNum, datos.user.helmetNum, datos.user.totalNum, datos.user.numAchUnlocked, datos.user.achievements, datos.user.weapons
           ));
 
-        alert("¡Datos de Login Correctos!");
+        //alert("¡Datos de Login Correctos!");
 
 
         // Hace request
@@ -310,6 +316,7 @@ Get ALL data just after logging in
 */
 
   
+  
   if (loggedIn){
     //console.log("Control:",userData)
     return (
@@ -352,31 +359,111 @@ class LoggedInSection extends Component{
       userData : this.props.userData,
       leaderboardData : this.props.leaderboardData,
       statisticsData : this.props.statisticsData,
+      currentPage: 'usuario',
   }
-  
-  //console.log("User there 2:",this.props.userData)
-  //console.log("Control here:",this.props.statisticsData)
-  //console.log("Control logged in:",this.props.userData)
-  //console.log("Control logged in 2:",this.state.userData)
-  //console.log("Control logged in 3:",sessionStorage.getItem('user'))
-  //console.log("Control logged in 4:",sessionStorage.getItem('loggedIn'))
+    this.updateState = this.updateState.bind(this);
+    this.updateCurrentPage = this.updateCurrentPage.bind(this);
+  }
+
+
+
+  componentDidMount() {
+    this.updateState()
+    setInterval(this.updateState, 1e3); // x seconds
+  }
+
+  async updateData(){
+    try{
+      //console.log("Initial State:", this.state)
+      // Print session storage
+      /*
+      console.log(
+        "Session Storage:", 
+        sessionStorage.getItem('user'), 
+        sessionStorage.getItem('leaderboardData'), 
+        sessionStorage.getItem('statisticsData'), 
+        sessionStorage.getItem('loggedIn'))
+      */
+
+      const requestUser = await fetch(`http://localhost:5000/user?username=${this.state.userData.username}`, {
+        method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            }
+    })
+      const datos = await requestUser.json();
+      
+      const requestLeaderboard = await fetch(`http://localhost:5000/leaderboard?username=${datos.username}`, {
+        method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            }
+    })
+        const datosLeaderboard = await requestLeaderboard.json();
+
+        const requestStats = await fetch("http://localhost:5000/stats", {
+          method: 'GET',
+              headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json',
+              }
+      })
+            const datosStats= await requestStats.json();
+
+            const newData = {
+              userData: new user(
+              datos.username, datos.email, datos.passwordHash, datos.admin, ProfilePlaceholder, datos.wins, datos.dob, datos.coins,
+              datos.ordinaryNum, datos.generalNum, datos.helmetNum, datos.totalNum, datos.numAchUnlocked, datos.achievements, datos.weapons
+              ),
+              leaderboardData: datosLeaderboard,
+              statisticsData:{
+                labels: ["Average Coins", "Average Wins", "Average Ordinary", "Average General", "Average Helmet", "Average Total Army"],
+                data: [datosStats.avgCoins, datosStats.avgWins, datosStats.avgOrdinary, datosStats.avgGeneral, datosStats.avgHelmet, datosStats.avgTotal]
+              },
+            }
+            //console.log("New Data:", newData)
+            //console.log("Updated State:", this.state)
+
+            return newData;
+      }
+      catch(error){
+        console.log("Error:", error)
+      }
+}
+updateState(){
+  //console.log(this.state.currentPage)
+  if (this.state.currentPage !== 'juego'){
+    this.updateData().then(data => {
+      //console.log("Updated")
+      this.setState(data);
+      sessionStorage.setItem('user', JSON.stringify(this.state.userData));
+      sessionStorage.setItem('leaderboardData', JSON.stringify(this.state.leaderboardData));
+      sessionStorage.setItem('statisticsData', JSON.stringify(this.state.statisticsData));
+    }
+    )
+  }
+}
+  updateCurrentPage(page){
+    this.setState({currentPage: page})
+  }
 
   
-  }
     render(){
       return(
         <div className="App">
-          <NavBar data = {this.state.userData} />
+          {(this.state.currentPage !== 'juego') && <NavBar data = {this.state.userData} />}
           <Routes>
-            <Route path="/" element={<SpacedComponent children = {<UserView data = {this.state.userData} /> } /> } />
-            <Route path="logros" element={<AchievementsView data = {this.state.userData} />} /> 
-            <Route path="usuario" element={ <UserView data = {this.state.userData} />} />
-            <Route path="juego" element={ <GameView data = {this.state.userData} />} />
-            <Route path="configuracion" element={ <ConfigurationView data = {this.state.userData} />} />
-            <Route path="soporte" element={ <ContactView />} />
-            <Route path="estadisticas" element={ this.state.userData.admin ? <StatisticsView data = {this.state.statisticsData} /> :< NotAdmin />} />
-            <Route path="leaderboard" element={ <LeaderboardView data = {this.state.leaderboardData} user = {this.state.userData}/>} />
-            <Route path="*" element={<PageNotFound /> } />
+            <Route path="/" element={<UserView data = {this.state.userData} updateCurrentPage={this.updateCurrentPage} /> } />
+            <Route path="logros" element={<AchievementsView data = {this.state.userData} updateCurrentPage={this.updateCurrentPage}/>} /> 
+            <Route path="usuario" element={ <UserView data = {this.state.userData} updateCurrentPage={this.updateCurrentPage}/>} />
+            <Route path="juego" element={ <GameView data = {this.state.userData} updateCurrentPage={this.updateCurrentPage}/>} />
+            <Route path="configuracion" element={ <ConfigurationView data = {this.state.userData} updateCurrentPage={this.updateCurrentPage}/>} />
+            <Route path="soporte" element={ <ContactView updateCurrentPage={this.updateCurrentPage}/>} />
+            <Route path="estadisticas" element={ this.state.userData.admin ? <StatisticsView data = {this.state.statisticsData} updateCurrentPage={this.updateCurrentPage}/> :< NotAdmin updateCurrentPage={this.updateCurrentPage}/>} />
+            <Route path="leaderboard" element={ <LeaderboardView data = {this.state.leaderboardData} user = {this.state.userData} updateCurrentPage={this.updateCurrentPage}/>} />
+            <Route path="*" element={<PageNotFound updateCurrentPage={this.updateCurrentPage}/> } />
           </Routes>
         </div>
       );

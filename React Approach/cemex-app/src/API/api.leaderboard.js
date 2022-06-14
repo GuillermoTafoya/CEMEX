@@ -27,7 +27,7 @@ export async function leaderboard(req, res) {
     // Make an array of players with username, wins and score
     const players = [];
     for(let i = 0; i < usernames.length; i++) {
-        players.push(new player(usernames[i], wins[i], wins[i]*(totalNum[i]+coins[i])));
+        players.push(new player(usernames[i], wins[i], wins[i]*1000+5*(totalNum[i]+coins[i])));
     }
     // Sort players by score
     players.sort((a, b) => b.score - a.score);

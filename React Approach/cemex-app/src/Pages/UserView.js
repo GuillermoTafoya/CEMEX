@@ -22,8 +22,10 @@ class UserView extends Component {
             data: this.props.data
         }
     }
+
     componentDidMount() {
         document.title = 'Usuario'
+        this.props.updateCurrentPage("usuario")
     }
     
     render() {
@@ -85,7 +87,7 @@ class UserView extends Component {
                             <p className='font-weight-bold'>Logros</p>
                             <div className="grid-item-centered align-items-center align-text-center">
                                 <img src={trophy} height="35px" width="35px" />
-                            <p className='my-auto'>{this.state.data.achievements.filter(x => x == "true").length}/{this.state.data.achievements.length}</p>
+                            <p className='my-auto'>{this.state.data.achievements.filter(x => x === true).length}/{this.state.data.achievements.length}</p>
                             </div>
                             
                             <div className='spacer'/>

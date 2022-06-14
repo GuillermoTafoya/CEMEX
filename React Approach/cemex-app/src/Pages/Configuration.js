@@ -34,7 +34,9 @@ class ConfigurationView extends Component {
     }
     componentDidMount() {
         document.title = 'Configuración'
+        this.props.updateCurrentPage("configuracion")
     }
+    
     updateUser = async (e) => {
         e.preventDefault();
         //console.log("data 1: ",e.target.elements.length);

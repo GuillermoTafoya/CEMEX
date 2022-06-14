@@ -14,6 +14,7 @@ class StatisticsView extends Component {
     
     componentDidMount() {
         document.title = 'Estadísticas'
+        this.props.updateCurrentPage("estadisticas")
     }
     render() {
         

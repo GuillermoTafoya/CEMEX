@@ -8,6 +8,7 @@ class ContactView extends Component {
     }
     componentDidMount() {
         document.title = 'Soporte'
+        this.props.updateCurrentPage("soporte")
     }
     render() {
         return(

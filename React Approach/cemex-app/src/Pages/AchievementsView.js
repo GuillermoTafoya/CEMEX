@@ -68,6 +68,7 @@ class AchievementsView extends Component {
     }
     componentDidMount() {
         document.title = 'Logros'
+        this.props.updateCurrentPage("logros")
     }
     render() {
         return(
