@@ -155,3 +155,25 @@ export async function countUsers(req, res){
 	const totalUsers = users.length;
 	res.status(200).json({userCount: totalUsers});
 }
+
+export async function getEnemyUser(req, res){
+	const users = await modelUser.find();
+	const {username} = req.body;
+	const totalUsers = users.length;
+	var sameUser = true;
+	var enemyNum;
+	var enemy;
+	// enemyNum = Math.floor(Math.random() * totalUsers);
+
+	while (sameUser == true) {
+		enemyNum = Math.floor(Math.random() * totalUsers);
+		enemy = users[enemyNum];
+		// console.log(enemy.username);
+		console.log(enemy);
+		if (enemy.username != username){
+			sameUser = false;
+		}
+	}
+
+res.status(200).json(enemy);
+}

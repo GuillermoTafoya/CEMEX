@@ -12,8 +12,8 @@ import {
 	deleteUser,
 	getStats,
 	countUsers,
-	updateUser
-
+	updateUser,
+	getEnemyUser
 } from "./api.controller.js";
 
 const router = Router();
@@ -35,6 +35,6 @@ router.get("/stats", getStats);
 router.get("/userCount", countUsers);
 
 router.put("/users/:username", putUserData);
-
+router.post("/getEnemy", getEnemyUser);
 
 export default router;
