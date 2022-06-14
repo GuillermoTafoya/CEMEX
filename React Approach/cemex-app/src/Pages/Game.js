@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import NavBar from '../components/navbar.js';
 import {UnityApp} from '../components/UnityGame.js';
-import App from '../App.js';
+
+import '../Pages/Game.scss';
 
 class GameView extends Component {
     constructor(props) {
@@ -13,17 +13,16 @@ class GameView extends Component {
     }
 
     render() 
+
     {
+        
         return(
         <div className = "app--is-not-login">
+            
             <div className='spacer'/> <div className='spacer'/> 
-            
-            {/* <section className = "sectionGlass container align-items-center justify-content-center"> */}
-            <UnityApp/>
-            <div className="spacer" />
-            <div className="spacer" />
-            
-            {/* </section> */}
+            <div className='sectionGlass unity-canvas-container centered'>
+                <UnityApp/>
+            </div>
         </div>
         )   
     }

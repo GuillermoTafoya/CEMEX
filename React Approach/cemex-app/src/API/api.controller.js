@@ -59,10 +59,10 @@ const loginController = {
 
 			if (queryResult) {
 				res.sendStatus(200);
-			  }
-			  else {
+			}
+			else {
 				res.sendStatus(404);
-			  }
+			}
 		} catch (error) {
 			res.sendStatus(500);
                // return ERROR.sendErrorResponse(res, 
@@ -107,10 +107,11 @@ export async function deleteUser(req, res){
 	res.json.user();
 }
 
-// Attempt user login
-export async function userLogin(req, res){
 
-}
+
+
+
+
 
 // No está bien
 export async function user(req, res){
@@ -118,4 +119,13 @@ export async function user(req, res){
 	score: "0", helmetNum: 0, ordinaryNum: 0, generalNum: 0, totalNum: 0, coins: 0, numAchUnlocked: 0, weapon: "false", 
 	weapon2: "false", weapon3: "false", weapon4: "false"};
 	const userPost = await postUser.insertOne(doc);
+}
+
+
+// A post metod to update user data in DB, but only the given fields
+export async function updateUser(req, res){
+	const user = await modelUser.findOneAndUpdate({ "username" : req.params.username }, req.body, {
+		new: true,
+	});
+	res.json(user);
 }

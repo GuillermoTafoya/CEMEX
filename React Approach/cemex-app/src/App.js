@@ -63,9 +63,9 @@ function App() {
   let navigate = useNavigate()
 
   const loginRouteChange = mode => async (e) =>{ 
-    console.log("mode of form: ",mode);
-    console.log("e: ",e.target.elements);
-    console.log("all use states 1: ",userData, leaderboardData, statisticsData, loggedIn);
+    //console.log("mode of form: ",mode);
+    //console.log("e: ",e.target.elements);
+    //console.log("all use states 1: ",userData, leaderboardData, statisticsData, loggedIn);
     e.preventDefault();
     const usernameLogin = e.target[0].value;
     const passwordLogin = e.target[1].value;
@@ -125,7 +125,7 @@ function App() {
       
       
       const datosLeaderboard = await requestLeaderboard.json();
-      console.log("leader",datosLeaderboard)
+      //console.log("leader",datosLeaderboard)
 
 
       // Obtiene respuesta de datos
@@ -149,9 +149,9 @@ function App() {
             sessionStorage.setItem('statisticsData', JSON.stringify(statisticsData));
             sessionStorage.setItem('loggedIn', JSON.stringify(loggedIn));
         
-            console.log("all use states 0: ",userData, leaderboardData, statisticsData, loggedIn);
-            console.log("all session storage: ",sessionStorage.getItem('user'), sessionStorage.getItem('leaderboardData'), sessionStorage.getItem('statisticsData'), sessionStorage.getItem('loggedIn'));
-            console.log("Cccc", sessionStorage.getItem('user'));
+            //console.log("all use states 0: ",userData, leaderboardData, statisticsData, loggedIn);
+            //console.log("all session storage: ",sessionStorage.getItem('user'), sessionStorage.getItem('leaderboardData'), sessionStorage.getItem('statisticsData'), sessionStorage.getItem('loggedIn'));
+            //console.log("Cccc", sessionStorage.getItem('user'));
 
           let path = 'usuario'; 
           navigate(path);
@@ -193,7 +193,7 @@ function App() {
       // Obtiene respuesta de datos
       const datos = await requestLogin.json();
     
-      console.log("Datos:",datos);
+      //console.log("Datos:",datos);
 
       if (datos.isLogin) { // Si el login fue correcto
 
@@ -217,7 +217,7 @@ function App() {
         
         
         const datosLeaderboard = await requestLeaderboard.json();
-        console.log("leader",datosLeaderboard)
+        //console.log("leader",datosLeaderboard)
   
   
         // Obtiene respuesta de datos
@@ -244,13 +244,13 @@ function App() {
           sessionStorage.setItem('statisticsData', JSON.stringify(statisticsData));
           sessionStorage.setItem('loggedIn', JSON.stringify(loggedIn));
       
-          console.log("all use states 0: ",userData, leaderboardData, statisticsData, loggedIn);
-          console.log("all session storage: ",sessionStorage.getItem('user'), sessionStorage.getItem('leaderboardData'), sessionStorage.getItem('statisticsData'), sessionStorage.getItem('loggedIn'));
-          console.log("Cccc", sessionStorage.getItem('user'));  
+          //console.log("all use states 0: ",userData, leaderboardData, statisticsData, loggedIn);
+          //console.log("all session storage: ",sessionStorage.getItem('user'), sessionStorage.getItem('leaderboardData'), sessionStorage.getItem('statisticsData'), sessionStorage.getItem('loggedIn'));
+          //console.log("Cccc", sessionStorage.getItem('user'));  
       
         
 
-        console.log("all use states 2: ",userData, leaderboardData, statisticsData, loggedIn);
+        //console.log("all use states 2: ",userData, leaderboardData, statisticsData, loggedIn);
 
         let path = 'usuario'; 
         navigate(path);
@@ -279,7 +279,7 @@ Get ALL data just after logging in
 
   
   if (loggedIn){
-    console.log("Control:",userData)
+    //console.log("Control:",userData)
     return (
       <LoggedInSection fun={loginRouteChange} userData={userData} leaderboardData={leaderboardData} statisticsData={statisticsData} />
     );
@@ -324,10 +324,10 @@ class LoggedInSection extends Component{
   
   //console.log("User there 2:",this.props.userData)
   //console.log("Control here:",this.props.statisticsData)
-  console.log("Control logged in:",this.props.userData)
-  console.log("Control logged in 2:",this.state.userData)
-  console.log("Control logged in 3:",sessionStorage.getItem('user'))
-  console.log("Control logged in 4:",sessionStorage.getItem('loggedIn'))
+  //console.log("Control logged in:",this.props.userData)
+  //console.log("Control logged in 2:",this.state.userData)
+  //console.log("Control logged in 3:",sessionStorage.getItem('user'))
+  //console.log("Control logged in 4:",sessionStorage.getItem('loggedIn'))
 
   
   }

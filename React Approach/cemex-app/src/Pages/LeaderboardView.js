@@ -33,7 +33,7 @@ class LeaderboardView extends Component {
             leaderboardData: this.props.data,
             user : this.props.user
         }
-        console.log(this.state.leaderboardData);
+        //console.log(this.state.leaderboardData);
     }
     
     componentDidMount() {

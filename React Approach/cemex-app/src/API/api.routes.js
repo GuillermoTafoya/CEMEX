@@ -10,7 +10,6 @@ import {
 	putUserData,
 	// putUser,
 	deleteUser,
-	userLogin
 } from "./api.controller.js";
 
 const router = Router();
@@ -18,15 +17,14 @@ const router = Router();
 // User routes
 router.get("/users", getUsers);
 router.get("/users/:username", getUserData);
-router.get("/userLogin", userLogin);
 
 router.post("/userRegister", postUser);
 
 router.post("/login", login); // Login
 router.get("/leaderboard", leaderboard); // Leaderboard
+//
 
-
-router.put("/users/:username", putUserData);
+router.post("/userUpdate", putUserData);
 
 router.delete("/user/:id", deleteUser);
 
