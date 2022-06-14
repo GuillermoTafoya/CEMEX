@@ -11,13 +11,13 @@ export function UnityApp() {
       alpha: true,
       antialias: true,
       depth: true,
-      failIfMajorPerformanceCaveat: false,
+      failIfMajorPerformanceCaveat: true,
       powerPreference: "high-performance",
       premultipliedAlpha: true,
       preserveDrawingBuffer: true,
       stencil: true,
-      desynchronized: true,
-      xrCompatible: false,
+      desynchronized: false,
+      xrCompatible: true,
     },
   });
 
@@ -26,9 +26,8 @@ export function UnityApp() {
         style = {{
             // Resize the Unity container to fit the parent container
             width: "100%",
-            height: "100%",
-            // Center the Unity container
-            display: "flex",
+            height: "auto",
+            
             
         }}
         />

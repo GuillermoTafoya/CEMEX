@@ -20,9 +20,7 @@ class GameView extends Component {
         <div className = "app--is-not-login">
             
             <div className='spacer'/> <div className='spacer'/> 
-            <div className='sectionGlass unity-canvas-container centered'>
-                <UnityApp/>
-            </div>
+                <UnityApp className="sectionGlass" />
         </div>
         )   
     }
