@@ -1,4 +1,5 @@
 import modelUser from "./api.model.user.js";
+import modelMessage from "./api.model.support.js";
 import User from "./api.model.user.js";
 
 //const crypto = require("crypto-js");
@@ -176,4 +177,11 @@ export async function getEnemyUser(req, res){
 	}
 
 res.status(200).json(enemy);
+}
+
+export async function sendSupport(req, res){
+	const {message} = req.body;
+	const newMessage = new modelMessage({message});
+	await newMessage.save();
+	res.json(newMessage);
 }
