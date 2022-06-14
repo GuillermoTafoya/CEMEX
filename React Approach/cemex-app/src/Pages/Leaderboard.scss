@@ -13,8 +13,24 @@ $border-radius: 4px;
 .table-cell{
     vertical-align: middle;
     padding: 0.5em;
-    font-size: 1em;
     border: 2px solid $border;
+    //font-size: 1em;
+    word-wrap: break-word;
+    @media only screen and (max-width: 300px) {
+        width: 3vw;
+    }
+
+    @media only screen and (min-width: 300px) {
+        width: 3.5vw;
+    }
+
+    @media only screen and (min-width: 700px) {
+        font-size: 1.2em;
+    }
+
+    @media only screen and (min-width: 1080px) {
+        font-size: 1em;
+    }
     &--odd{
         @extend .table-cell;
         background-color: $CEMEX-gray;

@@ -12,8 +12,8 @@ class NavBar extends Component{
             isNavOpen: false,
             data: this.props.data
         }
-        console.log("User there 1:",this.props.data)
-        console.log("User there 2:",this.state.data)
+        //console.log("User there 1:",this.props.data)
+        //console.log("User there 2:",this.state.data)
     }
     toggleNav() {
         //console.log("Esta jalando.")

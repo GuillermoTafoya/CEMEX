@@ -47,7 +47,7 @@ export async function leaderboard(req, res) {
     }
     else{
         const myRank = players.findIndex((u) => u.username == myUserName);
-        for (let i = 0; i < (top10.length < 10 ? top10.length : 9 ); i++) {
+        for (let i = 0; i < (top10.length); i++) {
             finalTop10.push(new rankedPlayer(top10[i].username, top10[i].wins, top10[i].score, i+1));
         }
         finalTop10.push(new rankedPlayer(players[myRank].username, players[myRank].wins, players[myRank].score, myRank));
