@@ -35,28 +35,88 @@ class ConfigurationView extends Component {
     componentDidMount() {
         document.title = 'Configuración'
     }
-    updateUser = (e) => {
+    updateUser = async (e) => {
         e.preventDefault();
-        console.log("data: ",e.target.elements);
-        var data = null;
+        //console.log("data 1: ",e.target.elements.length);
+        //console.log("data 2: ",e.target.elements);
+        
+        var data = [];
 
         // Iterate through the form elements and get the values that are not empty
-        for (let i = 0; i < e.target.elements.length; i++) {
+        for (let i = 0; i < e.target.elements.length-2; i++) {
+            //console.log("control 1: ",e.target.elements[i].value);
             if (e.target.elements[i].value !== '') {
-                data = {
-                    [e.target.elements[i].name]: e.target.elements[i].value
-                }
+                data.push(e.target.elements[i].value)
             } 
             else { // Keep the old value if the new value is empty
-                // Check for where the form id is equal to the name of the user class
-                // given constructor(username, email, passwordHash, admin, img, wins, dob, coins, ordinaryNum, generalNum, helmetNum, totalNum, numAchUnlocked, achievements, weapons) {
-                if (e.target.id === 'username') {
-                data = this.data
-            }
+                // Check for where the form id is equal to the user class
+                for(var name in this.state.data) {
+                    //console.log("control 2: ",name);
+                    if(e.target.elements[i].id === name) {
+                        data.push(this.state.data[name])
+                        break;
+                    }
+                }
             }
         }
+        const pw = e.target.elements["password"].value ;
+        const pw_confirm = e.target.elements["password-confirm"].value ;
+        var passwordHash = null;
+        var alreadyEncrypted = false;
+        // XOR the password and password-confirm
+        if (!pw != !pw_confirm) {
+            alert("Si cambias la contraseña, debes confirmarla");
+            return;
+        }
+        if (pw !== pw_confirm) {
+            alert("Las contraseñas no coinciden");
+            return;
+        }
+        if (pw === pw_confirm && pw !== '') {
+            passwordHash = pw;
+        } else{
+            passwordHash = this.state.data.passwordHash;
+            alreadyEncrypted = true;
+        }
+
+        const username = data[0];
+        const email = data[1];
+        const dob = data[2];
+
+        const d = {
+            previus_username: this.state.data.username,
+            username: username,
+            email: email,
+            passwordHash: passwordHash,
+            dob: dob,
+            alreadyEncrypted: alreadyEncrypted
+        }
         
-    }
+
+        console.log("user: ",this.state.data);
+        console.log("data: ",data);
+        console.log("d: ",d);
+        console.log("d str: ",JSON.stringify(d));
+
+        const opciones = {
+            method: "POST", 
+            headers: {
+                "Content-Type": "application/json" 
+            },
+            body: JSON.stringify(d),
+            }
+    
+        // Envía req
+        const response = await fetch("http://localhost:5000/userUpdate", opciones);
+
+        const datosRegistro = await response.json(); // Obtiene respuesta
+
+        console.log("datosRegistro: ",datosRegistro);
+
+
+    }  // End of updateUser
+        
+
     
     render() {
         return(
@@ -102,13 +162,14 @@ class DatosPersonales extends Component {
     constructor(props) {
         super(props);
     }
+    // given constructor(username, email, passwordHash, admin, img, wins, dob, coins, ordinaryNum, generalNum, helmetNum, totalNum, numAchUnlocked, achievements, weapons)
     render() {
         return (
         <form onSubmit={this.props.onSubmit} method = {"POST"}>
             <div className=".flex-container--configuration">
                 <div >
                     <Input type="text" id="username" label="nombre de usuario"  />
-                    <Input  type="email" id="email-config" label="email"/>
+                    <Input  type="email" id="email" label="email"/>
                     
                 </div>
                 <div>
@@ -116,10 +177,10 @@ class DatosPersonales extends Component {
                             placeholder="fecha de nacimiento" 
                             onFocus={(e) => (e.target.type = "date")}
                             onBlur={(e) => (e.target.type = "text")} 
-                            id="birthday-config" 
+                            id="dob" 
                             />
-                    <Input  type="password" id="password-config" label="contraseña" />
-                    <Input  type="password" id="password-confirm-config" label="confirmar nueva contraseña" />
+                    <Input  type="password" id="password" label="contraseña" />
+                    <Input  type="password" id="password-confirm" label="confirmar nueva contraseña" />
                 </div>
             </div>
 
