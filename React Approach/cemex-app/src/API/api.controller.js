@@ -77,6 +77,18 @@ export async function updateUser(req, res){
 		passwordHash = crypto.createHash("sha512").update(passwordHash).digest("base64");
 	}
 
+	// Validate if the new username and email are already in use
+	const doesEmailExists = await modelUser.isThisEmailInUse(email);
+	const doesUsernameExists = await modelUser.isThisUsernameInUse(username);
+
+	// If the new username and email are not in use, update the user
+	if(doesEmailExists){
+		res.status(404).json({error: "Este email ya está siendo usado por otro usuario", invalidEmail: doesEmailExists});
+	}
+	if (doesUsernameExists) {
+		res.status(404).json({error: "Este username ya está siendo utilizado por otro usuario", invalidUsername: doesUsernameExists});
+	}
+
 	// First, we retrieve the user from the DB
 	const users = await User.find();
   	const user = users.filter((u) => u.username === previus_username)[0]; // Filtra por username
