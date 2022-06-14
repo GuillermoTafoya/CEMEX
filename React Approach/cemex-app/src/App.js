@@ -135,10 +135,24 @@ function App() {
             datosLeaderboard
           )
 
+
+          // Hace request
+      const requestStats = await fetch("http://localhost:5000/stats", {
+        method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            }
+    })
+      
+      
+          const datosStats= await requestStats.json();
+
           setStatisticsData(
             {
-              labels: ["Wins", "Losses", "Ties"],
-              data: [100, 90, 80],
+              // avgCoins, avgWins, avgOrdinary, avgGeneral, avgHelmet, avgTotal
+              labels: ["Average Coins", "Average Wins", "Average Ordinary", "Average General", "Average Helmet", "Average Total Army"],
+              data: [datosStats.avgCoins, datosStats.avgWins, datosStats.avgOrdinary, datosStats.avgGeneral, datosStats.avgHelmet, datosStats.avgTotal]
             }
           )
 
@@ -227,12 +241,26 @@ function App() {
               datosLeaderboard
             )
 
-        setStatisticsData(
-          {
-            labels: ["Wins", "Losses", "Ties"],
-            data: [100, 90, 80],
-          }
-        )
+        // Hace request
+      const requestStats = await fetch("http://localhost:5000/stats", {
+        method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            }
+    })
+      
+      
+          const datosStats= await requestStats.json();
+
+          setStatisticsData(
+            {
+              // avgCoins, avgWins, avgOrdinary, avgGeneral, avgHelmet, avgTotal
+              labels: ["Average Coins", "Average Wins", "Average Ordinary", "Average General", "Average Helmet", "Average Total Army"],
+              data: [datosStats.avgCoins, datosStats.avgWins, datosStats.avgOrdinary, datosStats.avgGeneral, datosStats.avgHelmet, datosStats.avgTotal]
+            }
+          )
+
 
         setLoggedIn(true);
 

@@ -134,26 +134,28 @@ export async function updateUser(req, res){
 export async function getStats(req, res){
 	const users = await modelUser.find();
 	const totalUsers = users.length;
-	var acumCoins = 0;
-	var acumOrdinary = 0;
-	var acumGeneral = 0;
-	var acumHelmet = 0;
-	var acumTotal = 0;
+	//Count all coins from all users
+	const totalCoins = users.reduce((acc, cur) => acc + cur.coins, 0);
+	//Count all wins from all users
+	const totalWins = users.reduce((acc, cur) => acc + cur.wins, 0);
+	//Count all avgOrdinary from all users
+	const totalAvgOrdinary = users.reduce((acc, cur) => acc + cur.ordinaryNum, 0);
+	//Count all avgGeneral from all users
+	const totalAvgGeneral = users.reduce((acc, cur) => acc + cur.generalNum, 0);
+	//Count all avgHelmet from all users
+	const totalAvgHelmet = users.reduce((acc, cur) => acc + cur.helmetNum, 0);
+	//Count all avgTotal from all users
+	const totalAvgTotal = users.reduce((acc, cur) => acc + cur.totalNum, 0);
 
-	for (let i = 0; i < totalUsers; i++) {
-		let user = users[i];
-		acumCoins += user.coins;
-		acumOrdinary += user.ordinaryNum;
-		acumGeneral += user.generalNum;
-		acumHelmet += user.helmetNum;
-		acumTotal += user.totalNum;
-	}
-	var avgCoins = acumCoins / totalUsers;
-	var avgOrdinary = acumOrdinary / totalUsers;
-	var avgGeneral = acumGeneral / totalUsers;
-	var avgHelmet = acumHelmet / totalUsers;
-	var avgTotal = acumTotal / totalUsers;
-	res.status(200).json({averageCoins: avgCoins, averageOrdinary: avgOrdinary, averageGeneral: avgGeneral, averageHelmet: avgHelmet, averageTotal: avgTotal});
+	
+	const avgCoins = totalCoins / totalUsers;
+	const avgWins = totalWins / totalUsers;
+	const avgOrdinary = totalAvgOrdinary / totalUsers;
+	const avgGeneral = totalAvgGeneral / totalUsers;
+	const avgHelmet = totalAvgHelmet / totalUsers;
+	const avgTotal = totalAvgTotal / totalUsers;
+	const stats = {avgCoins, avgWins, avgOrdinary, avgGeneral, avgHelmet, avgTotal};
+	res.status(200).json(stats);
 }
 
 export async function countUsers(req, res){
