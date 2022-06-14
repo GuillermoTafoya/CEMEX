@@ -34,5 +34,7 @@ router.delete("/user/:id", deleteUser);
 router.get("/stats", getStats);
 router.get("/userCount", countUsers);
 
+router.put("/users/:username", putUserData);
+
 
 export default router;
