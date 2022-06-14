@@ -1,4 +1,5 @@
 import modelUser from "./api.model.user.js";
+import modelMessage from "./api.model.support.js";
 import User from "./api.model.user.js";
 
 //const crypto = require("crypto-js");
@@ -51,8 +52,9 @@ export async function postUser(req, res){
 // Delete user from DB
 // no funciona
 export async function deleteUser(req, res){
-	const user = await modelUser.findOneAndDelete(res.params.id);
-	res.json.user();
+	const {username} = req.body;
+	const user = await modelUser.findOneAndDelete({ username: username });
+	res.status(200).json({msg: "User deleted."});
 }
 
 
@@ -175,4 +177,11 @@ export async function getEnemyUser(req, res){
 	}
 
 res.status(200).json(enemy);
+}
+
+export async function sendSupport(req, res){
+	const {message} = req.body;
+	const newMessage = new modelMessage({message});
+	await newMessage.save();
+	res.json(newMessage);
 }
