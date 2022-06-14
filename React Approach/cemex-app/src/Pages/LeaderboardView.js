@@ -38,6 +38,7 @@ class LeaderboardView extends Component {
     
     componentDidMount() {
         document.title = 'Leaderboard'
+        this.props.updateCurrentPage("leaderboard")
     }
     render() {
         
