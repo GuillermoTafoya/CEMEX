@@ -10,7 +10,6 @@ import {
 	putUserData,
 	// putUser,
 	deleteUser,
-	userLogin,
 	getStats
 } from "./api.controller.js";
 

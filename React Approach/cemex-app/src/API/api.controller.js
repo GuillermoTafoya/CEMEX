@@ -129,6 +129,8 @@ export async function updateUser(req, res){
 	});
 	res.json(user);
 }
+
+//
 export async function getStats(req, res){
 	const users = await modelUser.find();
 	const totalUsers = users.length;
