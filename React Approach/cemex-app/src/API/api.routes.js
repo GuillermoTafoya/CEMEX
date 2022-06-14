@@ -10,9 +10,9 @@ import {
 	putUserData,
 	// putUser,
 	deleteUser,
-	// userLogin,
 	getStats,
 	countUsers
+
 } from "./api.controller.js";
 
 const router = Router();
