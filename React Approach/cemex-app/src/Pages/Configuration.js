@@ -35,6 +35,7 @@ class ConfigurationView extends Component {
     }
     componentDidMount() {
         document.title = 'Configuración'
+        this.props.updateCurrentPage("configuracion")
     }
 
 	deleteUser = async (e) => {
@@ -56,9 +57,6 @@ class ConfigurationView extends Component {
 
         console.log(confirmation);
 	}
-
-
-
 
     updateUser = async (e) => {
         e.preventDefault();

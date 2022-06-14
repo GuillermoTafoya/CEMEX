@@ -21,7 +21,7 @@ const router = Router();
 
 // User routes
 router.get("/users", getUsers);
-router.get("/users/:username", getUserData);
+router.get("/user", getUserData);
 
 router.post("/userRegister", postUser);
 
@@ -36,7 +36,8 @@ router.get("/stats", getStats);
 router.get("/userCount", countUsers);
 
 router.put("/users/:username", putUserData);
-router.post("/getEnemy", getEnemyUser);
+
 router.post("/support", sendSupport);
+router.put("/getEnemy", getEnemyUser);
 
 export default router;

@@ -15,11 +15,10 @@ export async function getUsers(req, res){
 
 // Get specific user data, funciona
 export async function getUserData(req, res){
-	const userData = await modelUser.find({
-		username: req.params.username,
-	}
-	);
-	res.json(userData[0]);
+	// First, we retrieve the user from the DB
+	const users = await User.find();
+	const user = users.filter((u) => u.username === req.query.username)[0]; 
+	return res.json(user);
 }
 
 // Put specific user data, funciona, poner datos en body

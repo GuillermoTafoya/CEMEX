@@ -44,7 +44,22 @@ class DynamicChart extends Component {
                         scales:{
                             yAxes:[ {
                                 ticks:{
+                                    stacked: false,
+                        scaleLabel: {
+                        display: true,
+                        fontColor: 'white',
+                        fontSize: 25,
+                        labelString: 'Faction Points'
+                        },
+                        ticks: {
+                        fontColor: 'white',
+                        fontSize: 20,
+                        min: 0
+                        },
+                        gridLines: {
+                        color: 'white'},
                                     beginAtZero: true
+                                    
                                 }
                             }
                             ]

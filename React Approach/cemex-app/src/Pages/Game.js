@@ -10,6 +10,7 @@ class GameView extends Component {
     }
     componentDidMount() {
         document.title = 'Juego'
+        this.props.updateCurrentPage("juego")
     }
 
     render() 
@@ -18,9 +19,7 @@ class GameView extends Component {
         
         return(
         <div className = "app--is-not-login">
-            
-            <div className='spacer'/> <div className='spacer'/> 
-                <UnityApp className="sectionGlass" />
+                <UnityApp />
         </div>
         )   
     }
