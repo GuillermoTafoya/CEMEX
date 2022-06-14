@@ -32,12 +32,14 @@ class ConfigurationView extends Component {
     
         // Envía req
 
-        //const response = await fetch("http://localhost:5000/deleteUser", payload);
-        //const confirmation = await response.json(); // Obtiene respuesta
+        const response = await fetch("http://localhost:5000/deleteUser", payload);
+        const confirmation = await response.json(); // Obtiene respuesta
+        alert("Cuenta eliminada")
 
-        sessionStorage.set("loggedIn", false);
+        sessionStorage.setItem("loggedIn", false);
 
         console.log("confirmation");
+        window.location.reload(false);
 	}
 
     updateUser = async (e) => {

@@ -65,6 +65,7 @@ function App() {
 
   function updateLoggedIn(){
     sessionStorage.getItem('loggedIn') 
+    /*
     console.log(
       "Session Storage:", 
       sessionStorage.getItem('user'), 
@@ -72,6 +73,7 @@ function App() {
       sessionStorage.getItem('statisticsData'), 
       sessionStorage.getItem('loggedIn'))
     console.log("Updating Logged In")
+    */
   }
 
 
@@ -334,8 +336,8 @@ Get ALL data just after logging in
   
   
   if (loggedIn === true){
-    console.log("Control:",userData)
-    console.log("Control2222:",loggedIn)
+    //console.log("Control:",userData)
+    //console.log("Control2222:",loggedIn)
     return (
       <LoggedInSection fun={loginRouteChange} userData={userData} leaderboardData={leaderboardData} statisticsData={statisticsData} />
     );
@@ -392,8 +394,8 @@ class LoggedInSection extends Component{
     
     this.updateState = this.updateState.bind(this);
     this.updateCurrentPage = this.updateCurrentPage.bind(this);
-    console.log("Control1:",this.state.userData)
-    console.log("Control2:",this.props.userData)
+    //console.log("Control1:",this.state.userData)
+    //console.log("Control2:",this.props.userData)
   }
 
 
