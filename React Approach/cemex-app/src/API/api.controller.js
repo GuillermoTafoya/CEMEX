@@ -1,4 +1,5 @@
 import modelUser from "./api.model.user.js";
+import User from "./api.model.user.js";
 
 //const crypto = require("crypto-js");
 
@@ -10,6 +11,7 @@ export async function getUsers(req, res){
 	const users = await modelUser.find();
 	res.json(users);
 }
+
 // Get specific user data, funciona
 export async function getUserData(req, res){
 	const userData = await modelUser.find({
@@ -46,59 +48,6 @@ export async function postUser(req, res){
 		res.status(404).json({error: "El usuario y/o email ya están siendo usados por otro usuario", invalidEmail: doesEmailExists, invalidUsername: doesUsernameExists});
 	}	
 }
-/*
-const loginController = {
-    login: function (req, res) {
-        const query = {
-            Email: req.body.email,
-            Contrasena: req.body.contrasena // Contraseña hasheada
-        };
-
-		try {
-			const queryResult = await test.user.findOne(query);
-
-			if (queryResult) {
-				res.sendStatus(200);
-			}
-			else {
-				res.sendStatus(404);
-			}
-		} catch (error) {
-			res.sendStatus(500);
-               // return ERROR.sendErrorResponse(res, 
-                   // 'Error al intentar iniciar sesión', 
-                    //`Error al buscar usuario en la base de datos: ${error}`); 
-							
-		}
-		
-	}
-}*/
-
-
-// // Change user data
-// export async function putUser(req, res){
-// 	const user = await modelUser.findByIdAndUpdate(req.params.id, req.body, {
-// 		new: true,
-// 	});
-
-// 	var namePut = req.params.name;
-// 	var emailPut = req.params.email;
-// 	var dobPut = req.params.dob;
-// 	var passwordHashPut = req.params.passwordHash;
-// 	var scorePut = req.params.score;
-// 	var helmetNumPut = req.params.helmetNum;
-// 	var ordinaryNumPut = req.params.ordinaryNum;
-// 	var generalNumPut = req.params.generalNu;
-// 	var totalNumPut = req.params.totalNum;
-// 	var coinsPut = req.params.coins;
-// 	var adminPut = req.params.admi;
-// 	var numAchUnlockedPut = req.params.numAchUnlocked;
-// 	var weapon1Put = req.params.weapon1;
-// 	var weapon2Put = req.params.weapon2;
-// 	var weapon3Put = req.params.weapon3;
-// 	var weapon4Put = req.params.weapon4;
-// 	res.json(user);
-// }
 
 // Delete user from DB
 // no funciona
@@ -106,11 +55,6 @@ export async function deleteUser(req, res){
 	const user = await modelUser.findOneAndDelete(res.params.id);
 	res.json.user();
 }
-
-
-
-
-
 
 
 // No está bien
@@ -124,10 +68,43 @@ export async function user(req, res){
 
 // A post metod to update user data in DB, but only the given fields
 export async function updateUser(req, res){
-	const user = await modelUser.findOneAndUpdate({ "username" : req.params.username }, req.body, {
+
+
+	const {previus_username, username, email, _ , dob, alreadyEncrypted } = req.body;
+	var passwordHash = req.body.passwordHash;
+
+	if (alreadyEncrypted !== "false") {
+		passwordHash = crypto.createHash("sha512").update(passwordHash).digest("base64");
+	}
+
+	// First, we retrieve the user from the DB
+	const users = await User.find();
+  	const user = users.filter((u) => u.username === previus_username)[0]; // Filtra por username
+
+	// Then, we update the user with the given fields
+	const newUser = {	
+		username: username,
+		email: email,
+		passwordHash: passwordHash,
+		dob: dob,
+		admin: user.admin,
+		img: user.img,
+		wins: user.wins,
+		coins: user.coins,
+		ordinaryNum: user.ordinaryNum,	
+		generalNum: user.generalNum,
+		helmetNum: user.helmetNum,
+		totalNum: user.totalNum,
+		numAchUnlocked: user.numAchUnlocked,
+		achievements: user.achievements,
+		weapons: user.weapons}
+
+	// Finally, we update the user in the DB
+	const userUpdate = await User.findOneAndUpdate({ "username" : previus_username }, newUser, {
 		new: true,
 	});
-	res.json(user);
+	res.json(userUpdate);
+
 }
 
 //
@@ -155,7 +132,10 @@ export async function getStats(req, res){
 	const avgHelmet = totalAvgHelmet / totalUsers;
 	const avgTotal = totalAvgTotal / totalUsers;
 	const stats = {avgCoins, avgWins, avgOrdinary, avgGeneral, avgHelmet, avgTotal};
+	if (stats) {
 	res.status(200).json(stats);
+}else
+	res.status(404).json({error: "No hay datos"});
 }
 
 export async function countUsers(req, res){

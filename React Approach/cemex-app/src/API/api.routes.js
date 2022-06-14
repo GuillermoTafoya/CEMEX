@@ -11,7 +11,8 @@ import {
 	// putUser,
 	deleteUser,
 	getStats,
-	countUsers
+	countUsers,
+	updateUser
 
 } from "./api.controller.js";
 
@@ -26,8 +27,7 @@ router.post("/userRegister", postUser);
 router.post("/login", login); // Login
 router.get("/leaderboard", leaderboard); // Leaderboard
 
-
-router.post("/userUpdate", putUserData);
+router.post("/userUpdate", updateUser);
 
 router.delete("/user/:id", deleteUser);
 

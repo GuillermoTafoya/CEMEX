@@ -26,6 +26,9 @@
     "reactstrap": "^9.0.2",
     "web-vitals": "^2.1.4"
   },
+  "browser": {
+    "crypto": false
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

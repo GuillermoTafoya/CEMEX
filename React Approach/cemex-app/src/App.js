@@ -78,6 +78,10 @@ function App() {
     if (mode === "signup"){ // CONDICIONAL PARA SABER SI ESTÁ EN LOGIN O EN SIGNUP, FALTA VALIDAR EL REPETIR CONTRASEÑAS
 
       // REGISTRO
+      if( createPassword  !== repeatPassword){
+        alert("Passwords do not match");
+        return;
+      }
       const payload = {
         username: usernameRegister, email: email, dob: birthday, passwordRegister: createPassword
       }
