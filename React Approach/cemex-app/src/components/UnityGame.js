@@ -3,10 +3,10 @@ import Unity, { UnityContext } from "react-unity-webgl";
 
 export function UnityApp({update}) {
   const unityProvider = new UnityContext({
-    loaderUrl: "./UnityGame/Build/UnityGame.loader.js", // Starts directory at public folder
-    dataUrl: "./UnityGame/Build/UnityGame.data",
-    frameworkUrl: "./UnityGame/Build/UnityGame.framework.js",
-    codeUrl: "./UnityGame/Build/UnityGame.wasm",
+    loaderUrl: "./UnityGame/Build/UnityFinal.loader.js", // Starts directory at public folder
+    dataUrl: "./UnityGame/Build/UnityFinal.data",
+    frameworkUrl: "./UnityGame/Build/UnityFinal.framework.js",
+    codeUrl: "./UnityGame/Build/UnityFinal.wasm",
     webGLContextAttributes: {
       alpha: true,
       antialias: true,
