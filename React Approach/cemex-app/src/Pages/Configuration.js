@@ -153,6 +153,7 @@ class ConfigurationView extends Component {
                     updateIsActive = {this.activatePopUp}
                     images = {[
                         ProfilePlaceholder,
+                        "https://cdn.mos.cms.futurecdn.net/yCPyoZDQBBcXikqxkeW2jJ-1024-80.jpg.webp",
                         "https://lh3.googleusercontent.com/4aWIApMPJTUqPGoQfKdaeyLT-uVX_oPtcz6n_lnhXxCHPolHs6CQ65ybDRMxXchYZNhaNLpGIonMS-ru-KDT=w1919-h830",
                         "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fhips.hearstapps.com%2Fhmg-prod.s3.amazonaws.com%2Fimages%2Fcute-photos-of-cats-looking-at-camera-1593184780.jpg%3Fcrop%3D0.6672958942897593xw%3A1xh%3Bcenter%2Ctop%26resize%3D480%3A*&f=1&nofb=1",
                         "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.vieravet.com%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Flarge%2Fpublic%2Fmixed-breed-cat-breed-info.jpg%3Fitok%3DfMSg3hGL&f=1&nofb=1"
