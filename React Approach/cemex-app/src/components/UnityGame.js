@@ -35,7 +35,7 @@ export function UnityApp({update}) {
             height: "100%",
         }}
         />
-        {/*<button className="overlap button button--primary" type="submit" onClick={update}> NAVBAR </button>*/}
+        <button className="overlap button button--primary" type="submit" onClick={update}> NAVBAR </button>
         
       </Fragment>
     
