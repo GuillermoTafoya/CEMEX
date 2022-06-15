@@ -19,19 +19,8 @@ import NotAdmin from './Pages/NotAdmin.js';
 import PageNotFound from './Pages/PageNotFound.js';
 
 import ProfilePlaceholder from './assets/UserView/panda.png'; 
-import Unity, {UnityContext} from "react-unity-webgl";
 
 import NavBar from "./components/navbar.js";
-
-
-const loader = document.querySelector('.loader');
-
-
-
-// if you want to show the loader when React loads data again
-const showLoader = () => loader.classList.remove('loader--hide');
-
-const hideLoader = () => loader.classList.add('loader--hide');
 
 
 class user{
@@ -55,7 +44,6 @@ class user{
 }
 
 function App() {
-  useEffect(hideLoader, []);
   const [userData, setUserData] = useSessionStorage('userData',null);
   const [leaderboardData, setLeaderboardData] = useSessionStorage('leaderboardData',null);
   const [statisticsData, setStatisticsData] = useSessionStorage('statisticsData',null);
