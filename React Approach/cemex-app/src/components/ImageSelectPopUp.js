@@ -33,7 +33,7 @@ class ImageSelectPopUp extends Component {
                             Selecciona una imagen
                         </div>
                         <div className="flex-container--img-popup popUp--images">
-                            {this.state.images.map((image, index) => <Img key={index} src={image} alt=""/>)}
+                            {this.state.images.map((image, index) => <Img key={index} src={image} fun = {this.state.updateIsActive} alt=""/>)}
                         </div>
                         <button className="button button--primary popUp--button" onClick={this.state.updateIsActive}> Cerrar </button>
                     </div>
@@ -49,18 +49,50 @@ class Img extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isSelected: false,
+            fun: this.props.fun,
         }
+        this.setUserImg = this.setUserImg.bind(this);
     }
     componentDidMount() {
         this.setState({
             isSelected: this.props.isActive,
         })
     }
+    async setUserImg () {
+
+        const user = JSON.parse(sessionStorage.getItem('userData'));
+        //console.log("user:",user);
+        const data = {
+            username: user.username,
+            img: this.props.src,
+        }
+
+        //console.log("data",data);
+        //console.log("stringified:",JSON.stringify(data));
+
+        const opciones = {
+            method: "POST", 
+            headers: {
+                "Content-Type": "application/json" 
+            },
+            body: JSON.stringify(data),
+            }
+    
+        // Envía req
+        const response = await fetch("http://localhost:5000/updateImg", opciones);
+        
+        //console.log("response: ",response);
+
+
+        //Close popUp
+        this.state.fun();
+
+    }
+
     render() {
         return (
             <div className={` ${this.state.isSelected ? 'popUp--image-is-selected' : 'popUp--image-is-unselected'} centered popUpCircularMask`}>
-                <img className = "popUp-image" src={this.props.src} alt=""/>
+                <img className = "popUp-image" src={this.props.src} onClick={this.setUserImg} alt=""/>
             </div>
         )
     }

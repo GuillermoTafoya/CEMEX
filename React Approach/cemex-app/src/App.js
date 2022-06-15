@@ -53,6 +53,9 @@ function App() {
 
   function updateLoggedIn(){
     sessionStorage.getItem('loggedIn') 
+    
+
+    
     /*
     console.log(
       "Session Storage:", 
@@ -126,7 +129,7 @@ function App() {
       // Obtiene respuesta de datos
       const datos = await requestLogin.json();
         setUserData(new user(
-          datos.user.username, datos.user.email, datos.user.passwordHash, datos.user.admin, ProfilePlaceholder, datos.user.wins, datos.user.dob, datos.user.coins,
+          datos.user.username, datos.user.email, datos.user.passwordHash, datos.user.admin, datos.user.img ? datos.user.img : ProfilePlaceholder , datos.user.wins, datos.user.dob, datos.user.coins,
           datos.user.ordinaryNum, datos.user.generalNum, datos.user.helmetNum, datos.user.totalNum, datos.user.numAchUnlocked, datos.user.achievements, datos.user.weapons
           ));
 
@@ -229,7 +232,7 @@ function App() {
 
 
         setUserData(new user(
-          datos.user.username, datos.user.email, datos.user.passwordHash, datos.user.admin, ProfilePlaceholder, datos.user.wins, datos.user.dob, datos.user.coins,
+          datos.user.username, datos.user.email, datos.user.passwordHash, datos.user.admin, datos.user.img ? datos.user.img : ProfilePlaceholder, datos.user.wins, datos.user.dob, datos.user.coins,
           datos.user.ordinaryNum, datos.user.generalNum, datos.user.helmetNum, datos.user.totalNum, datos.user.numAchUnlocked, datos.user.achievements, datos.user.weapons
           ));
 
@@ -392,7 +395,7 @@ class LoggedInSection extends Component{
 
   componentDidMount() {
     this.updateState()
-    setInterval(this.updateState, 10e3); // x seconds
+    setInterval(this.updateState, 1e3); // x seconds
   }
   updateNavbar(){
     this.setState({
@@ -414,6 +417,7 @@ class LoggedInSection extends Component{
         sessionStorage.getItem('loggedIn'))
       */
 
+
       const requestUser = await fetch(`http://localhost:5000/user?username=${this.state.userData.username}`, {
         method: 'GET',
             headers: {
@@ -422,6 +426,7 @@ class LoggedInSection extends Component{
             }
     })
       const datos = await requestUser.json();
+
       
       const requestLeaderboard = await fetch(`http://localhost:5000/leaderboard?username=${datos.username}`, {
         method: 'GET',
@@ -443,7 +448,7 @@ class LoggedInSection extends Component{
 
             const newData = {
               userData: new user(
-              datos.username, datos.email, datos.passwordHash, datos.admin, ProfilePlaceholder, datos.wins, datos.dob, datos.coins,
+              datos.username, datos.email, datos.passwordHash, datos.admin, datos.img ? datos.img : ProfilePlaceholder, datos.wins, datos.dob, datos.coins,
               datos.ordinaryNum, datos.generalNum, datos.helmetNum, datos.totalNum, datos.numAchUnlocked, datos.achievements, datos.weapons
               ),
               leaderboardData: datosLeaderboard,
@@ -463,16 +468,21 @@ class LoggedInSection extends Component{
 }
 updateState(){
   //console.log(this.state.currentPage)
-  if (this.state.currentPage !== 'juego'){
-    this.updateData().then(data => {
-      //console.log("Updated")
-      this.setState(data);
-      sessionStorage.setItem('user', JSON.stringify(this.state.userData));
-      sessionStorage.setItem('leaderboardData', JSON.stringify(this.state.leaderboardData));
-      sessionStorage.setItem('statisticsData', JSON.stringify(this.state.statisticsData));
+    if (this.state.currentPage !== 'juego'){
+      this.updateData().then(data => {
+        //console.log("Updated")
+        //console.log("Data:", data)
+        this.setState(
+          data
+        );
+        //console.log("Debug",this.state.userData)
+        sessionStorage.setItem('userData', JSON.stringify(this.state.userData));
+        sessionStorage.setItem('leaderboardData', JSON.stringify(this.state.leaderboardData));
+        sessionStorage.setItem('statisticsData', JSON.stringify(this.state.statisticsData));
+      }
+      )
     }
-    )
-  }
+  
 }
   updateCurrentPage(page){
     this.setState({currentPage: page})

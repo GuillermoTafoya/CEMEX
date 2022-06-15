@@ -74,6 +74,37 @@ export async function user(req, res){
 	const userPost = await postUser.insertOne(doc);
 }
 
+export async function updateUserImg(req, res){
+	const {username, img } = req.body;
+	
+	// First, we retrieve the user from the DB
+	const users = await User.find();
+  	const user = users.filter((u) => u.username === username)[0]; // Filtra por username
+
+	// Then, we update the user with the given fields
+	const newUser = {	
+		username: user.username,
+		email: user.email,
+		passwordHash: user.passwordHash,
+		dob: user.dob,
+		admin: user.admin,
+		img: img,
+		wins: user.wins,
+		coins: user.coins,
+		ordinaryNum: user.ordinaryNum,	
+		generalNum: user.generalNum,
+		helmetNum: user.helmetNum,
+		totalNum: user.totalNum,
+		numAchUnlocked: user.numAchUnlocked,
+		achievements: user.achievements,
+		weapons: user.weapons}
+
+	// Finally, we update the user in the DB
+	const userUpdate = await User.findOneAndUpdate({ "username" : username }, newUser, {
+		new: true,
+	});
+	res.json(userUpdate);
+}
 
 // A post metod to update user data in DB, but only the given fields
 export async function updateUser(req, res){
