@@ -49,13 +49,13 @@ $border-radius: 4px;
 }
 
 .top-left-corner{
-    border-radius: $border-radius 0px 0px 0px;
+    border-radius: $border-radius 0px 0px 0px !important;
 }
 .top-right-corner{
     border-radius: 0px $border-radius 0px 0px;
 }
 .bottom-right-corner{
-    border-radius: 0px 0px $border-radius 0px;
+    border-radius: 0px 0px $border-radius 0px !important;
 }
 .bottom-left-corner{
     border-radius: 0px 0px 0px $border-radius;

@@ -20,8 +20,8 @@ const User = ({rank,name,wins,score,length,isMe}) => {
         {data.map((item,idx) => <div key={idx} className={`col-3 
             table-cell${rank%2===0 ? "--odd" : "--even"} 
             ${isMe ? "last-row" : len === data[0]}
-            ${(idx === 0) && (data[0] === len) ? "bottom-left-corner" : ""}
-            ${(idx === 3) && (data[0] === len) ? "bottom-right-corner" : ""}`}>{item}</div>)}
+            ${(idx === 0) && (data[0] >= len) ? "bottom-left-corner" : ""}
+            ${(idx === 3) && (data[0] >= len) ? "bottom-right-corner" : ""}`}>{item}</div>)}
     </div>
     )
 }
