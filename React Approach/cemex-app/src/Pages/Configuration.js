@@ -166,7 +166,7 @@ class ConfigurationView extends Component {
                         <div className="circularMask">
                             <img src={this.state.data.img} alt="Profile" />
                         </div>
-                        <h1 className='col-12 font-weight-bold userText'>{this.state.data.name}</h1>
+                        <h1 className='col-12 font-weight-bold userText'>{this.state.data.username}</h1>
                         <div className="align-items-center">
 
                             <button className="button button--primary full-width" type="button" name="button" onClick={this.activatePopUp} > 
