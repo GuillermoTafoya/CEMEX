@@ -124,13 +124,30 @@ class ConfigurationView extends Component {
             },
             body: JSON.stringify(d),
             }
-    
-        // Envía req
-        const response = await fetch("http://localhost:5000/userUpdate", opciones);
+        try{
+            // Envía req
+            const response = await fetch("http://localhost:5000/userUpdate", opciones);
 
-        const datosRegistro = await response.json(); // Obtiene respuesta
+            const datosRegistro = await response.json(); // Obtiene respuesta
+            console.log("datosRegistro: ",datosRegistro);
 
-        console.log("datosRegistro: ",datosRegistro);
+            // Si el usuario se actualizó correctamente
+            if(datosRegistro.username) {
+                this.setState({
+                    data: datosRegistro})
+                    alert("Usuario actualizado")
+                    sessionStorage.setItem("userData", JSON.stringify(datosRegistro));
+                }
+            else{
+                alert(datosRegistro.error)
+            }
+        }
+
+        catch(error) {
+                    alert(error);
+                }
+        
+
 
 
     }  // End of updateUser
@@ -164,7 +181,7 @@ class ConfigurationView extends Component {
                 <div className="col-o col-md-1" />
                     <div className="sectionGlass col-12 col-md-5">
                         <div className="circularMask">
-                            <img src={this.state.data.img} alt="Profile" />
+                            <img src={this.props.data.img} alt="Profile" />
                         </div>
                         <h1 className='col-12 font-weight-bold userText'>{this.state.data.username}</h1>
                         <div className="align-items-center">
