@@ -23,7 +23,6 @@ class GameView extends Component {
         
         return(
         <div className = "app--is-not-login">
-            <div className='spacer'/> <div className='spacer'/>
             <UnityApp update = {this.updateNavbar} />
         </div>
         // <button className="button--CAUTION centered" type="submit" onClick={this.updateNavbar}> NAVBAR </button>
