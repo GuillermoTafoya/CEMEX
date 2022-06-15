@@ -46,7 +46,10 @@ $active-hovered: rgba(255,255, 0, 0.8);
         @extend .flex-container;
         margin-top: 5vh;
     }
-
+    &--img-popup{
+        @extend .flex-container;
+            margin-top: 5vh;
+    }
 }
 .achievementGlass{
     //color:$CEMEX-blue;

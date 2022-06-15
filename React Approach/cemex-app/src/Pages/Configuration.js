@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { updateUser } from '../API/api.controller.js';
-import NavBar from '../components/navbar.js';
+import ImageSelectPopUp from '../components/ImageSelectPopUp.js';
+import ProfilePlaceholder from '../assets/UserView/panda.png'; 
 
 import '../Pages/Configuration.scss';
 
@@ -9,9 +9,12 @@ class ConfigurationView extends Component {
         super(props);
         this.state = {
             data: this.props.data,
-            updateUser: this.updateUser.bind(this)
+            updateUser: this.updateUser.bind(this),
+            deleteUser: this.deleteUser.bind(this),
+            selectImage: false,
         }
-		deleteUser: this.deleteUser.bind(this);
+        this.activatePopUp = this.activatePopUp.bind(this)
+		
     }
     componentDidMount() {
         document.title = 'Configuración'
@@ -122,15 +125,31 @@ class ConfigurationView extends Component {
     }  // End of updateUser
         
 
-    
+    activatePopUp(){
+        console.log("activatePopUp");
+        this.setState({
+            selectImage: !this.state.selectImage,
+        })
+    }
     render() {
         return(
 
         <div className = "app--is-not-login">
             <div className='spacer'/> <div className='spacer'/> 
+            {this.state.selectImage && 
+                <ImageSelectPopUp
+                    isActive = {this.state.selectImage}
+                    updateIsActive = {this.activatePopUp}
+                    images = {[
+                        ProfilePlaceholder,
+                        "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1562796374-8bd211f81cbc%3Fixlib%3Drb-1.2.1%26q%3D80%26fm%3Djpg%26crop%3Dentropy%26cs%3Dtinysrgb%26w%3D1080%26fit%3Dmax%26ixid%3DeyJhcHBfaWQiOjEyMDd9&f=1&nofb=1",
+                        "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.xcitefun.net%2Fusers%2F2014%2F11%2F368094%2Cxcitefun-winter-landscape-8.jpg&f=1&nofb=1",
+                    ]}
+                />}
             <section className = "container centered display-block justify-content-center">
+                
                 <div className = "row mb-4 mt-4 ml-1 mr-1 align-items-center">
-
+                <div className="col-o col-md-1" />
                     <div className="sectionGlass col-12 col-md-5">
                         <div className="col-12 circularMask">
                             <img src={this.state.data.img} alt="Profile" />
@@ -138,14 +157,14 @@ class ConfigurationView extends Component {
                         <h1 className='col-12 font-weight-bold userText'>{this.state.data.name}</h1>
                         <div className="align-items-center">
 
-                            <button className="button button--primary full-width" type="button" name="button" > 
+                            <button className="button button--primary full-width" type="button" name="button" onClick={this.activatePopUp} > 
                                 Cambiar imagen de perfil
                             </button>
                         </div>
                         
                     </div>
 
-                    <div className='col-12 col-md-6'>
+                    <div className='col-12 col-md-5'>
                         <div className="sectionGlass">
                             <p className='font-weight-bold'>Datos Personales</p>
                             <DatosPersonales onSubmit={this.state.updateUser}/>
@@ -155,6 +174,7 @@ class ConfigurationView extends Component {
                             <button className="button--CAUTION full-width" type="submit" onClick={this.deleteUser}> ELIMINAR </button>
                         </div>
                     </div>
+                    <div className="col-0 col-md-1"></div>
                 </div>
             </section>
         </div>
