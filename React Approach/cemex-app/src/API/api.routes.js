@@ -15,7 +15,8 @@ import {
 	updateUser,
 	getEnemyUser,
 	sendSupport,
-	getUserData2
+	getUserData2,
+	updateUserImg
 } from "./api.controller.js";
 
 const router = Router();
@@ -32,6 +33,8 @@ router.post("/login", login); // Login
 router.get("/leaderboard", leaderboard); // Leaderboard
 
 router.post("/userUpdate", updateUser);
+
+router.post("/updateImg", updateUserImg);
 
 router.delete("/deleteUser", deleteUser);
 

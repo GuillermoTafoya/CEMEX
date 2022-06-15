@@ -26,7 +26,21 @@ class UserView extends Component {
     componentDidMount() {
         document.title = 'Usuario'
         this.props.updateCurrentPage("usuario")
+        console.log("UserView: componentDidMount")
+        
+        this.setState(
+            {data:this.props.data})
+
     }
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.data !== this.props.data) {
+            this.setState({
+                data: this.props.data
+            })
+        }
+    }
+
+    
     logout(){
         sessionStorage.setItem("loggedIn", false);
         window.location.reload(false);
@@ -41,7 +55,7 @@ class UserView extends Component {
                     <div className='col-0 col-md-1'/>
                         <div className="col-12 col-md-5">
                         <div className="sectionGlass">
-                            <div className="col-12 circularMask">
+                            <div className="flex-wrap circularMask">
                                 <img src={this.state.data.img} alt="Profile" />
                             </div>
                             <h1 className='col-12 font-weight-bold userText'>{this.state.data.username}</h1>

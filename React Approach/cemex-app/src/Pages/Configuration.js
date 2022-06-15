@@ -19,7 +19,18 @@ class ConfigurationView extends Component {
     componentDidMount() {
         document.title = 'Configuración'
         this.props.updateCurrentPage("configuracion")
+        this.setState(
+            {data:this.props.data})
+
     }
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.data !== this.props.data) {
+            this.setState({
+                data: this.props.data
+            })
+        }
+    }
+
 
 	deleteUser = async () => {
 		const userToDelete = {
@@ -142,8 +153,9 @@ class ConfigurationView extends Component {
                     updateIsActive = {this.activatePopUp}
                     images = {[
                         ProfilePlaceholder,
-                        "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1562796374-8bd211f81cbc%3Fixlib%3Drb-1.2.1%26q%3D80%26fm%3Djpg%26crop%3Dentropy%26cs%3Dtinysrgb%26w%3D1080%26fit%3Dmax%26ixid%3DeyJhcHBfaWQiOjEyMDd9&f=1&nofb=1",
-                        "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.xcitefun.net%2Fusers%2F2014%2F11%2F368094%2Cxcitefun-winter-landscape-8.jpg&f=1&nofb=1",
+                        "https://lh3.googleusercontent.com/4aWIApMPJTUqPGoQfKdaeyLT-uVX_oPtcz6n_lnhXxCHPolHs6CQ65ybDRMxXchYZNhaNLpGIonMS-ru-KDT=w1919-h830",
+                        "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fhips.hearstapps.com%2Fhmg-prod.s3.amazonaws.com%2Fimages%2Fcute-photos-of-cats-looking-at-camera-1593184780.jpg%3Fcrop%3D0.6672958942897593xw%3A1xh%3Bcenter%2Ctop%26resize%3D480%3A*&f=1&nofb=1",
+                        "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.vieravet.com%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Flarge%2Fpublic%2Fmixed-breed-cat-breed-info.jpg%3Fitok%3DfMSg3hGL&f=1&nofb=1"
                     ]}
                 />}
             <section className = "container centered display-block justify-content-center">
@@ -151,7 +163,7 @@ class ConfigurationView extends Component {
                 <div className = "row mb-4 mt-4 ml-1 mr-1 align-items-center">
                 <div className="col-o col-md-1" />
                     <div className="sectionGlass col-12 col-md-5">
-                        <div className="col-12 circularMask">
+                        <div className="circularMask">
                             <img src={this.state.data.img} alt="Profile" />
                         </div>
                         <h1 className='col-12 font-weight-bold userText'>{this.state.data.name}</h1>

@@ -39,6 +39,18 @@ class LeaderboardView extends Component {
     componentDidMount() {
         document.title = 'Leaderboard'
         this.props.updateCurrentPage("leaderboard")
+        this.setState(
+            {user:this.props.user
+            ,leaderboardData:this.props.data})
+
+    }
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.data !== this.props.data) {
+            this.setState({
+                leaderboardData: this.props.data,
+                user : this.props.user
+            })
+        }
     }
     render() {
         
