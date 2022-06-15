@@ -32,7 +32,7 @@ class ImageSelectPopUp extends Component {
                         <div className="popUp--title">
                             Selecciona una imagen
                         </div>
-                        <div className="flex-container--img-popup popUp--images">
+                        <div className="flex-container--img-popup popUp--images row">
                             {this.state.images.map((image, index) => <Img key={index} src={image} fun = {this.state.updateIsActive} alt=""/>)}
                         </div>
                         <button className="button button--primary popUp--button" onClick={this.state.updateIsActive}> Cerrar </button>
