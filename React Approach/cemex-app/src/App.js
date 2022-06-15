@@ -416,9 +416,10 @@ class LoggedInSection extends Component{
         sessionStorage.getItem('statisticsData'), 
         sessionStorage.getItem('loggedIn'))
       */
+    const userFromSession = JSON.parse(sessionStorage.getItem('userData'));
 
 
-      const requestUser = await fetch(`http://localhost:5000/user?username=${this.state.userData.username}`, {
+      const requestUser = await fetch(`http://localhost:5000/user?username=${userFromSession.username}`, {
         method: 'GET',
             headers: {
                 Accept: 'application/json',

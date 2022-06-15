@@ -113,7 +113,7 @@ export async function updateUser(req, res){
 	const {previus_username, username, email, _ , dob, alreadyEncrypted } = req.body;
 	var passwordHash = req.body.passwordHash;
 
-	if (alreadyEncrypted !== "false") {
+	if (alreadyEncrypted === false) {
 		passwordHash = crypto.createHash("sha512").update(passwordHash).digest("base64");
 	}
 
@@ -121,17 +121,23 @@ export async function updateUser(req, res){
 	const doesEmailExists = await modelUser.isThisEmailInUse(email);
 	const doesUsernameExists = await modelUser.isThisUsernameInUse(username);
 
-	// If the new username and email are not in use, update the user
-	if(doesEmailExists){
-		res.status(404).json({error: "Este email ya está siendo usado por otro usuario", invalidEmail: doesEmailExists});
-	}
-	if (doesUsernameExists) {
-		res.status(404).json({error: "Este username ya está siendo utilizado por otro usuario", invalidUsername: doesUsernameExists});
-	}
-
 	// First, we retrieve the user from the DB
 	const users = await User.find();
   	const user = users.filter((u) => u.username === previus_username)[0]; // Filtra por username
+
+	// If not found, we return an error
+	if(!user){
+		return res.status(404).json({error: "El usuario no existe"});
+	}
+
+
+	// If the new username and email are not in use, update the user
+	if(user.email !== email && doesEmailExists){
+		return res.status(409).json({error: "Este email ya está siendo usado por otro usuario", invalidEmail: doesEmailExists});
+	}
+	if (user.username !== username && doesUsernameExists) {
+		return res.status(409).json({error: "Este username ya está siendo utilizado por otro usuario", invalidUsername: doesUsernameExists});
+	}
 
 	// Then, we update the user with the given fields
 	const newUser = {	
@@ -151,11 +157,12 @@ export async function updateUser(req, res){
 		achievements: user.achievements,
 		weapons: user.weapons}
 
+
 	// Finally, we update the user in the DB
 	const userUpdate = await User.findOneAndUpdate({ "username" : previus_username }, newUser, {
 		new: true,
 	});
-	res.json(userUpdate);
+	return res.status(200).json(userUpdate);
 
 }
 
