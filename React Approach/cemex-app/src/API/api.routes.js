@@ -15,7 +15,8 @@ import {
 	updateUser,
 	getEnemyUser,
 	sendSupport,
-	getUserData2
+	getUserData2,
+	updateCurrentPlayer
 } from "./api.controller.js";
 
 const router = Router();
@@ -42,5 +43,6 @@ router.put("/users/:username", putUserData);
 
 router.post("/support", sendSupport);
 router.put("/getEnemy", getEnemyUser);
+router.post("/currentPlayer", updateCurrentPlayer);
 
 export default router;

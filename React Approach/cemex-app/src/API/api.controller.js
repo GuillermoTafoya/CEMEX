@@ -1,10 +1,12 @@
 import modelUser from "./api.model.user.js";
 import modelMessage from "./api.model.support.js";
 import User from "./api.model.user.js";
+import currentPlayer from "./api.model.currentPlayer.js";
 
 //const crypto = require("crypto-js");
 
 import crypto from "crypto";
+// import apiModelCurrentPlayer from "./api.model.currentPlayer.js";
 //import { toBePartiallyChecked } from "@testing-library/jest-dom/dist/matchers.js";
 
 // Get all registered users, funciona
@@ -192,4 +194,11 @@ export async function sendSupport(req, res){
 	const newMessage = new modelMessage({message});
 	await newMessage.save();
 	res.json(newMessage);
+}
+
+export async function updateCurrentPlayer(req, res){
+	const {currentUser} = req.body;
+	const id = "62a9323ddce5bd0f4fcfdf98";
+	const newCurrentPlayer = await currentPlayer.findByIdAndUpdate({_id: id}, {player: currentUser});
+	res.json(currentUser);
 }
