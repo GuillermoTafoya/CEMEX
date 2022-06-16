@@ -496,7 +496,7 @@ updateState(){
             <Route path="/" element={<UserView data = {this.state.userData} updateCurrentPage={this.updateCurrentPage} /> } />
             <Route path="logros" element={<AchievementsView data = {this.state.userData} updateCurrentPage={this.updateCurrentPage}/>} /> 
             <Route path="usuario" element={ <UserView data = {this.state.userData} updateCurrentPage={this.updateCurrentPage}/>} />
-            <Route path={"juego"} element={ <GameView data = {this.state.userData} updateCurrentPage={this.updateCurrentPage} updateNavbar={this.updateNavbar} />} />
+            <Route path="juego" element={ <GameView data = {this.state.userData} updateCurrentPage={this.updateCurrentPage} updateNavbar={this.updateNavbar} />} />
             <Route path="configuracion" element={ <ConfigurationView data = {this.state.userData} updateCurrentPage={this.updateCurrentPage}/>} />
             <Route path="soporte" element={ <ContactView updateCurrentPage={this.updateCurrentPage}/>} />
             <Route path="estadisticas" element={ this.state.userData.admin ? <StatisticsView data = {this.state.statisticsData} updateCurrentPage={this.updateCurrentPage}/> :< NotAdmin updateCurrentPage={this.updateCurrentPage}/>} />
