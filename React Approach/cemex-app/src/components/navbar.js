@@ -45,7 +45,7 @@ class NavBar extends Component{
                                 <NavLink className="nav-link"  to='/configuracion'>Configuración</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link" to='/juego'>Juego</NavLink>
+                                <NavLink className="nav-link" to={`/juego?id=${this.state.data.username}`}>Juego</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink className="nav-link" to='/soporte'>Soporte</NavLink>

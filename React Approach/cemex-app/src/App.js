@@ -89,12 +89,12 @@ function App() {
     const birthday = e.target[4].value;
     const createPassword  = e.target[5].value; 
     const repeatPassword = e.target[6].value;
-
+    sessionStorage.setItem("username", usernameLogin);
     if (mode === "signup"){ // CONDICIONAL PARA SABER SI ESTÁ EN LOGIN O EN SIGNUP, FALTA VALIDAR EL REPETIR CONTRASEÑAS
 
       // REGISTRO
       if( createPassword  !== repeatPassword){
-        alert("Las contraseñas no coinciden");
+        alert("Las contraseñas no coincden");
         return;
       }
       const payload = {
@@ -487,9 +487,7 @@ updateState(){
 }
   updateCurrentPage(page){
     this.setState({currentPage: page})
-  }
-
-  
+  }  
     render(){
       return(
         <div className="App">
@@ -498,7 +496,7 @@ updateState(){
             <Route path="/" element={<UserView data = {this.state.userData} updateCurrentPage={this.updateCurrentPage} /> } />
             <Route path="logros" element={<AchievementsView data = {this.state.userData} updateCurrentPage={this.updateCurrentPage}/>} /> 
             <Route path="usuario" element={ <UserView data = {this.state.userData} updateCurrentPage={this.updateCurrentPage}/>} />
-            <Route path="juego" element={ <GameView data = {this.state.userData} updateCurrentPage={this.updateCurrentPage} updateNavbar={this.updateNavbar} />} />
+            <Route path={"juego"} element={ <GameView data = {this.state.userData} updateCurrentPage={this.updateCurrentPage} updateNavbar={this.updateNavbar} />} />
             <Route path="configuracion" element={ <ConfigurationView data = {this.state.userData} updateCurrentPage={this.updateCurrentPage}/>} />
             <Route path="soporte" element={ <ContactView updateCurrentPage={this.updateCurrentPage}/>} />
             <Route path="estadisticas" element={ this.state.userData.admin ? <StatisticsView data = {this.state.statisticsData} updateCurrentPage={this.updateCurrentPage}/> :< NotAdmin updateCurrentPage={this.updateCurrentPage}/>} />
